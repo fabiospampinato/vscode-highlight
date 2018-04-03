@@ -42,7 +42,7 @@ A much more robust string for matching todos, with support for multiple todos in
   "((?://|/\\*+) *TODO:?)(?!\\w)((?: +.+?)(?= *(?://|/\\*+))|(?: +.+)?)"
 ```
 
-Once you change your configuration, just close and re-open a file to refresh it's decorators.
+Once you change your configuration, just close and re-open a file to refresh it's decorations.
 
 All the supported decoration options are defined [here](https://code.visualstudio.com/docs/extensionAPI/vscode-api#DecorationRenderOptions).
 
