@@ -1,0 +1,75 @@
+{
+  "name": "vscode-highlight",
+  "displayName": "Highlight",
+  "description": "Advanced text highlighter based on regexes. Useful for todos, annotations etc.",
+  "icon": "resources/logo-128x128.png",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "out/src/extension.js",
+  "publisher": "fabiospampinato",
+  "activationEvents": [
+    "*"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Highlight - Configuration",
+      "properties": {
+        "highlight.regexes": {
+          "type": "object",
+          "description": "Object mapping regexes to an array of decorations to apply to the matching groups",
+          "default": {}
+        },
+        "highlight.regexFlags": {
+          "type": "string",
+          "description": "Flags used when building the regexes",
+          "default": "gi"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "publish": "vsce publish && npm publish",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "bugs": {
+    "url": "https://github.com/fabiospampinato/vscode-highlight/issues"
+  },
+  "author": {
+    "name": "Fabio Spampinato",
+    "email": "spampinabio@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fabiospampinato/vscode-highlight.git"
+  },
+  "engines": {
+    "vscode": "^1.15.0"
+  },
+  "keywords": [
+    "vscode",
+    "highlight",
+    "text",
+    "todo",
+    "annotation",
+    "vsc",
+    "extension"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "pify": "^3.0.0",
+    "string-matches": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.40",
+    "tslint": "^4.4.2",
+    "typescript": "~2.2.0",
+    "vscode": "^1.1.4"
+  }
+}
