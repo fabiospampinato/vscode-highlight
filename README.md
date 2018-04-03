@@ -36,10 +36,10 @@ An example configuration could be:
 }
 ```
 
-A much more robust string for matching todos, with support for multiple todos in a single line could look like this:
+A much more robust string for matching todos, with support for multiple todos in a single line and [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus)-style tags would look like this:
 
 ```js
-  "((?://|/\\*+) *TODO:?)(?!\\w)((?: +.+?)(?= *(?://|/\\*+))|(?: +.+)?)"
+"((?://|/\\*+) *TODO:?)(?!\\w)((?: +[^\n@]+?)(?= *(?://|/\\*+|@))|(?: +[^@\n]+)?)"
 ```
 
 Once you change your configuration, just close and re-open a file to refresh it's decorations.
