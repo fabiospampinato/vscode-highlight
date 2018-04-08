@@ -73,6 +73,8 @@ const Decorator = {
 
   decorate ( textEditor: vscode.TextEditor = vscode.window.activeTextEditor ) {
 
+    if ( !textEditor ) return;
+
     const doc = textEditor.document,
           text = doc.getText (),
           decorations = new Map ();
