@@ -57,6 +57,8 @@ const Decorator = {
 
   initTypes () {
 
+    if ( Decorator.types ) Decorator.undecorate ();
+
     const types = Decorator.regexesStrs.map ( reStr => _.castArray ( Decorator.config.regexes[reStr] ).map ( options => vscode.window.createTextEditorDecorationType ( options ) ) );
 
     Decorator.types = _.zipObject ( Decorator.regexesStrs, types );
@@ -69,7 +71,7 @@ const Decorator = {
 
   },
 
-  /* DECORATE */
+  /* DECORATIONS */
 
   decorate ( textEditor: vscode.TextEditor = vscode.window.activeTextEditor ) {
 
@@ -78,6 +80,12 @@ const Decorator = {
     const doc = textEditor.document,
           text = doc.getText (),
           decorations = new Map ();
+
+    /* CLEARING */
+
+    Decorator.undecorate ();
+
+    /* PARSING */
 
     Decorator.regexesStrs.forEach ( reStr => {
 
@@ -113,9 +121,25 @@ const Decorator = {
 
     });
 
+    /* SETTING */
+
     decorations.forEach ( ( ranges, type ) => {
 
       textEditor.setDecorations ( type, ranges );
+
+    });
+
+  },
+
+  undecorate ( textEditor: vscode.TextEditor = vscode.window.activeTextEditor ) {
+
+    if ( !textEditor ) return;
+
+    const types = _.flatten ( _.values ( Decorator.types ) );
+
+    types.map ( type => {
+
+      textEditor.setDecorations ( type, [] );
 
     });
 
