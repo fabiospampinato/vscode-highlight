@@ -15,6 +15,13 @@
       "type": "object",
       "title": "Highlight - Configuration",
       "properties": {
+        "highlight.decorations": {
+          "type": "object",
+          "description": "Default decorations from which all others inherit from",
+          "default": {
+            "rangeBehavior": 3
+          }
+        },
         "highlight.regexes": {
           "type": "object",
           "description": "Object mapping regexes to an array of decorations to apply to the matching groups",

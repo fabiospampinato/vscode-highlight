@@ -59,7 +59,8 @@ const Decorator = {
 
     if ( Decorator.types ) Decorator.undecorate ();
 
-    const types = Decorator.regexesStrs.map ( reStr => _.castArray ( Decorator.config.regexes[reStr] ).map ( options => vscode.window.createTextEditorDecorationType ( options ) ) );
+    const decorations = Decorator.config.decorations,
+          types = Decorator.regexesStrs.map ( reStr => _.castArray ( Decorator.config.regexes[reStr] ).map ( options => vscode.window.createTextEditorDecorationType ( _.merge ( {}, decorations, options ) ) ) );
 
     Decorator.types = _.zipObject ( Decorator.regexesStrs, types );
 

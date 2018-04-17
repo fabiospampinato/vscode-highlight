@@ -20,6 +20,7 @@ ext install fabiospampinato.vscode-highlight
 
 ```js
 {
+  "highlight.decorations": { "rangeBehavior": 3 }, // Default decorations from which all others inherit from
   "highlight.regexes": {}, // Object mapping regexes to an array of decorations to apply to the matching groups
   "highlight.regexFlags": "gi" // Flags used when building the regexes
 }
