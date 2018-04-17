@@ -6,7 +6,7 @@
 
 Advanced text highlighter based on regexes. Useful for todos, annotations etc.
 
-There are other extensions that can be used for this, like [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight), but this can apply different styles to different matching groups within the same regex, and this is focused on doing only one thing and doing it well.
+There are other extensions that can be used for this, like [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight), but this is more generic, this can apply different styles to different matching groups within the same regex, and this is focused on doing only one thing and doing it well.
 
 ## Install
 
@@ -91,7 +91,7 @@ Transforms this:
 
 ![Before](resources/demo/before.png)
 
-To this:
+Into this:
 
 ![After](resources/demo/after.png)
 
