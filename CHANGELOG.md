@@ -1,3 +1,8 @@
+### Version 1.1.0
+- Updated robust example regex for matching todos
+- Added a note about matching groups and decorations alignment
+- Added support for a `decorations` option
+
 ### Version 1.0.2
 - Ensuring `textEditor` is not undefined
 - Clearing previous decorations before decorating
