@@ -39,10 +39,10 @@ An example configuration could be:
 
 **Note:** All characters of the matched string must be wrapped in a matching group, and for each matching group a decorations options object must be provided (empty decorations are allowed: `{}`), otherwise the actual decorations will be misaligned.
 
-A much more robust string for matching todos, with support for JavaScript/HTML-style comments, multiple todos in a single line, and [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus)-style tags would look like this:
+A much more robust string for matching todos, with support for JavaScript/HTML-style comments, urls, multiple todos in a single line, and [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus)-style tags would look like this:
 
 ```js
-"((?:<!-- *)?(?:#|//|/\\*+|<!--) *TODO:?)(?!\\w)((?: +[^\n@]+?)(?= *(?://|/\\*+|<!--|@))|(?: +[^@\n]+)?)"
+"((?:<!-- *)?(?:#|//|/\\*+|<!--) *TODO:?)(?!\\w)((?: +[^\n@]+?)(?= *(?:[^:]//|/\\*+|<!--|@))|(?: +[^@\n]+)?)"
 ```
 
 Once you change your configuration, just close and re-open a file to refresh it's decorations.
