@@ -1,3 +1,7 @@
+### Version 1.2.0
+- Substancial performance improvement
+- Added regex-level options: `regexFlags`, `filterLanguageRegex` and `filterFileRegex`
+
 ### Version 1.1.0
 - Updated robust example regex for matching todos
 - Added a note about matching groups and decorations alignment
