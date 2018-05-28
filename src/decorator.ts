@@ -40,7 +40,13 @@ const Decorator = {
 
     Decorator.regexesStrs = Object.keys ( Decorator.config.regexes );
 
-    const res = Decorator.regexesStrs.map ( reStr => new RegExp ( reStr, Decorator.config.regexFlags ) );
+    const res = Decorator.regexesStrs.map ( reStr => {
+
+      const options = Decorator.config.regexes[reStr];
+
+      return new RegExp ( reStr, options.regexFlags || Decorator.config.regexFlags );
+
+    });
 
     Decorator.regexes = _.zipObject ( Decorator.regexesStrs, res );
 
@@ -61,7 +67,14 @@ const Decorator = {
     if ( Decorator.types ) Decorator.undecorate ();
 
     const decorations = Decorator.config.decorations,
-          types = Decorator.regexesStrs.map ( reStr => _.castArray ( Decorator.config.regexes[reStr] ).map ( options => vscode.window.createTextEditorDecorationType ( _.merge ( {}, decorations, options ) ) ) );
+          types = Decorator.regexesStrs.map ( reStr => {
+
+            const options = Decorator.config.regexes[reStr],
+                  reDecorations = _.castArray ( options.decorations || options );
+
+            return reDecorations.map ( options => vscode.window.createTextEditorDecorationType ( _.merge ( {}, decorations, options ) ) );
+
+          });
 
     Decorator.types = _.zipObject ( Decorator.regexesStrs, types );
 
@@ -105,6 +118,11 @@ const Decorator = {
     /* PARSING */
 
     Decorator.regexesStrs.forEach ( reStr => {
+
+      const options = Decorator.config.regexes[reStr],
+            isFiltered = Utils.document.isFiltered ( doc, options );
+
+      if ( !isFiltered ) return;
 
       const re = Decorator.getRegex ( reStr ),
             matches = stringMatches ( text, re );
