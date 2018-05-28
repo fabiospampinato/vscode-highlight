@@ -83,7 +83,7 @@ const Decorator = {
 
   decorations: {}, // Map of document id => decorations
 
-  decorate ( doc?: vscode.TextDocument ) {
+  decorate ( doc?: vscode.TextDocument, force?: boolean ) {
 
     if ( !doc ) {
 
@@ -91,7 +91,7 @@ const Decorator = {
 
       if ( !textEditor ) return;
 
-      return Decorator.decorate ( textEditor.document );
+      return Decorator.decorate ( textEditor.document, force );
 
     }
 
@@ -140,7 +140,7 @@ const Decorator = {
 
     /* CLEARING */
 
-    if ( _.isEqual ( Decorator.decorations[textEditor['id']], decorations ) ) return; // Nothing changed, skipping unnecessary work
+    if ( force !== true && _.isEqual ( Decorator.decorations[textEditor['id']], decorations ) ) return; // Nothing changed, skipping unnecessary work //URL: https://github.com/Microsoft/vscode/issues/50415
 
     Decorator.decorations[textEditor['id']] = decorations;
 
