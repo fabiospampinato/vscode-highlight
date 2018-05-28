@@ -1,8 +1,8 @@
 
 /* IMPORT */
 
-import * as _ from 'lodash';
 import * as vscode from 'vscode';
+import Changes from './changes';
 import Decorator from './decorator';
 
 /* ACTIVATE */
@@ -11,12 +11,10 @@ function activate ( context: vscode.ExtensionContext ) {
 
   Decorator.init ();
 
-  const debouncedDectorate = _.debounce ( () => Decorator.decorate (), 100 );
-
   context.subscriptions.push (
-    vscode.workspace.onDidChangeConfiguration ( () => Decorator.init (), debouncedDectorate () ),
-    vscode.workspace.onDidChangeTextDocument ( debouncedDectorate ),
-    vscode.window.onDidChangeActiveTextEditor ( debouncedDectorate )
+    vscode.workspace.onDidChangeConfiguration ( () => { Decorator.init (); Decorator.decorate (); } ),
+    vscode.workspace.onDidChangeTextDocument ( Changes.onChanges ),
+    vscode.window.onDidChangeActiveTextEditor ( () => Decorator.decorate () )
   );
 
   Decorator.decorate ();

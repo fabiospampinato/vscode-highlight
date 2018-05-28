@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import stringMatches from 'string-matches';
 import * as vscode from 'vscode';
 import Config from './config';
+import Utils from './utils';
 
 /* DECORATOR */
 
@@ -66,25 +67,40 @@ const Decorator = {
 
   },
 
+  getTypes ( reStr ) {
+
+    return Decorator.types[reStr];
+
+  },
+
   getType ( reStr, matchNr = 0 ) {
 
-    return Decorator.types[reStr][matchNr];
+    return Decorator.getTypes ( reStr )[matchNr];
 
   },
 
   /* DECORATIONS */
 
-  decorate ( textEditor: vscode.TextEditor = vscode.window.activeTextEditor ) {
+  decorations: {}, // Map of document id => decorations
+
+  decorate ( doc?: vscode.TextDocument ) {
+
+    if ( !doc ) {
+
+      const textEditor = vscode.window.activeTextEditor;
+
+      if ( !textEditor ) return;
+
+      return Decorator.decorate ( textEditor.document );
+
+    }
+
+    const textEditor = Utils.document.getEditor ( doc );
 
     if ( !textEditor ) return;
 
-    const doc = textEditor.document,
-          text = doc.getText (),
+    const text = doc.getText (),
           decorations = new Map ();
-
-    /* CLEARING */
-
-    Decorator.undecorate ();
 
     /* PARSING */
 
@@ -122,6 +138,14 @@ const Decorator = {
 
     });
 
+    /* CLEARING */
+
+    if ( _.isEqual ( Decorator.decorations[textEditor['id']], decorations ) ) return; // Nothing changed, skipping unnecessary work
+
+    Decorator.decorations[textEditor['id']] = decorations;
+
+    Decorator.undecorate ();
+
     /* SETTING */
 
     decorations.forEach ( ( ranges, type ) => {
@@ -129,6 +153,70 @@ const Decorator = {
       textEditor.setDecorations ( type, ranges );
 
     });
+
+  },
+
+  docsLines: {},
+
+  decorateLines ( doc: vscode.TextDocument, lineNrs: number[] ) {
+
+    // Optimizing the case where:
+    // 1. The line count is the same
+    // 2. There were no decorations in lineNrs
+    // 3. There still are no decorations in lineNrs
+
+    const textEditor = Utils.document.getEditor ( doc );
+
+    if ( Decorator.docsLines[textEditor['id']] === doc.lineCount ) {
+
+      const decorations = Decorator.decorations[textEditor['id']];
+
+      let hadDecorations = false;
+
+      if ( decorations ) {
+
+        for ( let ranges of decorations.values () ) {
+
+          if ( ranges.find ( range => _.includes ( lineNrs, ( range.start.line ) ) || _.includes ( lineNrs, ( range.end.line ) ) ) ) {
+
+            hadDecorations = true;
+
+            break;
+
+          }
+
+        }
+
+      }
+
+      if ( !hadDecorations ) {
+
+        const hasDecorations = lineNrs.find ( lineNr => {
+
+          const line = doc.lineAt ( lineNr );
+
+          return Decorator.regexesStrs.find ( reStr => {
+
+            const re = Decorator.getRegex ( reStr ),
+                  matches = stringMatches ( line.text, re );
+
+            return !!matches.length;
+
+          });
+
+        });
+
+        if ( !hasDecorations ) return;
+
+      }
+
+    } else {
+
+      Decorator.docsLines[textEditor['id']] = doc.lineCount;
+
+    }
+
+    Decorator.decorate ( doc );
 
   },
 
