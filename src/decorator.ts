@@ -156,9 +156,17 @@ const Decorator = {
 
     });
 
+    /* LINE COUNT */
+
+    const prevLineCount = Decorator.docsLines[textEditor['id']];
+
+    Decorator.docsLines[textEditor['id']] = doc.lineCount;
+
     /* CLEARING */
 
-    if ( force !== true && _.isEqual ( Decorator.decorations[textEditor['id']], decorations ) ) return; // Nothing changed, skipping unnecessary work //URL: https://github.com/Microsoft/vscode/issues/50415
+    const prevDecorations = Decorator.decorations[textEditor['id']];
+
+    if ( force !== true && ( ( ( !prevDecorations || !prevDecorations.size ) && !decorations.size ) || ( prevLineCount === doc.lineCount && _.isEqual ( prevDecorations, decorations ) ) ) ) return; // Nothing changed, skipping unnecessary work //URL: https://github.com/Microsoft/vscode/issues/50415
 
     Decorator.decorations[textEditor['id']] = decorations;
 
@@ -195,7 +203,7 @@ const Decorator = {
 
         for ( let ranges of decorations.values () ) {
 
-          if ( ranges.find ( range => _.includes ( lineNrs, ( range.start.line ) ) || _.includes ( lineNrs, ( range.end.line ) ) ) ) {
+          if ( ranges.find ( range => _.includes ( lineNrs, range.start.line ) || _.includes ( lineNrs, range.end.line ) ) ) {
 
             hadDecorations = true;
 
@@ -227,10 +235,6 @@ const Decorator = {
         if ( !hasDecorations ) return;
 
       }
-
-    } else {
-
-      Decorator.docsLines[textEditor['id']] = doc.lineCount;
 
     }
 
