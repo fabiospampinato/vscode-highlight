@@ -1,3 +1,6 @@
+### Version 1.2.1
+- Improved skipping-redecoration logic
+
 ### Version 1.2.0
 - Substancial performance improvement
 - Added regex-level options: `regexFlags`, `filterLanguageRegex` and `filterFileRegex`
