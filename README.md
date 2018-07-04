@@ -55,6 +55,8 @@ If you want to have different regex flags for different regexes, or if you want 
 
 **Note:** All characters of the matched string must be wrapped in a capturing group, and for each capturing group a decorations options object must be provided (empty decorations are allowed: `{}`), otherwise the actual decorations will be misaligned.
 
+**Note:** Nested capturing groups are not supported.
+
 A much more robust string for matching todos, with support for JavaScript/HTML-style comments, urls, multiple todos in a single line, and [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus)-style tags would look like this:
 
 ```js
