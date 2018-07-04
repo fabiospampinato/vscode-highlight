@@ -6,7 +6,7 @@
 
 Advanced text highlighter based on regexes. Useful for todos, annotations etc.
 
-There are other extensions that can be used for this, like [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight), but this is more generic, this can apply different styles to different matching groups within the same regex, and this is focused on doing only one thing and doing it well.
+There are other extensions that can be used for this, like [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight), but this is more generic, this can apply different styles to different capturing groups within the same regex, and this is focused on doing only one thing and doing it well.
 
 ## Install
 
@@ -22,7 +22,7 @@ ext install fabiospampinato.vscode-highlight
 {
   "highlight.decorations": { "rangeBehavior": 3 }, // Default decorations from which all others inherit from
   "highlight.regexFlags": "gi", // Default flags used when building the regexes
-  "highlight.regexes": {} // Object mapping regexes to options or an array of decorations to apply to the matching groups
+  "highlight.regexes": {} // Object mapping regexes to options or an array of decorations to apply to the capturing groups
 }
 ```
 
@@ -31,8 +31,8 @@ An example configuration could be:
 ```js
 "highlight.regexes": {
   "(//TODO)(:)": [ // A regex will be created from this string, don't forget to double escape it
-    { "color": "yellow" }, // Decoration options to apply to the first matching group, in this case "//TODO"
-    { "color": "red" } // Decoration options to apply to the second matching group, in this case ":"
+    { "color": "yellow" }, // Decoration options to apply to the first capturing group, in this case "//TODO"
+    { "color": "red" } // Decoration options to apply to the second capturing group, in this case ":"
   ]
 }
 ```
@@ -45,15 +45,15 @@ If you want to have different regex flags for different regexes, or if you want 
     "regexFlags": "g", // Flags used when building this regex
     "filterLanguageRegex": "markdown", // Apply only if current file's language matches this regex. Requires double escaping
     "filterFileRegex": ".*\\.ext", // Apply only if the current file's path matches this regex. Requires double escaping
-    "decorations": [ // Decoration options to apply to the matching groups
-      { "color": "yellow" }, // Decoration options to apply to the first matching group, in this case "//TODO"
-      { "color": "red" } // Decoration options to apply to the second matching group, in this case ":"
+    "decorations": [ // Decoration options to apply to the capturing groups
+      { "color": "yellow" }, // Decoration options to apply to the first capturing group, in this case "//TODO"
+      { "color": "red" } // Decoration options to apply to the second capturing group, in this case ":"
     ]
   }
 }
 ```
 
-**Note:** All characters of the matched string must be wrapped in a matching group, and for each matching group a decorations options object must be provided (empty decorations are allowed: `{}`), otherwise the actual decorations will be misaligned.
+**Note:** All characters of the matched string must be wrapped in a capturing group, and for each capturing group a decorations options object must be provided (empty decorations are allowed: `{}`), otherwise the actual decorations will be misaligned.
 
 A much more robust string for matching todos, with support for JavaScript/HTML-style comments, urls, multiple todos in a single line, and [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus)-style tags would look like this:
 

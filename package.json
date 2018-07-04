@@ -24,7 +24,7 @@
         },
         "highlight.regexes": {
           "type": "object",
-          "description": "Object mapping regexes to an array of decorations to apply to the matching groups",
+          "description": "Object mapping regexes to an array of decorations to apply to the capturing groups",
           "default": {}
         },
         "highlight.regexFlags": {
