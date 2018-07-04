@@ -1,3 +1,7 @@
+### Version 1.2.2
+- Renamed `matching groups` to `capturing groups`
+- Readme: added a note about nested capturing groups
+
 ### Version 1.2.1
 - Improved skipping-redecoration logic
 
