@@ -1,3 +1,6 @@
+### Version 1.2.3
+- Robust regex: added support for AppleScript-like style comments
+
 ### Version 1.2.2
 - Renamed `matching groups` to `capturing groups`
 - Readme: added a note about nested capturing groups
