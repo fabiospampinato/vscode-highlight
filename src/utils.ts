@@ -45,6 +45,14 @@ const Utils = {
 
     }
 
+  },
+
+  editor: {
+
+    is ( x ): x is vscode.TextEditor {
+      return !!x.document;
+    }
+
   }
 
 };

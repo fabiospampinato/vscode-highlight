@@ -96,19 +96,31 @@ const Decorator = {
 
   decorations: {}, // Map of document id => decorations
 
-  decorate ( doc?: vscode.TextDocument, force?: boolean ) {
+  decorate ( target?: vscode.TextEditor | vscode.TextDocument, force?: boolean ) {
 
-    if ( !doc ) {
+    if ( !target ) {
 
       const textEditor = vscode.window.activeTextEditor;
 
       if ( !textEditor ) return;
 
-      return Decorator.decorate ( textEditor.document, force );
+      return Decorator.decorate ( textEditor, force );
 
     }
 
-    const textEditor = Utils.document.getEditor ( doc );
+    let doc, textEditor;
+
+    if ( Utils.editor.is ( target ) ) {
+
+      textEditor = target;
+      doc = textEditor.document;
+
+    } else {
+
+      doc = target;
+      textEditor = Utils.document.getEditor ( doc );
+
+    }
 
     if ( !textEditor ) return;
 
