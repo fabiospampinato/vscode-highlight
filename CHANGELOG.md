@@ -1,3 +1,6 @@
+### Version 1.2.4
+- Fixed highlighting of duplicated editors
+
 ### Version 1.2.3
 - Robust regex: added support for AppleScript-like style comments
 
