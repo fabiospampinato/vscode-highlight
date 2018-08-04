@@ -39,9 +39,9 @@ const Utils = {
 
     },
 
-    getEditor ( doc: vscode.TextDocument ) {
+    getEditors ( doc: vscode.TextDocument ) {
 
-      return vscode.window.visibleTextEditors.find ( textEditor => textEditor.document === doc );
+      return vscode.window.visibleTextEditors.filter ( textEditor => textEditor.document === doc );
 
     }
 

@@ -108,23 +108,17 @@ const Decorator = {
 
     }
 
-    let doc, textEditor;
+    if ( !Utils.editor.is ( target ) ) {
 
-    if ( Utils.editor.is ( target ) ) {
+      const textEditors = Utils.document.getEditors ( target );
 
-      textEditor = target;
-      doc = textEditor.document;
-
-    } else {
-
-      doc = target;
-      textEditor = Utils.document.getEditor ( doc );
+      return textEditors.forEach ( textEditor => Decorator.decorate ( textEditor, force ) );
 
     }
 
-    if ( !textEditor ) return;
-
-    const text = doc.getText (),
+    const textEditor = target,
+          doc = target.document,
+          text = doc.getText (),
           decorations = new Map ();
 
     /* PARSING */
@@ -203,7 +197,7 @@ const Decorator = {
     // 2. There were no decorations in lineNrs
     // 3. There still are no decorations in lineNrs
 
-    const textEditor = Utils.document.getEditor ( doc );
+    const textEditor = Utils.document.getEditors ( doc )[0];
 
     if ( Decorator.docsLines[textEditor['id']] === doc.lineCount ) {
 
