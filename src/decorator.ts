@@ -223,7 +223,7 @@ const Decorator = {
 
       if ( !hadDecorations ) {
 
-        const hasDecorations = lineNrs.find ( lineNr => {
+        const hasDecorations = _.isNumber ( lineNrs.find ( lineNr => {
 
           const line = doc.lineAt ( lineNr );
 
@@ -236,7 +236,7 @@ const Decorator = {
 
           });
 
-        });
+        }));
 
         if ( !hasDecorations ) return;
 
