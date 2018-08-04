@@ -1,3 +1,6 @@
+### Version 1.2.6
+- Fixed first line highlighting
+
 ### Version 1.2.5
 - When a document changes all of its visible editors are decorated
 
