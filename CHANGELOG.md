@@ -1,3 +1,6 @@
+### Version 1.2.7
+- Updated logo
+
 ### Version 1.2.6
 - Fixed first line highlighting
 
