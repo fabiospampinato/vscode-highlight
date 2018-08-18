@@ -1,3 +1,6 @@
+### Version 1.2.8
+- Updated robust regex
+
 ### Version 1.2.7
 - Updated logo
 
