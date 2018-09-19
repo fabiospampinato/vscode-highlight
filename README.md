@@ -112,7 +112,7 @@ Into this:
 
 ![After](resources/demo/after.png)
 
-## Hints:
+## Hints
 
 - **Todo**: If you're using this extension for highlighting todos, I recommend using [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) as well.
 
