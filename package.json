@@ -3,7 +3,7 @@
   "displayName": "Highlight",
   "description": "Advanced text highlighter based on regexes. Useful for todos, annotations etc.",
   "icon": "resources/logo-128x128.png",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "license": "MIT",
   "main": "out/extension.js",
   "publisher": "fabiospampinato",
@@ -79,6 +79,7 @@
     "ts-loader": "^5.2.1",
     "tslint": "^4.4.2",
     "typescript": "~2.4.1",
-    "vscode": "^1.1.4"
+    "vscode": "^1.1.4",
+    "webpack": "^4.20.2"
   }
 }

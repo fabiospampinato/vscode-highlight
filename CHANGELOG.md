@@ -1,3 +1,6 @@
+### Version 1.2.10
+- Bundling with webpack
+
 ### Version 1.2.9
 - Updated advenced regex: added support for `//TODO (foo)`
 - Updated advenced regex: add support for JSDoc-style comments
