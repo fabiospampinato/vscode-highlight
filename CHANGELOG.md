@@ -1,3 +1,6 @@
+### Version 1.2.11
+- Fixed support for non-global regexes
+
 ### Version 1.2.10
 - Bundling with webpack
 
