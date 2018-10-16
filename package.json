@@ -31,6 +31,11 @@
           "type": "string",
           "description": "Flags used when building the regexes",
           "default": "gi"
+        },
+        "highlight.maxMatches": {
+          "type": "number",
+          "description": "Maximum number of matches per regex to decorate",
+          "default": 250
         }
       }
     }
@@ -72,7 +77,7 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "pify": "^3.0.0",
-    "string-matches": "^1.0.3"
+    "string-matches": "^1.1.0"
   },
   "devDependencies": {
     "@types/node": "^6.0.40",

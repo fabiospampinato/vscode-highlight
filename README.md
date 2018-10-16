@@ -22,7 +22,8 @@ ext install fabiospampinato.vscode-highlight
 {
   "highlight.decorations": { "rangeBehavior": 3 }, // Default decorations from which all others inherit from
   "highlight.regexFlags": "gi", // Default flags used when building the regexes
-  "highlight.regexes": {} // Object mapping regexes to options or an array of decorations to apply to the capturing groups
+  "highlight.regexes": {}, // Object mapping regexes to options or an array of decorations to apply to the capturing groups
+  "highlight.maxMatches": 250 // Maximum number of matches per regex to decorate
 }
 ```
 

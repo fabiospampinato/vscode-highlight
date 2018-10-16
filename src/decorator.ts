@@ -131,7 +131,7 @@ const Decorator = {
       if ( !isFiltered ) return;
 
       const re = Decorator.getRegex ( reStr ),
-            matches = stringMatches ( text, re );
+            matches = stringMatches ( text, re, Decorator.config.maxMatches );
 
       matches.forEach ( match => {
 
