@@ -1,3 +1,6 @@
+### Version 1.3.0
+- Added a `maxMatches` option
+
 ### Version 1.2.11
 - Fixed support for non-global regexes
 
