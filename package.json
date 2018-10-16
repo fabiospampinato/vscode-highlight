@@ -72,7 +72,7 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "pify": "^3.0.0",
-    "string-matches": "^1.0.1"
+    "string-matches": "^1.0.3"
   },
   "devDependencies": {
     "@types/node": "^6.0.40",
