@@ -85,6 +85,7 @@
     "tslint": "^4.4.2",
     "typescript": "~2.4.1",
     "vscode": "^1.1.4",
-    "webpack": "^4.20.2"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   }
 }
