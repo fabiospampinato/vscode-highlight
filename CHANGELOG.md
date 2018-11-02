@@ -1,3 +1,7 @@
+### Version 1.3.1
+- Outputting modern code (es2017, faster)
+- Using "Debug Launcher" for debugging
+
 ### Version 1.3.0
 - Added a `maxMatches` option
 
