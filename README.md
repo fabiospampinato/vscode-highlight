@@ -117,6 +117,12 @@ Into this:
 
 - **Todo**: If you're using this extension for highlighting todos, I recommend using [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) as well.
 
+## Contributing
+
+If you found a problem, or have a feature request, please open an [issue](https://github.com/fabiospampinato/vscode-highlight/issues) about it.
+
+If you want to make a pull request you can debug the extension using [Debug Launcher](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-debug-launcher).
+
 ## License
 
 MIT © Fabio Spampinato
