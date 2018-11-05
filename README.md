@@ -1,7 +1,7 @@
 # Highlight
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/fabiospampinato/vscode-highlight/master/resources/logo-128x128.png" alt="Logo">
+	<img src="https://raw.githubusercontent.com/fabiospampinato/vscode-highlight/master/resources/logo.png" width="128" alt="Logo">
 </p>
 
 Advanced text highlighter based on regexes. Useful for todos, annotations etc.
