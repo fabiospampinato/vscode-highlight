@@ -1,3 +1,6 @@
+### Version 1.3.3
+- Updated advenced regex: added support for common templating languages
+
 ### Version 1.3.2
 - Readme: using hi-res logo
 
