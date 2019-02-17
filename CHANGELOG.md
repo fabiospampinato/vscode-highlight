@@ -1,3 +1,7 @@
+### Version 1.3.4
+- Ensuring curly braces in regexes are properly escaped
+- Fixed an exception
+
 ### Version 1.3.3
 - Updated advenced regex: added support for common templating languages
 
