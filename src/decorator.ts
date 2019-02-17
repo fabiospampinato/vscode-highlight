@@ -199,7 +199,7 @@ const Decorator = {
 
     const textEditor = Utils.document.getEditors ( doc )[0];
 
-    if ( Decorator.docsLines[textEditor['id']] === doc.lineCount ) {
+    if ( textEditor && Decorator.docsLines[textEditor['id']] === doc.lineCount ) {
 
       const decorations = Decorator.decorations[textEditor['id']];
 
