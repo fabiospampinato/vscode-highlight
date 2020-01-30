@@ -72,7 +72,29 @@ const Decorator = {
             const options = Decorator.config.regexes[reStr],
                   reDecorations = _.castArray ( options.decorations || options );
 
-            return reDecorations.map ( options => vscode.window.createTextEditorDecorationType ( _.merge ( {}, decorations, options ) ) );
+            return reDecorations.map ( options => {
+
+              const decorationsFull = _.merge ( {}, decorations, options ),
+                    decorationsStr = JSON.stringify ( decorationsFull );
+
+              if ( /\$\d/.test ( decorationsStr ) ) { // Dynamic decorator
+
+                return _.memoize<any> ( match => {
+
+                  const decorationsStrReplaced = decorationsStr.replace ( /\$(\d)/g, ( m, index ) => match[index] ),
+                        decorationsFullReplaced = JSON.parse ( decorationsStrReplaced );
+
+                  return vscode.window.createTextEditorDecorationType ( decorationsFullReplaced );
+
+                }, match => match[0] );
+
+              } else { // Static decorator
+
+                return vscode.window.createTextEditorDecorationType ( decorationsFull );
+
+              }
+
+            });
 
           });
 
@@ -145,10 +167,13 @@ const Decorator = {
 
           const startPos = doc.positionAt ( startIndex ),
                 endPos = doc.positionAt ( startIndex + value.length ),
-                range = new vscode.Range ( startPos, endPos ),
-                type = Decorator.getType ( reStr, i - 1 );
+                range = new vscode.Range ( startPos, endPos );
+
+          let type = Decorator.getType ( reStr, i - 1 );
 
           if ( !type ) return;
+
+          if ( _.isFunction ( type ) ) type = type ( match );
 
           const ranges = decorations.get ( type );
 

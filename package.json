@@ -1,7 +1,7 @@
 {
   "name": "vscode-highlight",
   "displayName": "Highlight",
-  "description": "Advanced text highlighter based on regexes. Useful for todos, annotations etc.",
+  "description": "Advanced text highlighter based on regexes. Useful for todos, annotations, colors etc.",
   "icon": "resources/logo-128x128.png",
   "version": "1.3.4",
   "license": "MIT",

@@ -4,7 +4,7 @@
   <img src="https://raw.githubusercontent.com/fabiospampinato/vscode-highlight/master/resources/logo.png" width="128" alt="Logo">
 </p>
 
-Advanced text highlighter based on regexes. Useful for todos, annotations etc.
+Advanced text highlighter based on regexes. Useful for todos, annotations, colors etc.
 
 There are alternative extensions that you may be considering, like [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight), but this is more generic, this can apply different styles to different capturing groups within the same regex, and this is focused on doing only one thing and doing it _well_.
 
@@ -53,6 +53,8 @@ If you want to have different regex flags for different regexes, or if you want 
   }
 }
 ```
+
+Decoration values can also include placeholders like `$1` or `$2` that will be replaced with the content of the respective capturing group, enabling complex use cases like CSS colors highlighting.
 
 All the supported decoration options are defined [here](https://code.visualstudio.com/docs/extensionAPI/vscode-api#DecorationRenderOptions).
 
@@ -199,6 +201,32 @@ Result:
 
 ![After](resources/demo/after_adv.png)
 
+### Colors
+
+The following is the configuration I'm currently using for highlighting colors, like `red`, `#ff0000`, `rgba(255,0,0)` etc.
+
+<details>
+<summary>Show configuration...</summary>
+
+```js
+"highlight.regexFlags": "gi",
+"highlight.regexes": {
+  "(?<!\\w)(#[a-f0-9]{3,4}|#[a-f0-9]{6}|#[a-f0-9]{8}|rgba?\\s*\\([^)]*?\\)|hsla?\\s*\\([^)]*?\\)|aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyanaqua|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|tan|teal|thistle|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen)(?!\\w)": [
+    {
+      "rangeBehavior": 1,
+      "borderWidth": "1px",
+      "borderColor": "$1",
+      "borderStyle": "solid"
+    }
+  ]
+}
+```
+
+</details>
+
+Result:
+
+![After](resources/demo/after_colors.png)
 
 ## Hints
 
