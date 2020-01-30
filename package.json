@@ -34,7 +34,7 @@
         },
         "highlight.maxMatches": {
           "type": "number",
-          "description": "Maximum number of matches per regex to decorate",
+          "description": "Maximum number of matches to decorate per regex, in order not to crash the app with accidental cathastropic regexes",
           "default": 250
         }
       }

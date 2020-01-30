@@ -6,7 +6,7 @@
 
 Advanced text highlighter based on regexes. Useful for todos, annotations etc.
 
-There are other extensions that can be used for this, like [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight), but this is more generic, this can apply different styles to different capturing groups within the same regex, and this is focused on doing only one thing and doing it well.
+There are alternative extensions that you may be considering, like [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight), but this is more generic, this can apply different styles to different capturing groups within the same regex, and this is focused on doing only one thing and doing it _well_.
 
 ## Install
 
@@ -23,7 +23,7 @@ ext install fabiospampinato.vscode-highlight
   "highlight.decorations": { "rangeBehavior": 3 }, // Default decorations from which all others inherit from
   "highlight.regexFlags": "gi", // Default flags used when building the regexes
   "highlight.regexes": {}, // Object mapping regexes to options or an array of decorations to apply to the capturing groups
-  "highlight.maxMatches": 250 // Maximum number of matches per regex to decorate
+  "highlight.maxMatches": 250 // Maximum number of matches to decorate per regex, in order not to crash the app with accidental cathastropic regexes
 }
 ```
 
@@ -54,21 +54,26 @@ If you want to have different regex flags for different regexes, or if you want 
 }
 ```
 
-**Note:** All characters of the matched string must be wrapped in a capturing group, and for each capturing group a decorations options object must be provided (empty decorations are allowed: `{}`), otherwise the actual decorations will be misaligned.
-
-**Note:** Nested capturing groups are not supported.
-
-A much more robust string for matching todos, with support for JavaScript/HTML-style comments, urls, multiple todos in a single line, common templating languages, and [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus)-style tags would look like this:
-
-```js
-"((?:<!-- *)?(?:#|// @|//|/\\*+|<!--|--|\\* @|\\{!|\\{\\{!--|\\{\\{!) *TODO(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|\\{!|\\{\\{!--|\\{\\{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|\\{!|\\{\\{!--|\\{\\{!))|(?: +[^@\\n]+)?))"
-```
-
 All the supported decoration options are defined [here](https://code.visualstudio.com/docs/extensionAPI/vscode-api#DecorationRenderOptions).
+
+## Warnings
+
+1. Regexes need to be double-escaped, once for JSON and the second time for the regex itself.
+
+2. All characters of the matched string must be wrapped in a capturing group.
+
+3. For each capturing group a decorations options object must be provided (empty decorations are allowed: `{}`), otherwise the actual decorations will be misaligned.
+
+3. Nested capturing groups are not supported.
 
 ## Demo
 
+### Basic
+
 The following configuration:
+
+<details>
+<summary>Show configuration...</summary>
 
 ```js
 "highlight.regexes": {
@@ -105,6 +110,8 @@ The following configuration:
 }
 ```
 
+</details>
+
 Transforms this:
 
 ![Before](resources/demo/before.png)
@@ -112,6 +119,86 @@ Transforms this:
 Into this:
 
 ![After](resources/demo/after.png)
+
+### Advanced Todos
+
+The following is the configuration I'm currently using for highlighting todos, it's _much_ more robust than the previous demo configuration, and it supports JavaScript/HTML-style comments, urls, multiple todos in a single line, common templating languages, and [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus)-style tags.
+
+<details>
+<summary>Show configuration...</summary>
+
+```js
+"highlight.regexFlags": "gi",
+"highlight.regexes": {
+  "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *TODO(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+    "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+    "decorations": [
+      {
+        "overviewRulerColor": "#ffcc00",
+        "backgroundColor": "#ffcc00",
+        "color": "#1f1f1f",
+        "fontWeight": "bold"
+      },
+      {
+        "backgroundColor": "#ffcc00",
+        "color": "#1f1f1f"
+      }
+    ]
+  },
+  "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(?:FIXME|FIX|BUG|UGLY|DEBUG|HACK)(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+    "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+    "decorations": [
+      {
+        "overviewRulerColor": "#cc0000",
+        "backgroundColor": "#cc0000",
+        "color": "#1f1f1f",
+        "fontWeight": "bold"
+      },
+      {
+        "backgroundColor": "#cc0000",
+        "color": "#1f1f1f"
+      }
+    ]
+  },
+  "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(?:REVIEW|OPTIMIZE|TSC)(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+    "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+    "decorations": [
+      {
+        "overviewRulerColor": "#00ccff",
+        "backgroundColor": "#00ccff",
+        "color": "#1f1f1f",
+        "fontWeight": "bold"
+      },
+      {
+        "backgroundColor": "#00ccff",
+        "color": "#1f1f1f"
+      }
+    ]
+  },
+  "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(?:IDEA)(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+    "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+    "decorations": [
+      {
+        "overviewRulerColor": "#cc00cc",
+        "backgroundColor": "#cc00cc",
+        "color": "#1f1f1f",
+        "fontWeight": "bold"
+      },
+      {
+        "backgroundColor": "#cc00cc",
+        "color": "#1f1f1f"
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+Result:
+
+![After](resources/demo/after_adv.png)
+
 
 ## Hints
 
