@@ -61,6 +61,7 @@ const Decorator = {
   /* TYPES */
 
   types: undefined,
+  typesDynamic: [],
 
   initTypes () {
 
@@ -84,7 +85,11 @@ const Decorator = {
                   const decorationsStrReplaced = decorationsStr.replace ( /\$(\d)/g, ( m, index ) => match[index] ),
                         decorationsFullReplaced = JSON.parse ( decorationsStrReplaced );
 
-                  return vscode.window.createTextEditorDecorationType ( decorationsFullReplaced );
+                  const type = vscode.window.createTextEditorDecorationType ( decorationsFullReplaced );
+
+                  Decorator.typesDynamic.push ( type );
+
+                  return type;
 
                 }, match => match[0] );
 
@@ -279,7 +284,15 @@ const Decorator = {
 
     const types = _.flatten ( _.values ( Decorator.types ) );
 
-    types.map ( type => {
+    types.forEach ( type => {
+
+      if ( _.isFunction ( type ) ) return;
+
+      textEditor.setDecorations ( type, [] );
+
+    });
+
+    Decorator.typesDynamic.forEach ( type => {
 
       textEditor.setDecorations ( type, [] );
 
