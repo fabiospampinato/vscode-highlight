@@ -1,3 +1,7 @@
+### Version 1.4.0
+- Readme: reorganized
+- Added support for dynamic decorators that use `$0`, `$1` etc. placeholders
+
 ### Version 1.3.4
 - Ensuring curly braces in regexes are properly escaped
 - Fixed an exception

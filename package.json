@@ -3,7 +3,7 @@
   "displayName": "Highlight",
   "description": "Advanced text highlighter based on regexes. Useful for todos, annotations, colors etc.",
   "icon": "resources/logo-128x128.png",
-  "version": "1.3.4",
+  "version": "1.4.0",
   "license": "MIT",
   "main": "out/extension.js",
   "publisher": "fabiospampinato",
