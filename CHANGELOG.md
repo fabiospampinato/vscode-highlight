@@ -1,3 +1,6 @@
+### Version 1.4.1
+- Ensuring types generated from dynamic decorators are cleared up properly
+
 ### Version 1.4.0
 - Readme: reorganized
 - Added support for dynamic decorators that use `$0`, `$1` etc. placeholders
