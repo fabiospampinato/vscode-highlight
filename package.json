@@ -37,7 +37,7 @@
             }
           },
           "patternProperties": {
-            "color|borderColor|overviewRulerColor|backgroundColor": {
+            "\b(color|borderColor|overviewRulerColor|backgroundColor)\b": {
               "type": "string",
               "format": "color-hex"
             }
@@ -71,7 +71,7 @@
                   }
                 },
                 "patternProperties": {
-                  "color|borderColor|overviewRulerColor|backgroundColor": {
+                  "\b(color|borderColor|overviewRulerColor|backgroundColor)\b": {
                     "type": "string",
                     "format": "color-hex"
                   }
