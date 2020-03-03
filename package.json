@@ -27,19 +27,37 @@
             },
             "borderStyle": {
               "type": "string",
-              "enum": ["solid","dotted","dashed"]
+              "enum": [
+                "solid",
+                "dotted",
+                "dashed"
+              ]
             },
             "borderWidth": {
               "type": "string"
             },
             "fontWeight": {
               "type": "string"
-            }
-          },
-          "patternProperties": {
-            "\b(color|borderColor|overviewRulerColor|backgroundColor)\b": {
-              "type": "string",
-              "format": "color-hex"
+            },
+            "color": {
+              "type":"string",
+              "format": "color",
+              "default":"#FFFFFFFF"
+            },
+            "borderColor": {
+              "type":"string",
+              "format": "color",
+              "default":"#FFFFFF22"
+            },
+            "overviewRulerColor": {
+              "type":"string",
+              "format": "color",
+              "default":""
+            },
+            "backgroundColor": {
+              "type":"string",
+              "format": "color",
+              "default":"#00000000"
             }
           }
         },
@@ -47,33 +65,56 @@
           "type": "object",
           "description": "Object mapping regexes to an array of decorations to apply to the capturing groups",
           "default": {},
-          "properties": {
-            "filterFileRegex": {
-              "type": "string"
-            },
-            "decorations": {
-              "type":"array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "rangeBehavior": {
-                    "type": "integer"
-                  },
-                  "borderStyle": {
-                    "type": "string",
-                    "enum": ["solid","dotted","dashed"]
-                  },
-                  "borderWidth": {
-                    "type": "string"
-                  },
-                  "fontWeight": {
-                    "type": "string"
-                  }
-                },
-                "patternProperties": {
-                  "\b(color|borderColor|overviewRulerColor|backgroundColor)\b": {
-                    "type": "string",
-                    "format": "color-hex"
+          "additionalProperties": {
+            "properties": {
+              "filterFileRegex": {
+                "type": "string"
+              },
+              "filterLanguageRegex": {
+                "type":"string"
+              },
+              "decorations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "rangeBehavior": {
+                      "type": "integer"
+                    },
+                    "borderStyle": {
+                      "type": "string",
+                      "enum": [
+                        "solid",
+                        "dotted",
+                        "dashed"
+                      ]
+                    },
+                    "borderWidth": {
+                      "type": "string"
+                    },
+                    "fontWeight": {
+                      "type": "string"
+                    },
+                    "color": {
+                      "type":"string",
+                      "format": "color",
+                      "default":"#FFFFFFFF"
+                    },
+                    "borderColor": {
+                      "type":"string",
+                      "format": "color",
+                      "default":"#FFFFFF22"
+                    },
+                    "overviewRulerColor": {
+                      "type":"string",
+                      "format": "color",
+                      "default":""
+                    },
+                    "backgroundColor": {
+                      "type":"string",
+                      "format": "color",
+                      "default":"#00000000"
+                    }
                   }
                 }
               }
