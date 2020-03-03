@@ -20,12 +20,65 @@
           "description": "Default decorations from which all others inherit from",
           "default": {
             "rangeBehavior": 3
+          },
+          "properties": {
+            "rangeBehavior": {
+              "type": "integer"
+            },
+            "borderStyle": {
+              "type": "string",
+              "enum": ["solid","dotted","dashed"]
+            },
+            "borderWidth": {
+              "type": "string"
+            },
+            "fontWeight": {
+              "type": "string"
+            }
+          },
+          "patternProperties": {
+            "color|borderColor|overviewRulerColor|backgroundColor": {
+              "type": "string",
+              "format": "color-hex"
+            }
           }
         },
         "highlight.regexes": {
           "type": "object",
           "description": "Object mapping regexes to an array of decorations to apply to the capturing groups",
-          "default": {}
+          "default": {},
+          "properties": {
+            "filterFileRegex": {
+              "type": "string"
+            },
+            "decorations": {
+              "type":"array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "rangeBehavior": {
+                    "type": "integer"
+                  },
+                  "borderStyle": {
+                    "type": "string",
+                    "enum": ["solid","dotted","dashed"]
+                  },
+                  "borderWidth": {
+                    "type": "string"
+                  },
+                  "fontWeight": {
+                    "type": "string"
+                  }
+                },
+                "patternProperties": {
+                  "color|borderColor|overviewRulerColor|backgroundColor": {
+                    "type": "string",
+                    "format": "color-hex"
+                  }
+                }
+              }
+            }
+          }
         },
         "highlight.regexFlags": {
           "type": "string",
