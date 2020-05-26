@@ -1,15 +1,15 @@
 
 /* IMPORT */
 
-import * as vscode from 'vscode';
+const configFile = require('./settings.json');
 
 /* CONFIG */
 
 const Config = {
 
-  get ( extension = 'highlight' ) {
+  get() {
 
-    return vscode.workspace.getConfiguration ().get ( extension ) as any;
+    return configFile;
 
   }
 

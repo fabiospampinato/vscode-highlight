@@ -1,44 +1,16 @@
 {
-  "name": "vscode-highlight",
-  "displayName": "Highlight",
-  "description": "Advanced text highlighter based on regexes. Useful for todos, annotations, colors etc.",
+  "name": "vscode-convo-utt-highlight",
+  "displayName": "Convo & Utterance Highlight",
+  "description": "Convo & Utt files highlighter based on regex",
   "icon": "resources/logo-128x128.png",
   "version": "1.4.1",
   "license": "MIT",
   "main": "out/extension.js",
-  "publisher": "fabiospampinato",
+  "publisher": "juanpvallejo",
   "activationEvents": [
     "*"
   ],
   "contributes": {
-    "configuration": {
-      "type": "object",
-      "title": "Highlight - Configuration",
-      "properties": {
-        "highlight.decorations": {
-          "type": "object",
-          "description": "Default decorations from which all others inherit from",
-          "default": {
-            "rangeBehavior": 3
-          }
-        },
-        "highlight.regexes": {
-          "type": "object",
-          "description": "Object mapping regexes to an array of decorations to apply to the capturing groups",
-          "default": {}
-        },
-        "highlight.regexFlags": {
-          "type": "string",
-          "description": "Flags used when building the regexes",
-          "default": "gi"
-        },
-        "highlight.maxMatches": {
-          "type": "number",
-          "description": "Maximum number of matches to decorate per regex, in order not to crash the app with accidental cathastropic regexes",
-          "default": 250
-        }
-      }
-    }
   },
   "scripts": {
     "vscode:prepublish": "rm -rf out && webpack --mode production",
@@ -49,15 +21,15 @@
     "test": "node ./node_modules/vscode/bin/test"
   },
   "bugs": {
-    "url": "https://github.com/fabiospampinato/vscode-highlight/issues"
+    "url": "https://github.com/juanpvallejo/vscode-highlight/issues"
   },
   "author": {
-    "name": "Fabio Spampinato",
-    "email": "spampinabio@gmail.com"
+    "name": "Juan Pablo Vallejo",
+    "email": "juan.vallejo@kinandcarta.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fabiospampinato/vscode-highlight.git"
+    "url": "https://github.com/juanpvallejo/vscode-highlight.git"
   },
   "engines": {
     "vscode": "^1.15.0"
@@ -81,6 +53,7 @@
     "string-matches": "^1.1.0"
   },
   "devDependencies": {
+    "json-loader": "^0.5.7",
     "ts-loader": "^5.2.1",
     "typescript": "~2.4.1",
     "vscode": "^1.1.4",

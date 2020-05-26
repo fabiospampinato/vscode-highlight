@@ -1,0 +1,108 @@
+{
+  "decorations": {
+    "rangeBehavior": 3
+  },
+  "regexFlags": "gi",
+  "maxMatches": 250,
+  "regexes": {
+    "(#([\\w]+))": {
+      "regexFlags": "g",
+      "filterFileRegex": ".\\.utt",
+      "decorations": [
+        {
+          "color": "#42e3f5"
+        }
+      ]
+    },
+    "(#bot)(\\s)": {
+      "regexFlags": "g",
+      "filterFileRegex": ".\\.convo",
+      "decorations": [
+        {
+          "color": "#42e3f5"
+        },
+        {
+          "color": "#42e3f5"
+        }
+      ]
+    },
+    "(#me)(\\s)": {
+      "regexFlags": "g",
+      "filterFileRegex": ".\\.convo",
+      "decorations": [
+        {
+          "color": "#b0f542"
+        },
+        {
+          "color": "#b0f542"
+        }
+      ]
+    },
+    "(@context)(.)": {
+      "regexFlags": "g",
+      "filterFileRegex": ".\\.convo",
+      "decorations": [
+        {
+          "color": "yellow"
+        },
+        {
+          "color": "#ffffff"
+        }
+      ]
+    },
+    "(@intent)(.)": {
+      "regexFlags": "g",
+      "filterFileRegex": ".\\.convo",
+      "decorations": [
+        {
+          "color": "#f5c242"
+        },
+        {
+          "color": "#ffffff"
+        }
+      ]
+    },
+    "(%[\\w]+%)": {
+      "regexFlags": "g",
+      "filterFileRegex": ".\\.convo|.utt",
+      "decorations": [
+        {
+          "color": "#62a80c"
+        }
+      ]
+    },
+    "(@param)(\\s+)([A-z-\\d]+)(\\s+)([A-z-.,&\\d\"\\']+)": {
+      "regexFlags": "g",
+      "filterFileRegex": ".\\.convo",
+      "decorations": [
+        {
+          "color": "#f54296"
+        },
+        {
+          "color": "black"
+        },
+        {
+          "color": "#d65a94"
+        },
+        {
+          "color": "black"
+        },
+        {
+          "color": "#b36489"
+        }
+      ]
+    },
+    "(@include)(.+)": {
+      "regexFlags": "g",
+      "filterFileRegex": ".\\.convo",
+      "decorations": [
+        {
+          "color": "#d2d979"
+        },
+        {
+          "color": "#b2bd24"
+        }
+      ]
+    }
+  }
+}
