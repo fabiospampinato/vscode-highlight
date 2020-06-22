@@ -3,7 +3,7 @@
   "displayName": "Highlight",
   "description": "Advanced text highlighter based on regexes. Useful for todos, annotations, colors etc.",
   "icon": "resources/logo-128x128.png",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "license": "MIT",
   "main": "out/extension.js",
   "publisher": "fabiospampinato",
@@ -20,16 +20,2072 @@
           "description": "Default decorations from which all others inherit from",
           "default": {
             "rangeBehavior": 3
+          },
+          "properties": {
+            "after": {
+              "type": "object",
+              "default": {},
+              "description": "Defines the rendering options of the attachment that is inserted before the decorated text.",
+              "properties": {
+                "backgroundColor": {
+                  "default": "",
+                  "format": "color",
+                  "type": "string"
+                },
+                "border": {
+                  "default": "",
+                  "type": "string"
+                },
+                "borderColor": {
+                  "default": "#FFFFFF22",
+                  "format": "color",
+                  "type": "string"
+                },
+                "color": {
+                  "default": "",
+                  "format": "color",
+                  "type": "string"
+                },
+                "contentIconPath": {
+                  "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                  "oneOf": [
+                    {
+                      "default": "",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    {
+                      "default": "",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "contentText": {
+                  "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                  "default": "",
+                  "type": "string"
+                },
+                "fontStyle": {
+                  "default": "",
+                  "enum": [
+                    "normal",
+                    "italic",
+                    "oblique",
+                    ""
+                  ],
+                  "type": "string"
+                },
+                "fontWeight": {
+                  "enum": [
+                    "100",
+                    "200",
+                    "300",
+                    "400",
+                    "500",
+                    "600",
+                    "700",
+                    "800",
+                    "900",
+                    "bold",
+                    "medium"
+                  ],
+                  "type": "string",
+                  "default": "500"
+                },
+                "height": {
+                  "type": "string",
+                  "default": ""
+                },
+                "margin": {
+                  "type": "string",
+                  "default": ""
+                },
+                "textDecoration": {
+                  "default": "",
+                  "type": "string",
+                  "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                },
+                "width": {
+                  "default": "",
+                  "type": "string"
+                }
+              }
+            },
+            "backgroundColor": {
+              "default": "",
+              "format": "color",
+              "type": "string"
+            },
+            "before": {
+              "type": "object",
+              "default": {},
+              "description": "Defines the rendering options of the attachment that is inserted before the decorated text.",
+              "properties": {
+                "backgroundColor": {
+                  "default": "",
+                  "format": "color",
+                  "type": "string"
+                },
+                "border": {
+                  "default": "",
+                  "type": "string"
+                },
+                "borderColor": {
+                  "default": "#FFFFFF22",
+                  "format": "color",
+                  "type": "string"
+                },
+                "color": {
+                  "default": "",
+                  "format": "color",
+                  "type": "string"
+                },
+                "contentIconPath": {
+                  "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                  "oneOf": [
+                    {
+                      "default": "",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    {
+                      "default": "",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "contentText": {
+                  "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                  "default": "",
+                  "type": "string"
+                },
+                "fontStyle": {
+                  "default": "",
+                  "enum": [
+                    "normal",
+                    "italic",
+                    "oblique",
+                    ""
+                  ],
+                  "type": "string"
+                },
+                "fontWeight": {
+                  "enum": [
+                    "100",
+                    "200",
+                    "300",
+                    "400",
+                    "500",
+                    "600",
+                    "700",
+                    "800",
+                    "900",
+                    "bold",
+                    "medium"
+                  ],
+                  "type": "string",
+                  "default": "500"
+                },
+                "height": {
+                  "type": "string",
+                  "default": ""
+                },
+                "margin": {
+                  "type": "string",
+                  "default": ""
+                },
+                "textDecoration": {
+                  "default": "",
+                  "type": "string",
+                  "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                },
+                "width": {
+                  "default": "",
+                  "type": "string"
+                }
+              }
+            },
+            "border": {
+              "default": "",
+              "type": "string"
+            },
+            "borderColor": {
+              "default": "#FFFFFF22",
+              "format": "color",
+              "type": "string"
+            },
+            "borderRadius": {
+              "default": "4px",
+              "examples": [
+                "2px",
+                "0.25em",
+                "2px 0px",
+                "0px 0px 0px 4px",
+                "10px 40px / 20px 60px"
+              ],
+              "type": "string"
+            },
+            "borderSpacing": {
+              "default": "2px",
+              "type": "string"
+            },
+            "borderStyle": {
+              "enum": [
+                "solid",
+                "dotted",
+                "dashed"
+              ],
+              "type": "string",
+              "default": ""
+            },
+            "borderWidth": {
+              "type": "string",
+              "default": ""
+            },
+            "color": {
+              "default": "",
+              "format": "color",
+              "type": "string"
+            },
+            "contentIconPath": {
+              "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+              "oneOf": [
+                {
+                  "default": "",
+                  "format": "uri",
+                  "type": "string"
+                },
+                {
+                  "default": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "contentText": {
+              "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+              "default": "",
+              "type": "string"
+            },
+            "cursor": {
+              "default": "",
+              "type": "string"
+            },
+            "dark": {
+              "type": "object",
+              "description": "Overwrite options for dark themes.",
+              "default": {},
+              "properties": {
+                "after": {
+                  "type": "object",
+                  "default": {},
+                  "description": "Defines the rendering options of the attachment that is inserted before the decorated text.",
+                  "properties": {
+                    "backgroundColor": {
+                      "default": "",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "border": {
+                      "default": "",
+                      "type": "string"
+                    },
+                    "borderColor": {
+                      "default": "#FFFFFF22",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "color": {
+                      "default": "",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "contentIconPath": {
+                      "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                      "oneOf": [
+                        {
+                          "default": "",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        {
+                          "default": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "contentText": {
+                      "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                      "default": "",
+                      "type": "string"
+                    },
+                    "fontStyle": {
+                      "default": "",
+                      "enum": [
+                        "normal",
+                        "italic",
+                        "oblique",
+                        ""
+                      ],
+                      "type": "string"
+                    },
+                    "fontWeight": {
+                      "enum": [
+                        "100",
+                        "200",
+                        "300",
+                        "400",
+                        "500",
+                        "600",
+                        "700",
+                        "800",
+                        "900",
+                        "bold",
+                        "medium"
+                      ],
+                      "type": "string",
+                      "default": "500"
+                    },
+                    "height": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "margin": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "textDecoration": {
+                      "default": "",
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                    },
+                    "width": {
+                      "default": "",
+                      "type": "string"
+                    }
+                  }
+                },
+                "backgroundColor": {
+                  "default": "",
+                  "format": "color",
+                  "type": "string"
+                },
+                "before": {
+                  "type": "object",
+                  "default": {},
+                  "description": "Defines the rendering options of the attachment that is inserted before the decorated text.",
+                  "properties": {
+                    "backgroundColor": {
+                      "default": "",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "border": {
+                      "default": "",
+                      "type": "string"
+                    },
+                    "borderColor": {
+                      "default": "#FFFFFF22",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "color": {
+                      "default": "",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "contentIconPath": {
+                      "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                      "oneOf": [
+                        {
+                          "default": "",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        {
+                          "default": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "contentText": {
+                      "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                      "default": "",
+                      "type": "string"
+                    },
+                    "fontStyle": {
+                      "default": "",
+                      "enum": [
+                        "normal",
+                        "italic",
+                        "oblique",
+                        ""
+                      ],
+                      "type": "string"
+                    },
+                    "fontWeight": {
+                      "enum": [
+                        "100",
+                        "200",
+                        "300",
+                        "400",
+                        "500",
+                        "600",
+                        "700",
+                        "800",
+                        "900",
+                        "bold",
+                        "medium"
+                      ],
+                      "type": "string",
+                      "default": "500"
+                    },
+                    "height": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "margin": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "textDecoration": {
+                      "default": "",
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                    },
+                    "width": {
+                      "default": "",
+                      "type": "string"
+                    }
+                  }
+                },
+                "border": {
+                  "default": "",
+                  "type": "string"
+                },
+                "borderColor": {
+                  "default": "#FFFFFF22",
+                  "format": "color",
+                  "type": "string"
+                },
+                "borderRadius": {
+                  "default": "4px",
+                  "examples": [
+                    "2px",
+                    "0.25em",
+                    "2px 0px",
+                    "0px 0px 0px 4px",
+                    "10px 40px / 20px 60px"
+                  ],
+                  "type": "string"
+                },
+                "borderSpacing": {
+                  "default": "2px",
+                  "type": "string"
+                },
+                "borderStyle": {
+                  "enum": [
+                    "solid",
+                    "dotted",
+                    "dashed"
+                  ],
+                  "type": "string",
+                  "default": ""
+                },
+                "borderWidth": {
+                  "type": "string",
+                  "default": ""
+                },
+                "color": {
+                  "default": "",
+                  "format": "color",
+                  "type": "string"
+                },
+                "cursor": {
+                  "default": "",
+                  "type": "string"
+                },
+                "fontStyle": {
+                  "default": "",
+                  "enum": [
+                    "normal",
+                    "italic",
+                    "oblique",
+                    ""
+                  ],
+                  "type": "string"
+                },
+                "fontWeight": {
+                  "enum": [
+                    "100",
+                    "200",
+                    "300",
+                    "400",
+                    "500",
+                    "600",
+                    "700",
+                    "800",
+                    "900",
+                    "bold",
+                    "medium"
+                  ],
+                  "type": "string",
+                  "default": "500"
+                },
+                "gutterIconPath": {
+                  "type": "string",
+                  "default": "",
+                  "format": "uri",
+                  "description": "An absolute path or an URI to an image to be rendered in the gutter."
+                },
+                "gutterIconSize": {
+                  "type": "string",
+                  "default": "",
+                  "description": "Specifies the size of the gutter icon. Available values are 'auto', 'contain', 'cover' and any percentage value. For further information: https://msdn.microsoft.com/en-us/library/jj127316(v=vs.85).aspx",
+                  "oneOf": [
+                    {
+                      "pattern": "\\d+(\\.\\d+)%"
+                    },
+                    {
+                      "enum": [
+                        "auto",
+                        "contain",
+                        "cover"
+                      ]
+                    }
+                  ]
+                },
+                "letterSpacing": {
+                  "type": "string",
+                  "default": ""
+                },
+                "opacity": {
+                  "type": "string",
+                  "default": ""
+                },
+                "outline": {
+                  "type": "string",
+                  "default": ""
+                },
+                "outlineColor": {
+                  "type": "string",
+                  "default": "",
+                  "format": "color",
+                  "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                },
+                "outlineStyle": {
+                  "type": "string",
+                  "default": "",
+                  "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                },
+                "outlineWidth": {
+                  "type": "string",
+                  "default": "",
+                  "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                },
+                "overviewRulerColor": {
+                  "default": "",
+                  "format": "color",
+                  "type": "string",
+                  "description": "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations."
+                },
+                "textDecoration": {
+                  "default": "",
+                  "type": "string",
+                  "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                }
+              }
+            },
+            "fontStyle": {
+              "default": "",
+              "enum": [
+                "normal",
+                "italic",
+                "oblique",
+                ""
+              ],
+              "type": "string"
+            },
+            "fontWeight": {
+              "enum": [
+                "100",
+                "200",
+                "300",
+                "400",
+                "500",
+                "600",
+                "700",
+                "800",
+                "900",
+                "bold",
+                "medium"
+              ],
+              "type": "string",
+              "default": "500"
+            },
+            "gutterIconPath": {
+              "type": "string",
+              "default": "",
+              "format": "uri",
+              "description": "An absolute path or an URI to an image to be rendered in the gutter."
+            },
+            "gutterIconSize": {
+              "type": "string",
+              "default": "",
+              "description": "Specifies the size of the gutter icon. Available values are 'auto', 'contain', 'cover' and any percentage value. For further information: https://msdn.microsoft.com/en-us/library/jj127316(v=vs.85).aspx",
+              "oneOf": [
+                {
+                  "pattern": "\\d+(\\.\\d+)%"
+                },
+                {
+                  "enum": [
+                    "auto",
+                    "contain",
+                    "cover"
+                  ]
+                }
+              ]
+            },
+            "isWholeLine": {
+              "type": "boolean",
+              "default": false,
+              "description": "Should the decoration be rendered also on the whitespace after the line text."
+            },
+            "letterSpacing": {
+              "type": "string",
+              "default": ""
+            },
+            "light": {
+              "type": "object",
+              "description": "Overwrite options for light themes.",
+              "default": {},
+              "properties": {
+                "after": {
+                  "type": "object",
+                  "default": {},
+                  "description": "Defines the rendering options of the attachment that is inserted before the decorated text.",
+                  "properties": {
+                    "backgroundColor": {
+                      "default": "",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "border": {
+                      "default": "",
+                      "type": "string"
+                    },
+                    "borderColor": {
+                      "default": "#FFFFFF22",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "color": {
+                      "default": "",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "contentIconPath": {
+                      "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                      "oneOf": [
+                        {
+                          "default": "",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        {
+                          "default": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "contentText": {
+                      "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                      "default": "",
+                      "type": "string"
+                    },
+                    "fontStyle": {
+                      "default": "",
+                      "enum": [
+                        "normal",
+                        "italic",
+                        "oblique",
+                        ""
+                      ],
+                      "type": "string"
+                    },
+                    "fontWeight": {
+                      "enum": [
+                        "100",
+                        "200",
+                        "300",
+                        "400",
+                        "500",
+                        "600",
+                        "700",
+                        "800",
+                        "900",
+                        "bold",
+                        "medium"
+                      ],
+                      "type": "string",
+                      "default": "500"
+                    },
+                    "height": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "margin": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "textDecoration": {
+                      "default": "",
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                    },
+                    "width": {
+                      "default": "",
+                      "type": "string"
+                    }
+                  }
+                },
+                "backgroundColor": {
+                  "default": "",
+                  "format": "color",
+                  "type": "string"
+                },
+                "before": {
+                  "type": "object",
+                  "default": {},
+                  "description": "Defines the rendering options of the attachment that is inserted before the decorated text.",
+                  "properties": {
+                    "backgroundColor": {
+                      "default": "",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "border": {
+                      "default": "",
+                      "type": "string"
+                    },
+                    "borderColor": {
+                      "default": "#FFFFFF22",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "color": {
+                      "default": "",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "contentIconPath": {
+                      "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                      "oneOf": [
+                        {
+                          "default": "",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        {
+                          "default": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "contentText": {
+                      "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                      "default": "",
+                      "type": "string"
+                    },
+                    "fontStyle": {
+                      "default": "",
+                      "enum": [
+                        "normal",
+                        "italic",
+                        "oblique",
+                        ""
+                      ],
+                      "type": "string"
+                    },
+                    "fontWeight": {
+                      "enum": [
+                        "100",
+                        "200",
+                        "300",
+                        "400",
+                        "500",
+                        "600",
+                        "700",
+                        "800",
+                        "900",
+                        "bold",
+                        "medium"
+                      ],
+                      "type": "string",
+                      "default": "500"
+                    },
+                    "height": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "margin": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "textDecoration": {
+                      "default": "",
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                    },
+                    "width": {
+                      "default": "",
+                      "type": "string"
+                    }
+                  }
+                },
+                "border": {
+                  "default": "",
+                  "type": "string"
+                },
+                "borderColor": {
+                  "default": "#FFFFFF22",
+                  "format": "color",
+                  "type": "string"
+                },
+                "borderRadius": {
+                  "default": "4px",
+                  "examples": [
+                    "2px",
+                    "0.25em",
+                    "2px 0px",
+                    "0px 0px 0px 4px",
+                    "10px 40px / 20px 60px"
+                  ],
+                  "type": "string"
+                },
+                "borderSpacing": {
+                  "default": "2px",
+                  "type": "string"
+                },
+                "borderStyle": {
+                  "enum": [
+                    "solid",
+                    "dotted",
+                    "dashed"
+                  ],
+                  "type": "string",
+                  "default": ""
+                },
+                "borderWidth": {
+                  "type": "string",
+                  "default": ""
+                },
+                "color": {
+                  "default": "",
+                  "format": "color",
+                  "type": "string"
+                },
+                "cursor": {
+                  "default": "",
+                  "type": "string"
+                },
+                "fontStyle": {
+                  "default": "",
+                  "enum": [
+                    "normal",
+                    "italic",
+                    "oblique",
+                    ""
+                  ],
+                  "type": "string"
+                },
+                "fontWeight": {
+                  "enum": [
+                    "100",
+                    "200",
+                    "300",
+                    "400",
+                    "500",
+                    "600",
+                    "700",
+                    "800",
+                    "900",
+                    "bold",
+                    "medium"
+                  ],
+                  "type": "string",
+                  "default": "500"
+                },
+                "gutterIconPath": {
+                  "type": "string",
+                  "default": "",
+                  "format": "uri",
+                  "description": "An absolute path or an URI to an image to be rendered in the gutter."
+                },
+                "gutterIconSize": {
+                  "type": "string",
+                  "default": "",
+                  "description": "Specifies the size of the gutter icon. Available values are 'auto', 'contain', 'cover' and any percentage value. For further information: https://msdn.microsoft.com/en-us/library/jj127316(v=vs.85).aspx",
+                  "oneOf": [
+                    {
+                      "pattern": "\\d+(\\.\\d+)%"
+                    },
+                    {
+                      "enum": [
+                        "auto",
+                        "contain",
+                        "cover"
+                      ]
+                    }
+                  ]
+                },
+                "letterSpacing": {
+                  "type": "string",
+                  "default": ""
+                },
+                "opacity": {
+                  "type": "string",
+                  "default": ""
+                },
+                "outline": {
+                  "type": "string",
+                  "default": ""
+                },
+                "outlineColor": {
+                  "type": "string",
+                  "default": "",
+                  "format": "color",
+                  "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                },
+                "outlineStyle": {
+                  "type": "string",
+                  "default": "",
+                  "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                },
+                "outlineWidth": {
+                  "type": "string",
+                  "default": "",
+                  "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                },
+                "overviewRulerColor": {
+                  "default": "",
+                  "format": "color",
+                  "type": "string",
+                  "description": "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations."
+                },
+                "textDecoration": {
+                  "default": "",
+                  "type": "string",
+                  "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                }
+              }
+            },
+            "opacity": {
+              "type": "string",
+              "default": ""
+            },
+            "outline": {
+              "type": "string",
+              "default": ""
+            },
+            "outlineColor": {
+              "type": "string",
+              "default": "",
+              "format": "color",
+              "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+            },
+            "outlineStyle": {
+              "type": "string",
+              "default": "",
+              "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+            },
+            "outlineWidth": {
+              "type": "string",
+              "default": "",
+              "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+            },
+            "overviewRulerColor": {
+              "default": "",
+              "format": "color",
+              "type": "string",
+              "description": "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations."
+            },
+            "overviewRulerLane": {
+              "description": "The position in the overview ruler where the decoration should be rendered.",
+              "enum": [
+                "center",
+                "full",
+                "left",
+                "right"
+              ],
+              "type": "string",
+              "default": "center"
+            },
+            "rangeBehavior": {
+              "enum": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "type": "number",
+              "default": 3,
+              "description": "Customize the growing behavior of the decoration when edits occur at the edges of the decoration's range."
+            },
+            "textDecoration": {
+              "default": "",
+              "type": "string",
+              "description": "CSS styling property that will be applied to text enclosed by a decoration."
+            }
           }
         },
         "highlight.regexes": {
           "type": "object",
           "description": "Object mapping regexes to an array of decorations to apply to the capturing groups",
-          "default": {}
+          "default": {},
+          "additionalProperties": {
+            "properties": {
+              "filterFileRegex": {
+                "type": "string"
+              },
+              "filterLanguageRegex": {
+                "type": "string"
+              },
+              "regexFlags": {
+                "type": "string",
+                "description": "Flags used when building the regexes",
+                "pattern": "^((?:([gmi])(?!.*\\2))*)$",
+                "default": "gi"
+              },
+              "decorations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "after": {
+                      "type": "object",
+                      "default": {},
+                      "description": "Defines the rendering options of the attachment that is inserted before the decorated text.",
+                      "properties": {
+                        "backgroundColor": {
+                          "default": "",
+                          "format": "color",
+                          "type": "string"
+                        },
+                        "border": {
+                          "default": "",
+                          "type": "string"
+                        },
+                        "borderColor": {
+                          "default": "#FFFFFF22",
+                          "format": "color",
+                          "type": "string"
+                        },
+                        "color": {
+                          "default": "",
+                          "format": "color",
+                          "type": "string"
+                        },
+                        "contentIconPath": {
+                          "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                          "oneOf": [
+                            {
+                              "default": "",
+                              "format": "uri",
+                              "type": "string"
+                            },
+                            {
+                              "default": "",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "contentText": {
+                          "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                          "default": "",
+                          "type": "string"
+                        },
+                        "fontStyle": {
+                          "default": "",
+                          "enum": [
+                            "normal",
+                            "italic",
+                            "oblique",
+                            ""
+                          ],
+                          "type": "string"
+                        },
+                        "fontWeight": {
+                          "enum": [
+                            "100",
+                            "200",
+                            "300",
+                            "400",
+                            "500",
+                            "600",
+                            "700",
+                            "800",
+                            "900",
+                            "bold",
+                            "medium"
+                          ],
+                          "type": "string",
+                          "default": "500"
+                        },
+                        "height": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "margin": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "textDecoration": {
+                          "default": "",
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                        },
+                        "width": {
+                          "default": "",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "backgroundColor": {
+                      "default": "",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "before": {
+                      "type": "object",
+                      "default": {},
+                      "description": "Defines the rendering options of the attachment that is inserted before the decorated text.",
+                      "properties": {
+                        "backgroundColor": {
+                          "default": "",
+                          "format": "color",
+                          "type": "string"
+                        },
+                        "border": {
+                          "default": "",
+                          "type": "string"
+                        },
+                        "borderColor": {
+                          "default": "#FFFFFF22",
+                          "format": "color",
+                          "type": "string"
+                        },
+                        "color": {
+                          "default": "",
+                          "format": "color",
+                          "type": "string"
+                        },
+                        "contentIconPath": {
+                          "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                          "oneOf": [
+                            {
+                              "default": "",
+                              "format": "uri",
+                              "type": "string"
+                            },
+                            {
+                              "default": "",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "contentText": {
+                          "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                          "default": "",
+                          "type": "string"
+                        },
+                        "fontStyle": {
+                          "default": "",
+                          "enum": [
+                            "normal",
+                            "italic",
+                            "oblique",
+                            ""
+                          ],
+                          "type": "string"
+                        },
+                        "fontWeight": {
+                          "enum": [
+                            "100",
+                            "200",
+                            "300",
+                            "400",
+                            "500",
+                            "600",
+                            "700",
+                            "800",
+                            "900",
+                            "bold",
+                            "medium"
+                          ],
+                          "type": "string",
+                          "default": "500"
+                        },
+                        "height": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "margin": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "textDecoration": {
+                          "default": "",
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                        },
+                        "width": {
+                          "default": "",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "border": {
+                      "default": "",
+                      "type": "string"
+                    },
+                    "borderColor": {
+                      "default": "#FFFFFF22",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "borderRadius": {
+                      "default": "4px",
+                      "examples": [
+                        "2px",
+                        "0.25em",
+                        "2px 0px",
+                        "0px 0px 0px 4px",
+                        "10px 40px / 20px 60px"
+                      ],
+                      "type": "string"
+                    },
+                    "borderSpacing": {
+                      "default": "2px",
+                      "type": "string"
+                    },
+                    "borderStyle": {
+                      "enum": [
+                        "solid",
+                        "dotted",
+                        "dashed"
+                      ],
+                      "type": "string",
+                      "default": ""
+                    },
+                    "borderWidth": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "color": {
+                      "default": "",
+                      "format": "color",
+                      "type": "string"
+                    },
+                    "contentIconPath": {
+                      "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                      "oneOf": [
+                        {
+                          "default": "",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        {
+                          "default": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "contentText": {
+                      "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                      "default": "",
+                      "type": "string"
+                    },
+                    "cursor": {
+                      "default": "",
+                      "type": "string"
+                    },
+                    "dark": {
+                      "type": "object",
+                      "description": "Overwrite options for dark themes.",
+                      "default": {},
+                      "properties": {
+                        "after": {
+                          "type": "object",
+                          "default": {},
+                          "description": "Defines the rendering options of the attachment that is inserted before the decorated text.",
+                          "properties": {
+                            "backgroundColor": {
+                              "default": "",
+                              "format": "color",
+                              "type": "string"
+                            },
+                            "border": {
+                              "default": "",
+                              "type": "string"
+                            },
+                            "borderColor": {
+                              "default": "#FFFFFF22",
+                              "format": "color",
+                              "type": "string"
+                            },
+                            "color": {
+                              "default": "",
+                              "format": "color",
+                              "type": "string"
+                            },
+                            "contentIconPath": {
+                              "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                              "oneOf": [
+                                {
+                                  "default": "",
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                {
+                                  "default": "",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "contentText": {
+                              "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                              "default": "",
+                              "type": "string"
+                            },
+                            "fontStyle": {
+                              "default": "",
+                              "enum": [
+                                "normal",
+                                "italic",
+                                "oblique",
+                                ""
+                              ],
+                              "type": "string"
+                            },
+                            "fontWeight": {
+                              "enum": [
+                                "100",
+                                "200",
+                                "300",
+                                "400",
+                                "500",
+                                "600",
+                                "700",
+                                "800",
+                                "900",
+                                "bold",
+                                "medium"
+                              ],
+                              "type": "string",
+                              "default": "500"
+                            },
+                            "height": {
+                              "type": "string",
+                              "default": ""
+                            },
+                            "margin": {
+                              "type": "string",
+                              "default": ""
+                            },
+                            "textDecoration": {
+                              "default": "",
+                              "type": "string",
+                              "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                            },
+                            "width": {
+                              "default": "",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "backgroundColor": {
+                          "default": "",
+                          "format": "color",
+                          "type": "string"
+                        },
+                        "before": {
+                          "type": "object",
+                          "default": {},
+                          "description": "Defines the rendering options of the attachment that is inserted before the decorated text.",
+                          "properties": {
+                            "backgroundColor": {
+                              "default": "",
+                              "format": "color",
+                              "type": "string"
+                            },
+                            "border": {
+                              "default": "",
+                              "type": "string"
+                            },
+                            "borderColor": {
+                              "default": "#FFFFFF22",
+                              "format": "color",
+                              "type": "string"
+                            },
+                            "color": {
+                              "default": "",
+                              "format": "color",
+                              "type": "string"
+                            },
+                            "contentIconPath": {
+                              "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                              "oneOf": [
+                                {
+                                  "default": "",
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                {
+                                  "default": "",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "contentText": {
+                              "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                              "default": "",
+                              "type": "string"
+                            },
+                            "fontStyle": {
+                              "default": "",
+                              "enum": [
+                                "normal",
+                                "italic",
+                                "oblique",
+                                ""
+                              ],
+                              "type": "string"
+                            },
+                            "fontWeight": {
+                              "enum": [
+                                "100",
+                                "200",
+                                "300",
+                                "400",
+                                "500",
+                                "600",
+                                "700",
+                                "800",
+                                "900",
+                                "bold",
+                                "medium"
+                              ],
+                              "type": "string",
+                              "default": "500"
+                            },
+                            "height": {
+                              "type": "string",
+                              "default": ""
+                            },
+                            "margin": {
+                              "type": "string",
+                              "default": ""
+                            },
+                            "textDecoration": {
+                              "default": "",
+                              "type": "string",
+                              "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                            },
+                            "width": {
+                              "default": "",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "border": {
+                          "default": "",
+                          "type": "string"
+                        },
+                        "borderColor": {
+                          "default": "#FFFFFF22",
+                          "format": "color",
+                          "type": "string"
+                        },
+                        "borderRadius": {
+                          "default": "4px",
+                          "examples": [
+                            "2px",
+                            "0.25em",
+                            "2px 0px",
+                            "0px 0px 0px 4px",
+                            "10px 40px / 20px 60px"
+                          ],
+                          "type": "string"
+                        },
+                        "borderSpacing": {
+                          "default": "2px",
+                          "type": "string"
+                        },
+                        "borderStyle": {
+                          "enum": [
+                            "solid",
+                            "dotted",
+                            "dashed"
+                          ],
+                          "type": "string",
+                          "default": ""
+                        },
+                        "borderWidth": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "color": {
+                          "default": "",
+                          "format": "color",
+                          "type": "string"
+                        },
+                        "cursor": {
+                          "default": "",
+                          "type": "string"
+                        },
+                        "fontStyle": {
+                          "default": "",
+                          "enum": [
+                            "normal",
+                            "italic",
+                            "oblique",
+                            ""
+                          ],
+                          "type": "string"
+                        },
+                        "fontWeight": {
+                          "enum": [
+                            "100",
+                            "200",
+                            "300",
+                            "400",
+                            "500",
+                            "600",
+                            "700",
+                            "800",
+                            "900",
+                            "bold",
+                            "medium"
+                          ],
+                          "type": "string",
+                          "default": "500"
+                        },
+                        "gutterIconPath": {
+                          "type": "string",
+                          "default": "",
+                          "format": "uri",
+                          "description": "An absolute path or an URI to an image to be rendered in the gutter."
+                        },
+                        "gutterIconSize": {
+                          "type": "string",
+                          "default": "",
+                          "description": "Specifies the size of the gutter icon. Available values are 'auto', 'contain', 'cover' and any percentage value. For further information: https://msdn.microsoft.com/en-us/library/jj127316(v=vs.85).aspx",
+                          "oneOf": [
+                            {
+                              "pattern": "\\d+(\\.\\d+)%"
+                            },
+                            {
+                              "enum": [
+                                "auto",
+                                "contain",
+                                "cover"
+                              ]
+                            }
+                          ]
+                        },
+                        "letterSpacing": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "opacity": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "outline": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "outlineColor": {
+                          "type": "string",
+                          "default": "",
+                          "format": "color",
+                          "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                        },
+                        "outlineStyle": {
+                          "type": "string",
+                          "default": "",
+                          "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                        },
+                        "outlineWidth": {
+                          "type": "string",
+                          "default": "",
+                          "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                        },
+                        "overviewRulerColor": {
+                          "default": "",
+                          "format": "color",
+                          "type": "string",
+                          "description": "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations."
+                        },
+                        "textDecoration": {
+                          "default": "",
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                        }
+                      }
+                    },
+                    "fontStyle": {
+                      "default": "",
+                      "enum": [
+                        "normal",
+                        "italic",
+                        "oblique",
+                        ""
+                      ],
+                      "type": "string"
+                    },
+                    "fontWeight": {
+                      "enum": [
+                        "100",
+                        "200",
+                        "300",
+                        "400",
+                        "500",
+                        "600",
+                        "700",
+                        "800",
+                        "900",
+                        "bold",
+                        "medium"
+                      ],
+                      "type": "string",
+                      "default": "500"
+                    },
+                    "gutterIconPath": {
+                      "type": "string",
+                      "default": "",
+                      "format": "uri",
+                      "description": "An absolute path or an URI to an image to be rendered in the gutter."
+                    },
+                    "gutterIconSize": {
+                      "type": "string",
+                      "default": "",
+                      "description": "Specifies the size of the gutter icon. Available values are 'auto', 'contain', 'cover' and any percentage value. For further information: https://msdn.microsoft.com/en-us/library/jj127316(v=vs.85).aspx",
+                      "oneOf": [
+                        {
+                          "pattern": "\\d+(\\.\\d+)%"
+                        },
+                        {
+                          "enum": [
+                            "auto",
+                            "contain",
+                            "cover"
+                          ]
+                        }
+                      ]
+                    },
+                    "isWholeLine": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Should the decoration be rendered also on the whitespace after the line text."
+                    },
+                    "letterSpacing": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "light": {
+                      "type": "object",
+                      "description": "Overwrite options for light themes.",
+                      "default": {},
+                      "properties": {
+                        "after": {
+                          "type": "object",
+                          "default": {},
+                          "description": "Defines the rendering options of the attachment that is inserted before the decorated text.",
+                          "properties": {
+                            "backgroundColor": {
+                              "default": "",
+                              "format": "color",
+                              "type": "string"
+                            },
+                            "border": {
+                              "default": "",
+                              "type": "string"
+                            },
+                            "borderColor": {
+                              "default": "#FFFFFF22",
+                              "format": "color",
+                              "type": "string"
+                            },
+                            "color": {
+                              "default": "",
+                              "format": "color",
+                              "type": "string"
+                            },
+                            "contentIconPath": {
+                              "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                              "oneOf": [
+                                {
+                                  "default": "",
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                {
+                                  "default": "",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "contentText": {
+                              "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                              "default": "",
+                              "type": "string"
+                            },
+                            "fontStyle": {
+                              "default": "",
+                              "enum": [
+                                "normal",
+                                "italic",
+                                "oblique",
+                                ""
+                              ],
+                              "type": "string"
+                            },
+                            "fontWeight": {
+                              "enum": [
+                                "100",
+                                "200",
+                                "300",
+                                "400",
+                                "500",
+                                "600",
+                                "700",
+                                "800",
+                                "900",
+                                "bold",
+                                "medium"
+                              ],
+                              "type": "string",
+                              "default": "500"
+                            },
+                            "height": {
+                              "type": "string",
+                              "default": ""
+                            },
+                            "margin": {
+                              "type": "string",
+                              "default": ""
+                            },
+                            "textDecoration": {
+                              "default": "",
+                              "type": "string",
+                              "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                            },
+                            "width": {
+                              "default": "",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "backgroundColor": {
+                          "default": "",
+                          "format": "color",
+                          "type": "string"
+                        },
+                        "before": {
+                          "type": "object",
+                          "default": {},
+                          "description": "Defines the rendering options of the attachment that is inserted before the decorated text.",
+                          "properties": {
+                            "backgroundColor": {
+                              "default": "",
+                              "format": "color",
+                              "type": "string"
+                            },
+                            "border": {
+                              "default": "",
+                              "type": "string"
+                            },
+                            "borderColor": {
+                              "default": "#FFFFFF22",
+                              "format": "color",
+                              "type": "string"
+                            },
+                            "color": {
+                              "default": "",
+                              "format": "color",
+                              "type": "string"
+                            },
+                            "contentIconPath": {
+                              "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+                              "oneOf": [
+                                {
+                                  "default": "",
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                {
+                                  "default": "",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "contentText": {
+                              "description": "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+                              "default": "",
+                              "type": "string"
+                            },
+                            "fontStyle": {
+                              "default": "",
+                              "enum": [
+                                "normal",
+                                "italic",
+                                "oblique",
+                                ""
+                              ],
+                              "type": "string"
+                            },
+                            "fontWeight": {
+                              "enum": [
+                                "100",
+                                "200",
+                                "300",
+                                "400",
+                                "500",
+                                "600",
+                                "700",
+                                "800",
+                                "900",
+                                "bold",
+                                "medium"
+                              ],
+                              "type": "string",
+                              "default": "500"
+                            },
+                            "height": {
+                              "type": "string",
+                              "default": ""
+                            },
+                            "margin": {
+                              "type": "string",
+                              "default": ""
+                            },
+                            "textDecoration": {
+                              "default": "",
+                              "type": "string",
+                              "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                            },
+                            "width": {
+                              "default": "",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "border": {
+                          "default": "",
+                          "type": "string"
+                        },
+                        "borderColor": {
+                          "default": "#FFFFFF22",
+                          "format": "color",
+                          "type": "string"
+                        },
+                        "borderRadius": {
+                          "default": "4px",
+                          "examples": [
+                            "2px",
+                            "0.25em",
+                            "2px 0px",
+                            "0px 0px 0px 4px",
+                            "10px 40px / 20px 60px"
+                          ],
+                          "type": "string"
+                        },
+                        "borderSpacing": {
+                          "default": "2px",
+                          "type": "string"
+                        },
+                        "borderStyle": {
+                          "enum": [
+                            "solid",
+                            "dotted",
+                            "dashed"
+                          ],
+                          "type": "string",
+                          "default": ""
+                        },
+                        "borderWidth": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "color": {
+                          "default": "",
+                          "format": "color",
+                          "type": "string"
+                        },
+                        "cursor": {
+                          "default": "",
+                          "type": "string"
+                        },
+                        "fontStyle": {
+                          "default": "",
+                          "enum": [
+                            "normal",
+                            "italic",
+                            "oblique",
+                            ""
+                          ],
+                          "type": "string"
+                        },
+                        "fontWeight": {
+                          "enum": [
+                            "100",
+                            "200",
+                            "300",
+                            "400",
+                            "500",
+                            "600",
+                            "700",
+                            "800",
+                            "900",
+                            "bold",
+                            "medium"
+                          ],
+                          "type": "string",
+                          "default": "500"
+                        },
+                        "gutterIconPath": {
+                          "type": "string",
+                          "default": "",
+                          "format": "uri",
+                          "description": "An absolute path or an URI to an image to be rendered in the gutter."
+                        },
+                        "gutterIconSize": {
+                          "type": "string",
+                          "default": "",
+                          "description": "Specifies the size of the gutter icon. Available values are 'auto', 'contain', 'cover' and any percentage value. For further information: https://msdn.microsoft.com/en-us/library/jj127316(v=vs.85).aspx",
+                          "oneOf": [
+                            {
+                              "pattern": "\\d+(\\.\\d+)%"
+                            },
+                            {
+                              "enum": [
+                                "auto",
+                                "contain",
+                                "cover"
+                              ]
+                            }
+                          ]
+                        },
+                        "letterSpacing": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "opacity": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "outline": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "outlineColor": {
+                          "type": "string",
+                          "default": "",
+                          "format": "color",
+                          "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                        },
+                        "outlineStyle": {
+                          "type": "string",
+                          "default": "",
+                          "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                        },
+                        "outlineWidth": {
+                          "type": "string",
+                          "default": "",
+                          "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                        },
+                        "overviewRulerColor": {
+                          "default": "",
+                          "format": "color",
+                          "type": "string",
+                          "description": "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations."
+                        },
+                        "textDecoration": {
+                          "default": "",
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                        }
+                      }
+                    },
+                    "opacity": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "outline": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "outlineColor": {
+                      "type": "string",
+                      "default": "",
+                      "format": "color",
+                      "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                    },
+                    "outlineStyle": {
+                      "type": "string",
+                      "default": "",
+                      "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                    },
+                    "outlineWidth": {
+                      "type": "string",
+                      "default": "",
+                      "description": "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                    },
+                    "overviewRulerColor": {
+                      "default": "",
+                      "format": "color",
+                      "type": "string",
+                      "description": "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations."
+                    },
+                    "overviewRulerLane": {
+                      "description": "The position in the overview ruler where the decoration should be rendered.",
+                      "enum": [
+                        "center",
+                        "full",
+                        "left",
+                        "right"
+                      ],
+                      "type": "string",
+                      "default": "center"
+                    },
+                    "rangeBehavior": {
+                      "enum": [
+                        1,
+                        2,
+                        3,
+                        4
+                      ],
+                      "type": "number",
+                      "default": 3,
+                      "description": "Customize the growing behavior of the decoration when edits occur at the edges of the decoration's range."
+                    },
+                    "textDecoration": {
+                      "default": "",
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                    }
+                  },
+                  "default": {}
+                }
+              }
+            }
+          }
         },
         "highlight.regexFlags": {
           "type": "string",
           "description": "Flags used when building the regexes",
+          "pattern": "^((?:([gmi])(?!.*\\2))*)$",
           "default": "gi"
         },
         "highlight.maxMatches": {
