@@ -40,7 +40,7 @@ const prop: SchemaPropertyList = {
     type: "string",
   },
   borderStyle: {
-    enum: ["solid", "dotted", "dashed"],
+    examples: ["solid", "dotted", "dashed"],
     type: "string",
     default: "",
   },

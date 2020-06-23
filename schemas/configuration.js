@@ -35,7 +35,7 @@ const prop = {
         type: "string",
     },
     borderStyle: {
-        enum: ["solid", "dotted", "dashed"],
+        examples: ["solid", "dotted", "dashed"],
         type: "string",
         default: "",
     },
@@ -79,8 +79,10 @@ const prop = {
     },
     fontStyle: {
         default: "",
-        enum: ["normal", "italic", "oblique", ""],
-        type: "string",
+        examples: [
+          "normal", "italic", "oblique"
+        ],
+        type: "string"
     },
     fontWeight: {
         enum: [

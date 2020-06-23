@@ -67,11 +67,10 @@
                 },
                 "fontStyle": {
                   "default": "",
-                  "enum": [
+                  "examples": [
                     "normal",
                     "italic",
-                    "oblique",
-                    ""
+                    "oblique"
                   ],
                   "type": "string"
                 },
@@ -161,11 +160,10 @@
                 },
                 "fontStyle": {
                   "default": "",
-                  "enum": [
+                  "examples": [
                     "normal",
                     "italic",
-                    "oblique",
-                    ""
+                    "oblique"
                   ],
                   "type": "string"
                 },
@@ -230,7 +228,7 @@
               "type": "string"
             },
             "borderStyle": {
-              "enum": [
+              "examples": [
                 "solid",
                 "dotted",
                 "dashed"
@@ -320,11 +318,10 @@
                     },
                     "fontStyle": {
                       "default": "",
-                      "enum": [
+                      "examples": [
                         "normal",
                         "italic",
-                        "oblique",
-                        ""
+                        "oblique"
                       ],
                       "type": "string"
                     },
@@ -414,11 +411,10 @@
                     },
                     "fontStyle": {
                       "default": "",
-                      "enum": [
+                      "examples": [
                         "normal",
                         "italic",
-                        "oblique",
-                        ""
+                        "oblique"
                       ],
                       "type": "string"
                     },
@@ -483,7 +479,7 @@
                   "type": "string"
                 },
                 "borderStyle": {
-                  "enum": [
+                  "examples": [
                     "solid",
                     "dotted",
                     "dashed"
@@ -506,11 +502,10 @@
                 },
                 "fontStyle": {
                   "default": "",
-                  "enum": [
+                  "examples": [
                     "normal",
                     "italic",
-                    "oblique",
-                    ""
+                    "oblique"
                   ],
                   "type": "string"
                 },
@@ -597,11 +592,10 @@
             },
             "fontStyle": {
               "default": "",
-              "enum": [
+              "examples": [
                 "normal",
                 "italic",
-                "oblique",
-                ""
+                "oblique"
               ],
               "type": "string"
             },
@@ -704,11 +698,10 @@
                     },
                     "fontStyle": {
                       "default": "",
-                      "enum": [
+                      "examples": [
                         "normal",
                         "italic",
-                        "oblique",
-                        ""
+                        "oblique"
                       ],
                       "type": "string"
                     },
@@ -798,11 +791,10 @@
                     },
                     "fontStyle": {
                       "default": "",
-                      "enum": [
+                      "examples": [
                         "normal",
                         "italic",
-                        "oblique",
-                        ""
+                        "oblique"
                       ],
                       "type": "string"
                     },
@@ -867,7 +859,7 @@
                   "type": "string"
                 },
                 "borderStyle": {
-                  "enum": [
+                  "examples": [
                     "solid",
                     "dotted",
                     "dashed"
@@ -890,11 +882,10 @@
                 },
                 "fontStyle": {
                   "default": "",
-                  "enum": [
+                  "examples": [
                     "normal",
                     "italic",
-                    "oblique",
-                    ""
+                    "oblique"
                   ],
                   "type": "string"
                 },
@@ -1106,11 +1097,10 @@
                         },
                         "fontStyle": {
                           "default": "",
-                          "enum": [
+                          "examples": [
                             "normal",
                             "italic",
-                            "oblique",
-                            ""
+                            "oblique"
                           ],
                           "type": "string"
                         },
@@ -1200,11 +1190,10 @@
                         },
                         "fontStyle": {
                           "default": "",
-                          "enum": [
+                          "examples": [
                             "normal",
                             "italic",
-                            "oblique",
-                            ""
+                            "oblique"
                           ],
                           "type": "string"
                         },
@@ -1269,7 +1258,7 @@
                       "type": "string"
                     },
                     "borderStyle": {
-                      "enum": [
+                      "examples": [
                         "solid",
                         "dotted",
                         "dashed"
@@ -1359,11 +1348,10 @@
                             },
                             "fontStyle": {
                               "default": "",
-                              "enum": [
+                              "examples": [
                                 "normal",
                                 "italic",
-                                "oblique",
-                                ""
+                                "oblique"
                               ],
                               "type": "string"
                             },
@@ -1453,11 +1441,10 @@
                             },
                             "fontStyle": {
                               "default": "",
-                              "enum": [
+                              "examples": [
                                 "normal",
                                 "italic",
-                                "oblique",
-                                ""
+                                "oblique"
                               ],
                               "type": "string"
                             },
@@ -1522,7 +1509,7 @@
                           "type": "string"
                         },
                         "borderStyle": {
-                          "enum": [
+                          "examples": [
                             "solid",
                             "dotted",
                             "dashed"
@@ -1545,11 +1532,10 @@
                         },
                         "fontStyle": {
                           "default": "",
-                          "enum": [
+                          "examples": [
                             "normal",
                             "italic",
-                            "oblique",
-                            ""
+                            "oblique"
                           ],
                           "type": "string"
                         },
@@ -1636,11 +1622,10 @@
                     },
                     "fontStyle": {
                       "default": "",
-                      "enum": [
+                      "examples": [
                         "normal",
                         "italic",
-                        "oblique",
-                        ""
+                        "oblique"
                       ],
                       "type": "string"
                     },
@@ -1743,11 +1728,10 @@
                             },
                             "fontStyle": {
                               "default": "",
-                              "enum": [
+                              "examples": [
                                 "normal",
                                 "italic",
-                                "oblique",
-                                ""
+                                "oblique"
                               ],
                               "type": "string"
                             },
@@ -1837,11 +1821,10 @@
                             },
                             "fontStyle": {
                               "default": "",
-                              "enum": [
+                              "examples": [
                                 "normal",
                                 "italic",
-                                "oblique",
-                                ""
+                                "oblique"
                               ],
                               "type": "string"
                             },
@@ -1906,7 +1889,7 @@
                           "type": "string"
                         },
                         "borderStyle": {
-                          "enum": [
+                          "examples": [
                             "solid",
                             "dotted",
                             "dashed"
@@ -1929,11 +1912,10 @@
                         },
                         "fontStyle": {
                           "default": "",
-                          "enum": [
+                          "examples": [
                             "normal",
                             "italic",
-                            "oblique",
-                            ""
+                            "oblique"
                           ],
                           "type": "string"
                         },
