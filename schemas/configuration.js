@@ -12,12 +12,12 @@ const prop = {
     },
     border: {
         default: "",
-        type: "string",
+        type: "string"
     },
     borderColor: {
         default: "#FFFFFF22",
         format: "color",
-        type: "string",
+        type: "string"
     },
     borderRadius: {
         default: "4px",
@@ -28,60 +28,112 @@ const prop = {
             "0px 0px 0px 4px",
             "10px 40px / 20px 60px",
         ],
-        type: "string",
+        type: "string"
     },
     borderSpacing: {
         default: "2px",
-        type: "string",
+        type: "string"
     },
     borderStyle: {
-        examples: ["solid", "dotted", "dashed"],
+        examples: [
+            "solid",
+            "dotted",
+            "dashed",
+            "solid none",
+            "none none solid none",
+        ],
         type: "string",
-        default: "",
+        default: ""
     },
     borderWidth: {
         type: "string",
-        default: "",
+        default: ""
     },
     color: {
         default: "",
         format: "color",
-        type: "string",
+        type: "string"
     },
     contentIconPath: {
         description: "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-        oneOf: [
+        anyOf: [
             {
                 default: "",
                 format: "uri",
-                type: "string",
+                type: "string"
             },
             {
                 default: "",
-                type: "string",
+                type: "string"
             },
-        ],
+        ]
     },
     contentText: {
         description: "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
         default: "",
-        type: "string",
+        type: "string"
     },
     cursor: {
+        anyOf: [
+            {
+                enum: [
+                    "alias",
+                    "all-scroll",
+                    "auto",
+                    "cell",
+                    "context-menu",
+                    "col-resize",
+                    "copy",
+                    "crosshair",
+                    "default",
+                    "e-resize",
+                    "ew-resize",
+                    "grab",
+                    "grabbing",
+                    "help",
+                    "move",
+                    "n-resize",
+                    "ne-resize",
+                    "nesw-resize",
+                    "ns-resize",
+                    "nw-resize",
+                    "nwse-resize",
+                    "no-drop",
+                    "none",
+                    "not-allowed",
+                    "pointer",
+                    "progress",
+                    "row-resize",
+                    "s-resize",
+                    "se-resize",
+                    "sw-resize",
+                    "text",
+                    "vertical-text",
+                    "w-resize",
+                    "wait",
+                    "zoom-in",
+                    "zoom-out",
+                    "initial",
+                    "inherit",
+                ]
+            },
+            {
+                format: "uri"
+            },
+        ],
         default: "",
-        type: "string",
+        description: "Specifies the mouse cursor to be displayed when pointing over a decoration.",
+        type: "string"
     },
     filterFileRegex: {
-        type: "string",
+        type: "string"
     },
     filterLanguageRegex: {
-        type: "string",
+        type: "string"
     },
     fontStyle: {
         default: "",
-        examples: [
-          "normal", "italic", "oblique"
-        ],
+        enum: ["normal", "italic", "oblique", "unset", ""],
         type: "string"
     },
     fontWeight: {
@@ -99,13 +151,13 @@ const prop = {
             "medium",
         ],
         type: "string",
-        default: "500",
+        default: "500"
     },
     gutterIconPath: {
         type: "string",
         default: "",
         format: "uri",
-        description: "An absolute path or an URI to an image to be rendered in the gutter.",
+        description: "An absolute path or an URI to an image to be rendered in the gutter."
     },
     gutterIconSize: {
         type: "string",
@@ -115,16 +167,16 @@ const prop = {
             { pattern: "\\d+(\\.\\d+)%" },
             {
                 enum: [
-                    'auto',
-                    'contain',
-                    'cover'
+                    "auto",
+                    "contain",
+                    "cover",
                 ]
-            }
+            },
         ]
     },
     height: {
         type: "string",
-        default: "",
+        default: ""
     },
     isWholeLine: {
         type: "boolean",
@@ -133,19 +185,21 @@ const prop = {
     },
     letterSpacing: {
         type: "string",
-        default: "",
+        default: ""
     },
     margin: {
         type: "string",
-        default: "",
+        default: ""
     },
     opacity: {
-        type: "string",
-        default: "",
+        type: "number",
+        minimum: 0,
+        maximum: 1,
+        default: 1
     },
     outline: {
         type: "string",
-        default: "",
+        default: ""
     },
     outlineColor: {
         type: "string",
@@ -167,13 +221,13 @@ const prop = {
         default: "",
         format: "color",
         type: "string",
-        description: "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations.",
+        description: "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations."
     },
     overviewRulerLane: {
         description: "The position in the overview ruler where the decoration should be rendered.",
         enum: ["center", "full", "left", "right"],
         type: "string",
-        default: "center",
+        default: "center"
     },
     rangeBehavior: {
         enum: [1, 2, 3, 4],
@@ -188,13 +242,15 @@ const prop = {
     },
     width: {
         default: "",
-        type: "string",
+        type: "string"
     },
 };
 const propList = {
     /**
     * Decoration schema's properties list. Used for `highlight.regexes` and
     * `highlight.decorations` properties
+    *
+    * @see https://code.visualstudio.com/api/references/vscode-api#DecorationRenderOptions
     */
     get decorationRenderOptions() {
         return {
@@ -227,9 +283,12 @@ const propList = {
             overviewRulerColor: prop.overviewRulerColor,
             overviewRulerLane: prop.overviewRulerLane,
             rangeBehavior: prop.rangeBehavior,
-            textDecoration: prop.textDecoration,
+            textDecoration: prop.textDecoration
         };
     },
+    /**
+     * @see https://code.visualstudio.com/api/references/vscode-api#ThemableDecorationRenderOptions
+     */
     get themableDecorationRenderOptions() {
         return {
             after: schemaObj.after,
@@ -254,9 +313,12 @@ const propList = {
             outlineStyle: prop.outlineStyle,
             outlineWidth: prop.outlineWidth,
             overviewRulerColor: prop.overviewRulerColor,
-            textDecoration: prop.textDecoration,
+            textDecoration: prop.textDecoration
         };
     },
+    /**
+     * @see https://code.visualstudio.com/api/references/vscode-api#ThemableDecorationAttachmentRenderOptions
+     */
     get themableDecorationAttachmentRenderOptions() {
         return {
             backgroundColor: prop.backgroundColor,
@@ -270,7 +332,7 @@ const propList = {
             height: prop.height,
             margin: prop.margin,
             textDecoration: prop.textDecoration,
-            width: prop.width,
+            width: prop.width
         };
     },
 };
@@ -283,7 +345,7 @@ const schemaObj = {
             type: "object",
             description: "Object mapping regexes to an array of decorations to apply to the capturing groups",
             default: {},
-            properties: propList.decorationRenderOptions,
+            properties: propList.decorationRenderOptions
         };
     },
     get regexFlags() {
@@ -325,7 +387,7 @@ const schemaObj = {
             default: {},
             properties: propList.themableDecorationRenderOptions
         };
-    }
+    },
 };
 const configuration = {
     type: "object",
@@ -335,7 +397,7 @@ const configuration = {
             type: "object",
             description: "Default decorations from which all others inherit from",
             default: { rangeBehavior: 3 },
-            properties: propList.decorationRenderOptions,
+            properties: propList.decorationRenderOptions
         },
         "highlight.regexes": {
             type: "object",
@@ -351,18 +413,18 @@ const configuration = {
                         items: {
                             type: "object",
                             properties: propList.decorationRenderOptions,
-                            default: {},
-                        },
-                    },
-                },
-            },
+                            default: {}
+                        }
+                    }
+                }
+            }
         },
         "highlight.regexFlags": schemaObj.regexFlags,
         "highlight.maxMatches": {
             type: "number",
             description: "Maximum number of matches to decorate per regex, in order not to crash the app with accidental cathastropic regexes",
-            default: 250,
-        },
+            default: 250
+        }
     },
 };
 const indentLevel = 2;
@@ -373,8 +435,9 @@ class ConfigurationGenerator {
     }
     toString() {
         const output = JSON.stringify(configuration, null, this.indentLevel);
-        if (!output)
-            throw new Error('Generating schema failed.');
+        if (!output) {
+            throw new Error("Generating schema failed.");
+        }
         return output;
     }
     toJSON() {

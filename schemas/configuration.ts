@@ -17,12 +17,12 @@ const prop: SchemaPropertyList = {
   },
   border: {
     default: "",
-    type: "string",
+    type: "string"
   },
   borderColor: {
     default: "#FFFFFF22",
     format: "color",
-    type: "string",
+    type: "string"
   },
   borderRadius: {
     default: "4px",
@@ -33,59 +33,116 @@ const prop: SchemaPropertyList = {
       "0px 0px 0px 4px",
       "10px 40px / 20px 60px",
     ],
-    type: "string",
+    type: "string"
   },
   borderSpacing: {
     default: "2px",
-    type: "string",
+    type: "string"
   },
   borderStyle: {
-    examples: ["solid", "dotted", "dashed"],
+    examples: [
+      "solid",
+      "dotted",
+      "dashed",
+      "solid none",
+      "none none solid none",
+    ],
     type: "string",
-    default: "",
+    default: ""
   },
   borderWidth: {
     type: "string",
-    default: "",
+    default: ""
   },
   color: {
     default: "",
     format: "color",
-    type: "string",
+    type: "string"
   },
   contentIconPath: {
-    description: "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-    oneOf: [
+    description:
+      "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
+    anyOf: [
       {
         default: "",
         format: "uri",
-        type: "string",
+        type: "string"
       },
       {
         default: "",
-        type: "string",
+        type: "string"
       },
-    ],
+    ]
   },
   contentText: {
-    description: "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
+    description:
+      "Defines a text content that is shown in the attachment. Either an icon or a text can be shown, but not both.",
     default: "",
-    type: "string",
+    type: "string"
   },
   cursor: {
+    anyOf: [
+      {
+        enum: [
+          "alias",
+          "all-scroll",
+          "auto",
+          "cell",
+          "context-menu",
+          "col-resize",
+          "copy",
+          "crosshair",
+          "default",
+          "e-resize",
+          "ew-resize",
+          "grab",
+          "grabbing",
+          "help",
+          "move",
+          "n-resize",
+          "ne-resize",
+          "nesw-resize",
+          "ns-resize",
+          "nw-resize",
+          "nwse-resize",
+          "no-drop",
+          "none",
+          "not-allowed",
+          "pointer",
+          "progress",
+          "row-resize",
+          "s-resize",
+          "se-resize",
+          "sw-resize",
+          "text",
+          "vertical-text",
+          "w-resize",
+          "wait",
+          "zoom-in",
+          "zoom-out",
+          "initial",
+          "inherit",
+        ]
+      },
+      {
+        format: "uri"
+      },
+    ],
     default: "",
-    type: "string",
+    description:
+      "Specifies the mouse cursor to be displayed when pointing over a decoration.",
+    type: "string"
   },
   filterFileRegex: {
-    type: "string",
+    type: "string"
   },
   filterLanguageRegex: {
-    type: "string",
+    type: "string"
   },
   fontStyle: {
     default: "",
-    enum: ["normal", "italic", "oblique", ""],
-    type: "string",
+    enum: ["normal", "italic", "oblique", "unset", ""],
+    type: "string"
   },
   fontWeight: {
     enum: [
@@ -102,103 +159,117 @@ const prop: SchemaPropertyList = {
       "medium",
     ],
     type: "string",
-    default: "500",
+    default: "500"
   },
   gutterIconPath: {
     type: "string",
     default: "",
     format: "uri",
-    description: "An absolute path or an URI to an image to be rendered in the gutter.",
+    description:
+      "An absolute path or an URI to an image to be rendered in the gutter."
   },
   gutterIconSize: {
     type: "string",
     default: "",
-    description: "Specifies the size of the gutter icon. Available values are 'auto', 'contain', 'cover' and any percentage value. For further information: https://msdn.microsoft.com/en-us/library/jj127316(v=vs.85).aspx",
+    description:
+      "Specifies the size of the gutter icon. Available values are 'auto', 'contain', 'cover' and any percentage value. For further information: https://msdn.microsoft.com/en-us/library/jj127316(v=vs.85).aspx",
     oneOf: [
       { pattern: "\\d+(\\.\\d+)%" },
       {
         enum: [
-          'auto',
-          'contain',
-          'cover'
+          "auto",
+          "contain",
+          "cover",
         ]
-      }
+      },
     ]
   },
   height: {
     type: "string",
-    default: "",
+    default: ""
   },
   isWholeLine: {
     type: "boolean",
     default: false,
-    description: "Should the decoration be rendered also on the whitespace after the line text."
+    description:
+      "Should the decoration be rendered also on the whitespace after the line text."
   },
   letterSpacing: {
     type: "string",
-    default: "",
+    default: ""
   },
   margin: {
     type: "string",
-    default: "",
+    default: ""
   },
   opacity: {
-    type: "string",
-    default: "",
+    type: "number",
+    minimum: 0,
+    maximum: 1,
+    default: 1
   },
   outline: {
     type: "string",
-    default: "",
+    default: ""
   },
   outlineColor: {
     type: "string",
     default: "",
     format: "color",
-    description: "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+    description:
+      "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
   },
   outlineStyle: {
     type: "string",
     default: "",
-    description: "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+    description:
+      "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
   },
   outlineWidth: {
     type: "string",
     default: "",
-    description: "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+    description:
+      "Applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
   },
   overviewRulerColor: {
     default: "",
     format: "color",
     type: "string",
-    description: "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations.",
+    description:
+      "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations."
   },
   overviewRulerLane: {
-    description: "The position in the overview ruler where the decoration should be rendered.",
+    description:
+      "The position in the overview ruler where the decoration should be rendered.",
     enum: ["center", "full", "left", "right"],
     type: "string",
-    default: "center",
+    default: "center"
   },
   rangeBehavior: {
     enum: [1, 2, 3, 4],
     type: "number",
     default: 3,
-    description: "Customize the growing behavior of the decoration when edits occur at the edges of the decoration's range."
+    description:
+      "Customize the growing behavior of the decoration when edits occur at the edges of the decoration's range."
   },
   textDecoration: {
     default: "",
     type: "string",
-    description: "CSS styling property that will be applied to text enclosed by a decoration."
+    description:
+      "CSS styling property that will be applied to text enclosed by a decoration."
   },
   width: {
     default: "",
-    type: "string",
+    type: "string"
   },
 };
 
-const propList: {[key: string]: SchemaPropertyList} = {
+const propList: { [key: string]: SchemaPropertyList } = {
   /**
   * Decoration schema's properties list. Used for `highlight.regexes` and
   * `highlight.decorations` properties
+  *
+  * @see https://code.visualstudio.com/api/references/vscode-api#DecorationRenderOptions
   */
   get decorationRenderOptions() {
     return {
@@ -231,10 +302,13 @@ const propList: {[key: string]: SchemaPropertyList} = {
       overviewRulerColor: prop.overviewRulerColor,
       overviewRulerLane: prop.overviewRulerLane,
       rangeBehavior: prop.rangeBehavior,
-      textDecoration: prop.textDecoration,
+      textDecoration: prop.textDecoration
     };
   },
 
+  /**
+   * @see https://code.visualstudio.com/api/references/vscode-api#ThemableDecorationRenderOptions
+   */
   get themableDecorationRenderOptions() {
     return {
       after: schemaObj.after,
@@ -259,10 +333,13 @@ const propList: {[key: string]: SchemaPropertyList} = {
       outlineStyle: prop.outlineStyle,
       outlineWidth: prop.outlineWidth,
       overviewRulerColor: prop.overviewRulerColor,
-      textDecoration: prop.textDecoration,
+      textDecoration: prop.textDecoration
     };
   },
 
+  /**
+   * @see https://code.visualstudio.com/api/references/vscode-api#ThemableDecorationAttachmentRenderOptions
+   */
   get themableDecorationAttachmentRenderOptions() {
     return {
       backgroundColor: prop.backgroundColor,
@@ -276,7 +353,7 @@ const propList: {[key: string]: SchemaPropertyList} = {
       height: prop.height,
       margin: prop.margin,
       textDecoration: prop.textDecoration,
-      width: prop.width,
+      width: prop.width
     };
   },
 };
@@ -291,7 +368,7 @@ const schemaObj = {
       description:
         "Object mapping regexes to an array of decorations to apply to the capturing groups",
       default: {},
-      properties: propList.decorationRenderOptions,
+      properties: propList.decorationRenderOptions
     };
   },
 
@@ -308,7 +385,8 @@ const schemaObj = {
     return {
       type: "object",
       default: {},
-      description: "Defines the rendering options of the attachment that is inserted before the decorated text.",
+      description:
+        "Defines the rendering options of the attachment that is inserted before the decorated text.",
       properties: propList.themableDecorationAttachmentRenderOptions
     };
   },
@@ -317,7 +395,8 @@ const schemaObj = {
     return {
       type: "object",
       default: {},
-      description: "Defines the rendering options of the attachment that is inserted before the decorated text.",
+      description:
+        "Defines the rendering options of the attachment that is inserted before the decorated text.",
       properties: propList.themableDecorationAttachmentRenderOptions
     };
   },
@@ -338,7 +417,7 @@ const schemaObj = {
       default: {},
       properties: propList.themableDecorationRenderOptions
     };
-  }
+  },
 };
 
 const configuration: Schema.JSONSchema6 = {
@@ -349,7 +428,7 @@ const configuration: Schema.JSONSchema6 = {
       type: "object",
       description: "Default decorations from which all others inherit from",
       default: { rangeBehavior: 3 },
-      properties: propList.decorationRenderOptions,
+      properties: propList.decorationRenderOptions
     },
     "highlight.regexes": {
       type: "object",
@@ -366,19 +445,19 @@ const configuration: Schema.JSONSchema6 = {
             items: {
               type: "object",
               properties: propList.decorationRenderOptions,
-              default: {},
-            },
-          },
-        },
-      },
+              default: {}
+            }
+          }
+        }
+      }
     },
     "highlight.regexFlags": schemaObj.regexFlags,
     "highlight.maxMatches": {
       type: "number",
       description:
         "Maximum number of matches to decorate per regex, in order not to crash the app with accidental cathastropic regexes",
-      default: 250,
-    },
+      default: 250
+    }
   },
 };
 
@@ -388,23 +467,21 @@ class ConfigurationGenerator {
   indentLevel: number = indentLevel;
   configuration: Schema.JSONSchema6;
 
-  toString(): string
-  {
+  toString(): string {
     const output = JSON.stringify(configuration, null, this.indentLevel);
-    if(!output)
-      throw new Error('Generating schema failed.');
+    if (!output) {
+      throw new Error("Generating schema failed.");
+    }
 
     return output;
   }
 
-  toJSON(): JSON
-  {
+  toJSON(): JSON {
     // Not sure why I had to do this
     return JSON.parse(JSON.stringify(this.configuration));
   }
 
-  constructor(configuration: Schema.JSONSchema6)
-  {
+  constructor(configuration: Schema.JSONSchema6) {
     this.configuration = configuration;
   }
 }

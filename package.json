@@ -48,7 +48,7 @@
                 },
                 "contentIconPath": {
                   "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                  "oneOf": [
+                  "anyOf": [
                     {
                       "default": "",
                       "format": "uri",
@@ -67,10 +67,12 @@
                 },
                 "fontStyle": {
                   "default": "",
-                  "examples": [
+                  "enum": [
                     "normal",
                     "italic",
-                    "oblique"
+                    "oblique",
+                    "unset",
+                    ""
                   ],
                   "type": "string"
                 },
@@ -141,7 +143,7 @@
                 },
                 "contentIconPath": {
                   "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                  "oneOf": [
+                  "anyOf": [
                     {
                       "default": "",
                       "format": "uri",
@@ -160,10 +162,12 @@
                 },
                 "fontStyle": {
                   "default": "",
-                  "examples": [
+                  "enum": [
                     "normal",
                     "italic",
-                    "oblique"
+                    "oblique",
+                    "unset",
+                    ""
                   ],
                   "type": "string"
                 },
@@ -231,7 +235,9 @@
               "examples": [
                 "solid",
                 "dotted",
-                "dashed"
+                "dashed",
+                "solid none",
+                "none none solid none"
               ],
               "type": "string",
               "default": ""
@@ -247,7 +253,7 @@
             },
             "contentIconPath": {
               "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-              "oneOf": [
+              "anyOf": [
                 {
                   "default": "",
                   "format": "uri",
@@ -265,7 +271,55 @@
               "type": "string"
             },
             "cursor": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "alias",
+                    "all-scroll",
+                    "auto",
+                    "cell",
+                    "context-menu",
+                    "col-resize",
+                    "copy",
+                    "crosshair",
+                    "default",
+                    "e-resize",
+                    "ew-resize",
+                    "grab",
+                    "grabbing",
+                    "help",
+                    "move",
+                    "n-resize",
+                    "ne-resize",
+                    "nesw-resize",
+                    "ns-resize",
+                    "nw-resize",
+                    "nwse-resize",
+                    "no-drop",
+                    "none",
+                    "not-allowed",
+                    "pointer",
+                    "progress",
+                    "row-resize",
+                    "s-resize",
+                    "se-resize",
+                    "sw-resize",
+                    "text",
+                    "vertical-text",
+                    "w-resize",
+                    "wait",
+                    "zoom-in",
+                    "zoom-out",
+                    "initial",
+                    "inherit"
+                  ]
+                },
+                {
+                  "format": "uri"
+                }
+              ],
               "default": "",
+              "description": "Specifies the mouse cursor to be displayed when pointing over a decoration.",
               "type": "string"
             },
             "dark": {
@@ -299,7 +353,7 @@
                     },
                     "contentIconPath": {
                       "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                      "oneOf": [
+                      "anyOf": [
                         {
                           "default": "",
                           "format": "uri",
@@ -318,10 +372,12 @@
                     },
                     "fontStyle": {
                       "default": "",
-                      "examples": [
+                      "enum": [
                         "normal",
                         "italic",
-                        "oblique"
+                        "oblique",
+                        "unset",
+                        ""
                       ],
                       "type": "string"
                     },
@@ -392,7 +448,7 @@
                     },
                     "contentIconPath": {
                       "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                      "oneOf": [
+                      "anyOf": [
                         {
                           "default": "",
                           "format": "uri",
@@ -411,10 +467,12 @@
                     },
                     "fontStyle": {
                       "default": "",
-                      "examples": [
+                      "enum": [
                         "normal",
                         "italic",
-                        "oblique"
+                        "oblique",
+                        "unset",
+                        ""
                       ],
                       "type": "string"
                     },
@@ -482,7 +540,9 @@
                   "examples": [
                     "solid",
                     "dotted",
-                    "dashed"
+                    "dashed",
+                    "solid none",
+                    "none none solid none"
                   ],
                   "type": "string",
                   "default": ""
@@ -497,15 +557,65 @@
                   "type": "string"
                 },
                 "cursor": {
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "alias",
+                        "all-scroll",
+                        "auto",
+                        "cell",
+                        "context-menu",
+                        "col-resize",
+                        "copy",
+                        "crosshair",
+                        "default",
+                        "e-resize",
+                        "ew-resize",
+                        "grab",
+                        "grabbing",
+                        "help",
+                        "move",
+                        "n-resize",
+                        "ne-resize",
+                        "nesw-resize",
+                        "ns-resize",
+                        "nw-resize",
+                        "nwse-resize",
+                        "no-drop",
+                        "none",
+                        "not-allowed",
+                        "pointer",
+                        "progress",
+                        "row-resize",
+                        "s-resize",
+                        "se-resize",
+                        "sw-resize",
+                        "text",
+                        "vertical-text",
+                        "w-resize",
+                        "wait",
+                        "zoom-in",
+                        "zoom-out",
+                        "initial",
+                        "inherit"
+                      ]
+                    },
+                    {
+                      "format": "uri"
+                    }
+                  ],
                   "default": "",
+                  "description": "Specifies the mouse cursor to be displayed when pointing over a decoration.",
                   "type": "string"
                 },
                 "fontStyle": {
                   "default": "",
-                  "examples": [
+                  "enum": [
                     "normal",
                     "italic",
-                    "oblique"
+                    "oblique",
+                    "unset",
+                    ""
                   ],
                   "type": "string"
                 },
@@ -554,8 +664,10 @@
                   "default": ""
                 },
                 "opacity": {
-                  "type": "string",
-                  "default": ""
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "default": 1
                 },
                 "outline": {
                   "type": "string",
@@ -592,10 +704,12 @@
             },
             "fontStyle": {
               "default": "",
-              "examples": [
+              "enum": [
                 "normal",
                 "italic",
-                "oblique"
+                "oblique",
+                "unset",
+                ""
               ],
               "type": "string"
             },
@@ -679,7 +793,7 @@
                     },
                     "contentIconPath": {
                       "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                      "oneOf": [
+                      "anyOf": [
                         {
                           "default": "",
                           "format": "uri",
@@ -698,10 +812,12 @@
                     },
                     "fontStyle": {
                       "default": "",
-                      "examples": [
+                      "enum": [
                         "normal",
                         "italic",
-                        "oblique"
+                        "oblique",
+                        "unset",
+                        ""
                       ],
                       "type": "string"
                     },
@@ -772,7 +888,7 @@
                     },
                     "contentIconPath": {
                       "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                      "oneOf": [
+                      "anyOf": [
                         {
                           "default": "",
                           "format": "uri",
@@ -791,10 +907,12 @@
                     },
                     "fontStyle": {
                       "default": "",
-                      "examples": [
+                      "enum": [
                         "normal",
                         "italic",
-                        "oblique"
+                        "oblique",
+                        "unset",
+                        ""
                       ],
                       "type": "string"
                     },
@@ -862,7 +980,9 @@
                   "examples": [
                     "solid",
                     "dotted",
-                    "dashed"
+                    "dashed",
+                    "solid none",
+                    "none none solid none"
                   ],
                   "type": "string",
                   "default": ""
@@ -877,15 +997,65 @@
                   "type": "string"
                 },
                 "cursor": {
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "alias",
+                        "all-scroll",
+                        "auto",
+                        "cell",
+                        "context-menu",
+                        "col-resize",
+                        "copy",
+                        "crosshair",
+                        "default",
+                        "e-resize",
+                        "ew-resize",
+                        "grab",
+                        "grabbing",
+                        "help",
+                        "move",
+                        "n-resize",
+                        "ne-resize",
+                        "nesw-resize",
+                        "ns-resize",
+                        "nw-resize",
+                        "nwse-resize",
+                        "no-drop",
+                        "none",
+                        "not-allowed",
+                        "pointer",
+                        "progress",
+                        "row-resize",
+                        "s-resize",
+                        "se-resize",
+                        "sw-resize",
+                        "text",
+                        "vertical-text",
+                        "w-resize",
+                        "wait",
+                        "zoom-in",
+                        "zoom-out",
+                        "initial",
+                        "inherit"
+                      ]
+                    },
+                    {
+                      "format": "uri"
+                    }
+                  ],
                   "default": "",
+                  "description": "Specifies the mouse cursor to be displayed when pointing over a decoration.",
                   "type": "string"
                 },
                 "fontStyle": {
                   "default": "",
-                  "examples": [
+                  "enum": [
                     "normal",
                     "italic",
-                    "oblique"
+                    "oblique",
+                    "unset",
+                    ""
                   ],
                   "type": "string"
                 },
@@ -934,8 +1104,10 @@
                   "default": ""
                 },
                 "opacity": {
-                  "type": "string",
-                  "default": ""
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "default": 1
                 },
                 "outline": {
                   "type": "string",
@@ -971,8 +1143,10 @@
               }
             },
             "opacity": {
-              "type": "string",
-              "default": ""
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "default": 1
             },
             "outline": {
               "type": "string",
@@ -1078,7 +1252,7 @@
                         },
                         "contentIconPath": {
                           "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                          "oneOf": [
+                          "anyOf": [
                             {
                               "default": "",
                               "format": "uri",
@@ -1097,10 +1271,12 @@
                         },
                         "fontStyle": {
                           "default": "",
-                          "examples": [
+                          "enum": [
                             "normal",
                             "italic",
-                            "oblique"
+                            "oblique",
+                            "unset",
+                            ""
                           ],
                           "type": "string"
                         },
@@ -1171,7 +1347,7 @@
                         },
                         "contentIconPath": {
                           "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                          "oneOf": [
+                          "anyOf": [
                             {
                               "default": "",
                               "format": "uri",
@@ -1190,10 +1366,12 @@
                         },
                         "fontStyle": {
                           "default": "",
-                          "examples": [
+                          "enum": [
                             "normal",
                             "italic",
-                            "oblique"
+                            "oblique",
+                            "unset",
+                            ""
                           ],
                           "type": "string"
                         },
@@ -1261,7 +1439,9 @@
                       "examples": [
                         "solid",
                         "dotted",
-                        "dashed"
+                        "dashed",
+                        "solid none",
+                        "none none solid none"
                       ],
                       "type": "string",
                       "default": ""
@@ -1277,7 +1457,7 @@
                     },
                     "contentIconPath": {
                       "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                      "oneOf": [
+                      "anyOf": [
                         {
                           "default": "",
                           "format": "uri",
@@ -1295,7 +1475,55 @@
                       "type": "string"
                     },
                     "cursor": {
+                      "anyOf": [
+                        {
+                          "enum": [
+                            "alias",
+                            "all-scroll",
+                            "auto",
+                            "cell",
+                            "context-menu",
+                            "col-resize",
+                            "copy",
+                            "crosshair",
+                            "default",
+                            "e-resize",
+                            "ew-resize",
+                            "grab",
+                            "grabbing",
+                            "help",
+                            "move",
+                            "n-resize",
+                            "ne-resize",
+                            "nesw-resize",
+                            "ns-resize",
+                            "nw-resize",
+                            "nwse-resize",
+                            "no-drop",
+                            "none",
+                            "not-allowed",
+                            "pointer",
+                            "progress",
+                            "row-resize",
+                            "s-resize",
+                            "se-resize",
+                            "sw-resize",
+                            "text",
+                            "vertical-text",
+                            "w-resize",
+                            "wait",
+                            "zoom-in",
+                            "zoom-out",
+                            "initial",
+                            "inherit"
+                          ]
+                        },
+                        {
+                          "format": "uri"
+                        }
+                      ],
                       "default": "",
+                      "description": "Specifies the mouse cursor to be displayed when pointing over a decoration.",
                       "type": "string"
                     },
                     "dark": {
@@ -1329,7 +1557,7 @@
                             },
                             "contentIconPath": {
                               "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                              "oneOf": [
+                              "anyOf": [
                                 {
                                   "default": "",
                                   "format": "uri",
@@ -1348,10 +1576,12 @@
                             },
                             "fontStyle": {
                               "default": "",
-                              "examples": [
+                              "enum": [
                                 "normal",
                                 "italic",
-                                "oblique"
+                                "oblique",
+                                "unset",
+                                ""
                               ],
                               "type": "string"
                             },
@@ -1422,7 +1652,7 @@
                             },
                             "contentIconPath": {
                               "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                              "oneOf": [
+                              "anyOf": [
                                 {
                                   "default": "",
                                   "format": "uri",
@@ -1441,10 +1671,12 @@
                             },
                             "fontStyle": {
                               "default": "",
-                              "examples": [
+                              "enum": [
                                 "normal",
                                 "italic",
-                                "oblique"
+                                "oblique",
+                                "unset",
+                                ""
                               ],
                               "type": "string"
                             },
@@ -1512,7 +1744,9 @@
                           "examples": [
                             "solid",
                             "dotted",
-                            "dashed"
+                            "dashed",
+                            "solid none",
+                            "none none solid none"
                           ],
                           "type": "string",
                           "default": ""
@@ -1527,15 +1761,65 @@
                           "type": "string"
                         },
                         "cursor": {
+                          "anyOf": [
+                            {
+                              "enum": [
+                                "alias",
+                                "all-scroll",
+                                "auto",
+                                "cell",
+                                "context-menu",
+                                "col-resize",
+                                "copy",
+                                "crosshair",
+                                "default",
+                                "e-resize",
+                                "ew-resize",
+                                "grab",
+                                "grabbing",
+                                "help",
+                                "move",
+                                "n-resize",
+                                "ne-resize",
+                                "nesw-resize",
+                                "ns-resize",
+                                "nw-resize",
+                                "nwse-resize",
+                                "no-drop",
+                                "none",
+                                "not-allowed",
+                                "pointer",
+                                "progress",
+                                "row-resize",
+                                "s-resize",
+                                "se-resize",
+                                "sw-resize",
+                                "text",
+                                "vertical-text",
+                                "w-resize",
+                                "wait",
+                                "zoom-in",
+                                "zoom-out",
+                                "initial",
+                                "inherit"
+                              ]
+                            },
+                            {
+                              "format": "uri"
+                            }
+                          ],
                           "default": "",
+                          "description": "Specifies the mouse cursor to be displayed when pointing over a decoration.",
                           "type": "string"
                         },
                         "fontStyle": {
                           "default": "",
-                          "examples": [
+                          "enum": [
                             "normal",
                             "italic",
-                            "oblique"
+                            "oblique",
+                            "unset",
+                            ""
                           ],
                           "type": "string"
                         },
@@ -1584,8 +1868,10 @@
                           "default": ""
                         },
                         "opacity": {
-                          "type": "string",
-                          "default": ""
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1,
+                          "default": 1
                         },
                         "outline": {
                           "type": "string",
@@ -1622,10 +1908,12 @@
                     },
                     "fontStyle": {
                       "default": "",
-                      "examples": [
+                      "enum": [
                         "normal",
                         "italic",
-                        "oblique"
+                        "oblique",
+                        "unset",
+                        ""
                       ],
                       "type": "string"
                     },
@@ -1709,7 +1997,7 @@
                             },
                             "contentIconPath": {
                               "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                              "oneOf": [
+                              "anyOf": [
                                 {
                                   "default": "",
                                   "format": "uri",
@@ -1728,10 +2016,12 @@
                             },
                             "fontStyle": {
                               "default": "",
-                              "examples": [
+                              "enum": [
                                 "normal",
                                 "italic",
-                                "oblique"
+                                "oblique",
+                                "unset",
+                                ""
                               ],
                               "type": "string"
                             },
@@ -1802,7 +2092,7 @@
                             },
                             "contentIconPath": {
                               "description": "An absolute path or an URI to an image to be rendered in the attachment. Either an icon or a text can be shown, but not both.",
-                              "oneOf": [
+                              "anyOf": [
                                 {
                                   "default": "",
                                   "format": "uri",
@@ -1821,10 +2111,12 @@
                             },
                             "fontStyle": {
                               "default": "",
-                              "examples": [
+                              "enum": [
                                 "normal",
                                 "italic",
-                                "oblique"
+                                "oblique",
+                                "unset",
+                                ""
                               ],
                               "type": "string"
                             },
@@ -1892,7 +2184,9 @@
                           "examples": [
                             "solid",
                             "dotted",
-                            "dashed"
+                            "dashed",
+                            "solid none",
+                            "none none solid none"
                           ],
                           "type": "string",
                           "default": ""
@@ -1907,15 +2201,65 @@
                           "type": "string"
                         },
                         "cursor": {
+                          "anyOf": [
+                            {
+                              "enum": [
+                                "alias",
+                                "all-scroll",
+                                "auto",
+                                "cell",
+                                "context-menu",
+                                "col-resize",
+                                "copy",
+                                "crosshair",
+                                "default",
+                                "e-resize",
+                                "ew-resize",
+                                "grab",
+                                "grabbing",
+                                "help",
+                                "move",
+                                "n-resize",
+                                "ne-resize",
+                                "nesw-resize",
+                                "ns-resize",
+                                "nw-resize",
+                                "nwse-resize",
+                                "no-drop",
+                                "none",
+                                "not-allowed",
+                                "pointer",
+                                "progress",
+                                "row-resize",
+                                "s-resize",
+                                "se-resize",
+                                "sw-resize",
+                                "text",
+                                "vertical-text",
+                                "w-resize",
+                                "wait",
+                                "zoom-in",
+                                "zoom-out",
+                                "initial",
+                                "inherit"
+                              ]
+                            },
+                            {
+                              "format": "uri"
+                            }
+                          ],
                           "default": "",
+                          "description": "Specifies the mouse cursor to be displayed when pointing over a decoration.",
                           "type": "string"
                         },
                         "fontStyle": {
                           "default": "",
-                          "examples": [
+                          "enum": [
                             "normal",
                             "italic",
-                            "oblique"
+                            "oblique",
+                            "unset",
+                            ""
                           ],
                           "type": "string"
                         },
@@ -1964,8 +2308,10 @@
                           "default": ""
                         },
                         "opacity": {
-                          "type": "string",
-                          "default": ""
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1,
+                          "default": 1
                         },
                         "outline": {
                           "type": "string",
@@ -2001,8 +2347,10 @@
                       }
                     },
                     "opacity": {
-                      "type": "string",
-                      "default": ""
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "default": 1
                     },
                     "outline": {
                       "type": "string",
@@ -2119,6 +2467,7 @@
     "string-matches": "^1.1.0"
   },
   "devDependencies": {
+    "@types/json-schema": "^7.0.5",
     "ts-loader": "^5.2.1",
     "typescript": "~2.4.1",
     "vscode": "^1.1.4",
