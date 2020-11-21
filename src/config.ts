@@ -11,6 +11,11 @@ const Config = {
 
     return vscode.workspace.getConfiguration ().get ( extension ) as any;
 
+  },
+
+  colorTheme() {
+    const theme = vscode.workspace.getConfiguration ().get ( "workbench.colorTheme" ) || "Default";
+    return `[${theme}]`;
   }
 
 };
