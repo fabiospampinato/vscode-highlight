@@ -24,10 +24,12 @@ const Decorator = {
   /* CONFIG */
 
   config: undefined,
+  colorTheme: undefined,
 
   initConfig () {
 
     Decorator.config = Config.get ();
+    Decorator.colorTheme = Config.colorTheme ();
 
   },
 
@@ -70,8 +72,11 @@ const Decorator = {
     const decorations = Decorator.config.decorations,
           types = Decorator.regexesStrs.map ( reStr => {
 
-            const options = Decorator.config.regexes[reStr],
-                  reDecorations = _.castArray ( options.decorations || options );
+            const options = Decorator.config.regexes[reStr];
+            let themeDecorations = undefined;
+            const themeOptions = options[Decorator.colorTheme];
+            if (themeOptions) { themeDecorations = themeOptions.decorations; }
+            const reDecorations = _.castArray ( themeDecorations || options.decorations || options );
 
             return reDecorations.map ( options => {
 
