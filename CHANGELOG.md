@@ -1,3 +1,7 @@
+### Version 1.5.0
+- Deleted repo-level github funding.yml
+- Providing some default decorations
+
 ### Version 1.4.1
 - Ensuring types generated from dynamic decorators are cleared up properly
 
