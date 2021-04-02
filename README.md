@@ -231,6 +231,7 @@ Result:
 ## Hints
 
 - **Todo**: If you're using this extension for highlighting todos, I recommend using [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) as well.
+- **Defaults**: Some default decorations for comments are provided, you can remove or change them by editing your settings. Keep in mind that this extension is agnostic to what can be highlighted, and it's not limited to just highlighting todos.
 
 ## Contributing
 
