@@ -78,7 +78,8 @@
     "@types/node": "^10.12.8",
     "lodash": "^4.17.4",
     "pify": "^3.0.0",
-    "string-matches": "^1.1.0"
+    "string-matches": "^1.1.0",
+    "vscode-beggar": "^1.0.0"
   },
   "devDependencies": {
     "ts-loader": "^5.2.1",
