@@ -1,3 +1,6 @@
+### Version 1.5.1
+- Added a dialog announcing the fundraising
+
 ### Version 1.5.0
 - Deleted repo-level github funding.yml
 - Providing some default decorations
