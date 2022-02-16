@@ -79,11 +79,11 @@
     "lodash": "^4.17.4",
     "pify": "^3.0.0",
     "string-matches": "^1.1.0",
-    "vscode-beggar": "^1.0.0"
+    "vscode-beggar": "^1.0.1"
   },
   "devDependencies": {
     "ts-loader": "^5.2.1",
-    "typescript": "~2.4.1",
+    "typescript": "~4.5.5",
     "vscode": "^1.1.4",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
