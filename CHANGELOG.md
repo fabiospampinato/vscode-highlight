@@ -1,3 +1,6 @@
+### Version 1.6.0
+- Added support for disabling donation prompts by setting "donations.disablePrompt" to "true"
+
 ### Version 1.5.1
 - Added a dialog announcing the fundraising
 
