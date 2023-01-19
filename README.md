@@ -67,7 +67,7 @@ All the supported decoration options are defined [here](https://code.visualstudi
 
 3. For each capturing group a decorations options object must be provided (empty decorations are allowed: `{}`), otherwise the actual decorations will be misaligned.
 
-3. Nested capturing groups are not supported.
+4. Nested capturing groups are not supported.
 
 ## Demo
 
