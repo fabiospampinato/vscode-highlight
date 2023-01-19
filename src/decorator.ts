@@ -194,22 +194,6 @@ const Decorator = {
 
     });
 
-    /* LINE COUNT */
-
-    const prevLineCount = Decorator.docsLines[textEditor['id']];
-
-    Decorator.docsLines[textEditor['id']] = doc.lineCount;
-
-    /* CLEARING */
-
-    const prevDecorations = Decorator.decorations[textEditor['id']];
-
-    if ( force !== true && ( ( ( !prevDecorations || !prevDecorations.size ) && !decorations.size ) || ( prevLineCount === doc.lineCount && _.isEqual ( prevDecorations, decorations ) ) ) ) return; // Nothing changed, skipping unnecessary work //URL: https://github.com/Microsoft/vscode/issues/50415
-
-    Decorator.decorations[textEditor['id']] = decorations;
-
-    Decorator.undecorate ();
-
     /* SETTING */
 
     decorations.forEach ( ( ranges, type ) => {
