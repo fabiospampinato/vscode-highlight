@@ -3,7 +3,7 @@
   "displayName": "Highlight",
   "description": "Advanced text highlighter based on regexes. Useful for todos, annotations, colors etc.",
   "icon": "resources/logo-128x128.png",
-  "version": "1.7.0",
+  "version": "1.6.0",
   "license": "MIT",
   "main": "out/extension.js",
   "publisher": "fabiospampinato",
@@ -40,7 +40,7 @@
         "highlight.decorationDelay": {
           "type": "number",
           "description": "Avoid re-decorating the whole document with each keystroke, by delaying the trigger for decoration. Value in milliseconds",
-          "default": 300
+          "default": 250
         }
       }
     }
