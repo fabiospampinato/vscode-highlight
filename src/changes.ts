@@ -16,23 +16,16 @@ const Changes = {
 
     Changes.changes.push ( ...contentChanges );
 
-    Changes.decorate ( document );
+    const areSingleLines = Changes.changes.every(({ range }) => range.isSingleLine);
 
-  },
+    if (areSingleLines) {
 
-  decorate ( document: vscode.TextDocument ) {
-
-    const areSingleLines = Changes.changes.every ( ({ range }) => range.isSingleLine );
-
-    if ( areSingleLines ) {
-
-      const lineNrs = Changes.changes.map ( ({ range }) => range.start.line );
-
-      Decorator.decorateLines ( document, lineNrs );
+      const lineNrs = Changes.changes.map(({ range }) => range.start.line);
+      Decorator.decorateLines(document, lineNrs);
 
     } else {
 
-      Decorator.decorate ( document );
+      Decorator.decorate(document);
 
     }
 

@@ -21,6 +21,8 @@ const Decorator = {
 
   },
 
+  timeoutId: undefined,
+
   /* CONFIG */
 
   config: undefined,
@@ -274,7 +276,23 @@ const Decorator = {
 
     }
 
-    Decorator.decorate ( doc );
+    // Introduced this new feature to reduce the frequency of decoration updates,
+    // especially if you are typing fast, to avoid performance and flickering
+    // issues on larger files (>2k lines) and more than one regex definition.
+    // https://github.com/fabiospampinato/vscode-highlight/issues/105
+
+    if (_.isUndefined(Decorator.timeoutId)){
+
+      Decorator.timeoutId = setTimeout(() => {
+
+        // Clear sync object
+        Decorator.timeoutId = undefined
+
+        Decorator.decorate(doc);
+
+      }, Decorator.config.decorationDelay);
+
+    }
 
   },
 

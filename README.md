@@ -24,6 +24,7 @@ ext install fabiospampinato.vscode-highlight
   "highlight.regexFlags": "gi", // Default flags used when building the regexes
   "highlight.regexes": {}, // Object mapping regexes to options or an array of decorations to apply to the capturing groups
   "highlight.maxMatches": 250 // Maximum number of matches to decorate per regex, in order not to crash the app with accidental cathastropic regexes
+  "highlight.decorationDelay": 300 // "Avoid re-decorating of the whole document on each key press, by delaying the trigger for decoration in milliseconds"
 }
 ```
 
