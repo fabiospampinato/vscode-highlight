@@ -32,7 +32,7 @@ const Changes = {
 
     } else {
 
-      Decorator.decorate ( document );
+      Decorator.decorateThrottled ( document );
 
     }
 

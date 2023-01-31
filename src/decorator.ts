@@ -218,6 +218,18 @@ const Decorator = {
 
   },
 
+  decorateThrottled: (() => {
+
+    const minDelay = Config.get ().minDelay;
+
+    return _.debounce ( ( target?: vscode.TextEditor | vscode.TextDocument, force?: boolean ): void => {
+
+      Decorator.decorate ( target, force );
+
+    }, minDelay, { maxWait: minDelay } );
+
+  })(),
+
   docsLines: {},
 
   decorateLines ( doc: vscode.TextDocument, lineNrs: number[] ) {
@@ -274,7 +286,7 @@ const Decorator = {
 
     }
 
-    Decorator.decorate ( doc );
+    Decorator.decorateThrottled ( doc );
 
   },
 

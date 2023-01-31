@@ -23,6 +23,7 @@ ext install fabiospampinato.vscode-highlight
   "highlight.decorations": { "rangeBehavior": 3 }, // Default decorations from which all others inherit from
   "highlight.regexFlags": "gi", // Default flags used when building the regexes
   "highlight.regexes": {}, // Object mapping regexes to options or an array of decorations to apply to the capturing groups
+  "highlight.minDelay": 50, // Minimum number of milliseconds to wait before highlighting the document after a change, used for throttling
   "highlight.maxMatches": 250 // Maximum number of matches to decorate per regex, in order not to crash the app with accidental cathastropic regexes
 }
 ```

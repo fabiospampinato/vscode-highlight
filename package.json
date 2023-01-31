@@ -32,6 +32,11 @@
           "description": "Flags used when building the regexes",
           "default": "gi"
         },
+        "highlight.minDelay": {
+          "type": "number",
+          "description": "Minimum number of milliseconds to wait before highlighting the document after a change, used for throttling",
+          "default": 50
+        },
         "highlight.maxMatches": {
           "type": "number",
           "description": "Maximum number of matches to decorate per regex, in order not to crash the app with accidental cathastropic regexes",
