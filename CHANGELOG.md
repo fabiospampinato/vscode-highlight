@@ -1,3 +1,6 @@
+### Version 1.7.1
+- Avoiding undecorating the document, which seems no longer necessary
+
 ### Version 1.7.0
 - Readme: fixed a typo
 - New option: "highlight.minDelay", number of ms to use for throttling highlighting
