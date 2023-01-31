@@ -206,7 +206,7 @@ const Decorator = {
 
     Decorator.decorations[textEditor['id']] = decorations;
 
-    Decorator.undecorate ();
+    // Decorator.undecorate (); // This seems unnecessary now?
 
     /* SETTING */
 
