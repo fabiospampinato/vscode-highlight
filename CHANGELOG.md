@@ -1,3 +1,7 @@
+### Version 1.7.0
+- Readme: fixed a typo
+- New option: "highlight.minDelay", number of ms to use for throttling highlighting
+
 ### Version 1.6.0
 - Added support for disabling donation prompts by setting "donations.disablePrompt" to "true"
 
