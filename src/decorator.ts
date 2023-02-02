@@ -152,6 +152,16 @@ const Decorator = {
 
     Decorator.regexesStrs.forEach ( reStr => {
 
+      // Fixes: https://github.com/fabiospampinato/vscode-highlight/issues/109
+      // Creates a complete map of decorations for the following case:
+      // If a pattern gets invalid due to a content change (e.g. keystroke), then the following lines
+      // provide a clean (default) decoration map for all decoration.
+      // If pattern was not found, then range = [], which removes the old decoration (ranges).
+      const types = Decorator.getTypes(reStr)
+      types.forEach( type => {
+          decorations.set ( type, [] );
+        }
+      )
       const options = Decorator.config.regexes[reStr],
             isFiltered = Utils.document.isFiltered ( doc, options );
 
@@ -206,7 +216,9 @@ const Decorator = {
 
     Decorator.decorations[textEditor['id']] = decorations;
 
-    // Decorator.undecorate (); // This seems unnecessary now?
+    // This statement produces flickering, see https://github.com/fabiospampinato/vscode-highlight/issues/105
+    // and was substituted with `decorations.set ( type, [] );` near line 161
+    // Decorator.undecorate ();
 
     /* SETTING */
 
