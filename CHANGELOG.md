@@ -1,3 +1,6 @@
+### Version 1.7.2
+- Reverted change that skipped removing old decorations before applying the new ones
+
 ### Version 1.7.1
 - Avoiding undecorating the document, which seems no longer necessary
 
