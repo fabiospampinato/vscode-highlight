@@ -1,3 +1,9 @@
+### Version 1.7.3
+- Lowercased readme file
+- Lowercased changelog file
+- Lowercased license file
+- Attempt at reducing flickering on large decorated files
+
 ### Version 1.7.2
 - Reverted change that skipped removing old decorations before applying the new ones
 
