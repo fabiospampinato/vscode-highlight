@@ -152,6 +152,13 @@ const Decorator = {
 
     Decorator.regexesStrs.forEach ( reStr => {
 
+      const types = Decorator.getTypes ( reStr );
+
+      types.forEach ( type => {
+          decorations.set ( type, [] );
+        }
+      );
+
       const options = Decorator.config.regexes[reStr],
             isFiltered = Utils.document.isFiltered ( doc, options );
 
@@ -206,7 +213,7 @@ const Decorator = {
 
     Decorator.decorations[textEditor['id']] = decorations;
 
-    Decorator.undecorate ();
+    // Decorator.undecorate (); // No longer needed? We are setting an empty array only for the types that are not used anymore
 
     /* SETTING */
 
