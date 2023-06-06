@@ -25,7 +25,474 @@
         "highlight.regexes": {
           "type": "object",
           "description": "Object mapping regexes to an array of decorations to apply to the capturing groups",
-          "default": {}
+          "default": {},
+          "format": "regex",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "type": "array",
+                "markdownDescription": "Decoration values can also include placeholders like $1 or $2 that will be replaced with the content of the respective capturing group, enabling complex use cases like CSS colors highlighting.\n\nAll the supported decoration options are defined [here](https://code.visualstudio.com/docs/extensionAPI/vscode-api#DecorationRenderOptions)",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "after": {
+                      "type": "object",
+                      "description": "Defines the rendering options of the attachment that is inserted after the decorated text."
+                    },
+                    "before": {
+                      "type": "object",
+                      "description": "Defines the rendering options of the attachment that is inserted before the decorated text."
+                    },
+                    "light": {
+                      "type": "object",
+                      "description": "Overwrite options for light themes."
+                    },
+                    "dark": {
+                      "type": "object",
+                      "description": "Overwrite options for dark themes."
+                    },
+                    "backgroundColor": {
+                      "type": "string",
+                      "format": "color-hex",
+                      "markdownDescription": "Background color of the decoration. Use rgba() and define transparent background colors to play well with other decorations. Alternatively a color from the color registry can be [referenced](https://code.visualstudio.com/api/references/vscode-api#ThemeColor).",
+                      "defaultSnippets": [
+                        {
+                          "body": "${1:#ff0000}"
+                        }
+                      ]
+                    },
+                    "border": {
+                      "type": "string",
+                      "format": "color-hex",
+                      "markdownDescription": "CSS styling property that will be applied to text enclosed by a decoration.",
+                      "defaultSnippets": [
+                        {
+                          "body": "${1:#ff0000}"
+                        }
+                      ]
+                    },
+                    "borderColor": {
+                      "type": "string",
+                      "format": "color-hex",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'border' for setting one or more of the individual border properties.",
+                      "defaultSnippets": [
+                        {
+                          "body": "${1:#ff0000}"
+                        }
+                      ]
+                    },
+                    "borderRadius": {
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'border' for setting one or more of the individual border properties."
+                    },
+                    "borderSpacing": {
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'border' for setting one or more of the individual border properties."
+                    },
+                    "borderStyle": {
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'border' for setting one or more of the individual border properties."
+                    },
+                    "borderWidth": {
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'border' for setting one or more of the individual border properties."
+                    },
+                    "color": {
+                      "type": "string",
+                      "format": "color-hex",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration",
+                      "defaultSnippets": [
+                        {
+                          "body": "${1:#ff0000}"
+                        }
+                      ]
+                    },
+                    "cursor": {
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                    },
+                    "fontStyle": {
+                      "type": "string",
+                      "description": "Sets the all font styles of the rule: 'italic', 'bold', 'underline' or 'strikethrough' or a combination. All styles that are not listed are unset. The empty string unsets all styles.",
+                      "pattern": "^(\\s*(italic|bold|underline|strikethrough))*\\s*$",
+                      "patternErrorMessage": "Font style must be 'italic', 'bold', 'underline' or 'strikethrough' or a combination. The empty string unsets all styles.",
+                      "defaultSnippets": [
+                        {
+                          "label": "None (clear inherited style)",
+                          "bodyText": "\"\""
+                        },
+                        {
+                          "body": "italic"
+                        },
+                        {
+                          "body": "bold"
+                        },
+                        {
+                          "body": "underline"
+                        },
+                        {
+                          "body": "strikethrough"
+                        },
+                        {
+                          "body": "italic bold"
+                        },
+                        {
+                          "body": "italic underline"
+                        },
+                        {
+                          "body": "italic strikethrough"
+                        },
+                        {
+                          "body": "bold underline"
+                        },
+                        {
+                          "body": "bold strikethrough"
+                        },
+                        {
+                          "body": "underline strikethrough"
+                        },
+                        {
+                          "body": "italic bold underline"
+                        },
+                        {
+                          "body": "italic bold strikethrough"
+                        },
+                        {
+                          "body": "italic underline strikethrough"
+                        },
+                        {
+                          "body": "bold underline strikethrough"
+                        },
+                        {
+                          "body": "italic bold underline strikethrough"
+                        }
+                      ]
+                    },
+                    "fontWeight": {
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                    },
+                    "opacity": {
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                    },
+                    "isWholeLine": {
+                      "type": "boolean",
+                      "markdownDescription": "Should the decoration be rendered also on the whitespace after the line text. Defaults to `false`.",
+                      "default": false
+                    },
+                    "letterSpacing": {
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                    },
+                    "gutterIconPath": {
+                      "type": "string",
+                      "markdownDescription": "An **absolute path** or an URI to an image to be rendered in the gutter."
+                    },
+                    "gutterIconSize": {
+                      "type": "string",
+                      "description": "Specifies the size of the gutter icon. Available values are 'auto', 'contain', 'cover' and any percentage value.",
+                      "enum": [
+                        "auto",
+                        "contain",
+                        "cover"
+                      ]
+                    },
+                    "outline": {
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                    },
+                    "outlineColor": {
+                      "type": "string",
+                      "format": "color-hex",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration",
+                      "defaultSnippets": [
+                        {
+                          "body": "${1:#ff0000}"
+                        }
+                      ]
+                    },
+                    "outlineStyle": {
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                    },
+                    "outlineWidth": {
+                      "type": "string",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                    },
+                    "overviewRulerLane": {
+                      "type": [
+                        "number",
+                        "string",
+                        "object"
+                      ],
+                      "description": "The position in the overview ruler where the decoration should be rendered."
+                    },
+                    "overviewRulerColor": {
+                      "type": "string",
+                      "format": "color-hex",
+                      "description": "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations."
+                    },
+                    "rangeBehavior": {
+                      "type": [
+                        "number",
+                        "string",
+                        "object"
+                      ],
+                      "markdownDescription": "Customize the growing behavior of the decoration when edits occur at the edges of the decoration's range. Defaults to `DecorationRangeBehavior.OpenOpen`."
+                    },
+                    "textDecoration": {
+                      "type": "string",
+                      "format": "color-hex",
+                      "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "regexFlags": {
+                    "type": "string",
+                    "description": "Flags used when building this regex"
+                  },
+                  "filterLanguageRegex": {
+                    "type": "string",
+                    "description": "Apply only if current file's language matches this regex. Requires double escaping"
+                  },
+                  "filterFileRegex": {
+                    "type": "string",
+                    "markdownDescription": "Apply only if the current file's path matches this regex. Requires double escaping.",
+                    "defaultSnippets": [
+                      {
+                        "body": ".*\\\\.{${1:ext}}"
+                      }
+                    ]
+                  },
+                  "decorations": {
+                    "type": "array",
+                    "markdownDescription": "Decoration values can also include placeholders like $1 or $2 that will be replaced with the content of the respective capturing group, enabling complex use cases like CSS colors highlighting.\n\nAll the supported decoration options are defined [here](https://code.visualstudio.com/docs/extensionAPI/vscode-api#DecorationRenderOptions)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "after": {
+                          "type": "object",
+                          "description": "Defines the rendering options of the attachment that is inserted after the decorated text."
+                        },
+                        "before": {
+                          "type": "object",
+                          "description": "Defines the rendering options of the attachment that is inserted before the decorated text."
+                        },
+                        "light": {
+                          "type": "object",
+                          "description": "Overwrite options for light themes."
+                        },
+                        "dark": {
+                          "type": "object",
+                          "description": "Overwrite options for dark themes."
+                        },
+                        "backgroundColor": {
+                          "type": "string",
+                          "format": "color-hex",
+                          "markdownDescription": "Background color of the decoration. Use rgba() and define transparent background colors to play well with other decorations. Alternatively a color from the color registry can be [referenced](https://code.visualstudio.com/api/references/vscode-api#ThemeColor).",
+                          "defaultSnippets": [
+                            {
+                              "body": "${1:#ff0000}"
+                            }
+                          ]
+                        },
+                        "border": {
+                          "type": "string",
+                          "format": "color-hex",
+                          "markdownDescription": "CSS styling property that will be applied to text enclosed by a decoration.",
+                          "defaultSnippets": [
+                            {
+                              "body": "${1:#ff0000}"
+                            }
+                          ]
+                        },
+                        "borderColor": {
+                          "type": "string",
+                          "format": "color-hex",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'border' for setting one or more of the individual border properties.",
+                          "defaultSnippets": [
+                            {
+                              "body": "${1:#ff0000}"
+                            }
+                          ]
+                        },
+                        "borderRadius": {
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'border' for setting one or more of the individual border properties."
+                        },
+                        "borderSpacing": {
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'border' for setting one or more of the individual border properties."
+                        },
+                        "borderStyle": {
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'border' for setting one or more of the individual border properties."
+                        },
+                        "borderWidth": {
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'border' for setting one or more of the individual border properties."
+                        },
+                        "color": {
+                          "type": "string",
+                          "format": "color-hex",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration",
+                          "defaultSnippets": [
+                            {
+                              "body": "${1:#ff0000}"
+                            }
+                          ]
+                        },
+                        "cursor": {
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                        },
+                        "fontStyle": {
+                          "type": "string",
+                          "description": "Sets the all font styles of the rule: 'italic', 'bold', 'underline' or 'strikethrough' or a combination. All styles that are not listed are unset. The empty string unsets all styles.",
+                          "pattern": "^(\\s*(italic|bold|underline|strikethrough))*\\s*$",
+                          "patternErrorMessage": "Font style must be 'italic', 'bold', 'underline' or 'strikethrough' or a combination. The empty string unsets all styles.",
+                          "defaultSnippets": [
+                            {
+                              "label": "None (clear inherited style)",
+                              "bodyText": "\"\""
+                            },
+                            {
+                              "body": "italic"
+                            },
+                            {
+                              "body": "bold"
+                            },
+                            {
+                              "body": "underline"
+                            },
+                            {
+                              "body": "strikethrough"
+                            },
+                            {
+                              "body": "italic bold"
+                            },
+                            {
+                              "body": "italic underline"
+                            },
+                            {
+                              "body": "italic strikethrough"
+                            },
+                            {
+                              "body": "bold underline"
+                            },
+                            {
+                              "body": "bold strikethrough"
+                            },
+                            {
+                              "body": "underline strikethrough"
+                            },
+                            {
+                              "body": "italic bold underline"
+                            },
+                            {
+                              "body": "italic bold strikethrough"
+                            },
+                            {
+                              "body": "italic underline strikethrough"
+                            },
+                            {
+                              "body": "bold underline strikethrough"
+                            },
+                            {
+                              "body": "italic bold underline strikethrough"
+                            }
+                          ]
+                        },
+                        "fontWeight": {
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                        },
+                        "opacity": {
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                        },
+                        "isWholeLine": {
+                          "type": "boolean",
+                          "markdownDescription": "Should the decoration be rendered also on the whitespace after the line text. Defaults to `false`.",
+                          "default": false
+                        },
+                        "letterSpacing": {
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                        },
+                        "gutterIconPath": {
+                          "type": "string",
+                          "markdownDescription": "An **absolute path** or an URI to an image to be rendered in the gutter."
+                        },
+                        "gutterIconSize": {
+                          "type": "string",
+                          "description": "Specifies the size of the gutter icon. Available values are 'auto', 'contain', 'cover' and any percentage value.",
+                          "enum": [
+                            "auto",
+                            "contain",
+                            "cover"
+                          ]
+                        },
+                        "outline": {
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                        },
+                        "outlineColor": {
+                          "type": "string",
+                          "format": "color-hex",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration",
+                          "defaultSnippets": [
+                            {
+                              "body": "${1:#ff0000}"
+                            }
+                          ]
+                        },
+                        "outlineStyle": {
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                        },
+                        "outlineWidth": {
+                          "type": "string",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'outline' for setting one or more of the individual outline properties."
+                        },
+                        "overviewRulerLane": {
+                          "type": [
+                            "number",
+                            "string",
+                            "object"
+                          ],
+                          "description": "The position in the overview ruler where the decoration should be rendered."
+                        },
+                        "overviewRulerColor": {
+                          "type": "string",
+                          "format": "color-hex",
+                          "description": "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations."
+                        },
+                        "rangeBehavior": {
+                          "type": [
+                            "number",
+                            "string",
+                            "object"
+                          ],
+                          "markdownDescription": "Customize the growing behavior of the decoration when edits occur at the edges of the decoration's range. Defaults to `DecorationRangeBehavior.OpenOpen`."
+                        },
+                        "textDecoration": {
+                          "type": "string",
+                          "format": "color-hex",
+                          "description": "CSS styling property that will be applied to text enclosed by a decoration."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
         },
         "highlight.regexFlags": {
           "type": "string",
