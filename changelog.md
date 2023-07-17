@@ -1,3 +1,6 @@
+### Version 1.8.0
+- Improved contribution schema store
+
 ### Version 1.7.3
 - Lowercased readme file
 - Lowercased changelog file
