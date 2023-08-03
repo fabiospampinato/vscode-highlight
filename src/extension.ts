@@ -40,6 +40,14 @@ function activate ( context: vscode.ExtensionContext ) {
 
   Decorator.decorate ();
 
+	vscode.commands.registerCommand('vscode-highlight.forceDecorate', () => 
+  {
+    vscode.window.visibleTextEditors.forEach(editor => 
+    {
+      Decorator.decorate ( editor, true );
+    });
+  });
+
 }
 
 /* EXPORT */
