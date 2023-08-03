@@ -526,7 +526,7 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "webpack --mode production",
+    "vscode:prepublish": "rm -rf out && webpack --mode production",
     "publish": "vsce publish && npm publish",
     "compile": "webpack --mode development",
     "compile:watch": "webpack --mode development --watch",
