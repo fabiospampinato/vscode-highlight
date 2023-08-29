@@ -510,7 +510,13 @@
           "default": 250
         }
       }
-    }
+    },
+    "commands": [
+      {
+        "command": "highlight.forceDecorate",
+        "title": "Highlight: Force Decorate"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "rm -rf out && webpack --mode production",

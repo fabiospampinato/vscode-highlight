@@ -4,6 +4,7 @@
 import * as vscode from 'vscode';
 import beggar from 'vscode-beggar';
 import Changes from './changes';
+import {forceDecorate} from './commands';
 import Config from './config';
 import Decorator from './decorator';
 
@@ -35,6 +36,8 @@ function activate ( context: vscode.ExtensionContext ) {
     vscode.workspace.onDidChangeTextDocument ( Changes.onChanges ),
     vscode.window.onDidChangeActiveTextEditor ( () => Decorator.decorate ( undefined, true ) )
   );
+
+  vscode.commands.registerCommand ( 'highlight.forceDecorate', forceDecorate );
 
   Config.init ();
 

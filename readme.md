@@ -16,6 +16,14 @@ Follow the instructions in the [Marketplace](https://marketplace.visualstudio.co
 ext install fabiospampinato.vscode-highlight
 ```
 
+## Commands
+
+It adds 1 command to the command palette:
+
+```js
+'Highlight: Force Decorate' // Explicitly force all editors to be re-decorated
+```
+
 ## Settings
 
 ```js
