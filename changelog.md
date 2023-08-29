@@ -1,3 +1,7 @@
+### Version 1.9.0
+- Readme: added a warning for multiline strings
+- New command: highlight.forceDecorate
+
 ### Version 1.8.0
 - Improved contribution schema store
 
