@@ -72,7 +72,7 @@ All the supported decoration options are defined [here](https://code.visualstudi
 1. Regexes need to be double-escaped, once for JSON and the second time for the regex itself.
 2. All characters of the matched string must be wrapped in a capturing group.
 3. For each capturing group a decorations options object must be provided (empty decorations are allowed: `{}`), otherwise the actual decorations will be misaligned.
-4. Nested capturing groups are not supported but [nested non-capturing groups are](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Non-capturing_group).
+4. Nested capturing groups are not supported but nested [non-capturing groups are](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Non-capturing_group).
 5. If you want to match the start/end of a line make sure the regex has the "m" (multiline) flag.
 
 ## Demo
