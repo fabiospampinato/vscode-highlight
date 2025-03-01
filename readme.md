@@ -69,7 +69,7 @@ All the supported decoration options are defined [here](https://code.visualstudi
 
 ## Warnings
 
-1. Regexes need to be double-escaped, once for JSON and the second time for the regex itself.
+1. Regexes need to be double-escaped, once for JSON and the second time for the regex itself. For example, `"(\\[.*\\])": { ... }` matches content between square brackets, and `"(\\\\+)": { ... }` matches one or more backslash characters. 
 2. All characters of the matched string must be wrapped in a capturing group.
 3. For each capturing group a decorations options object must be provided (empty decorations are allowed: `{}`), otherwise the actual decorations will be misaligned.
 4. Nested capturing groups are not supported.
