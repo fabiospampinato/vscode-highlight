@@ -1,14 +1,14 @@
 {
   "name": "vscode-highlight",
   "displayName": "Highlight",
+  "publisher": "fabiospampinato",
+  "repository": "github:fabiospampinato/vscode-highlight",
   "description": "Advanced text highlighter based on regexes. Useful for todos, annotations, colors etc.",
   "icon": "resources/logo-128x128.png",
   "version": "1.9.0",
-  "license": "MIT",
-  "main": "out/extension.js",
-  "publisher": "fabiospampinato",
+  "main": "dist/index.js",
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
   "contributes": {
     "configuration": {
@@ -519,51 +519,39 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "rm -rf out && webpack --mode production",
-    "publish": "vsce publish && npm publish",
-    "compile": "webpack --mode development",
-    "compile:watch": "webpack --mode development --watch",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "node ./node_modules/vscode/bin/test"
+    "bundle:dev": "tsex bundle --external vscode --format cjs --platform node --no-declare",
+    "bundle:prod": "tsex bundle --external vscode --format cjs --platform node --minify",
+    "clean": "tsex clean",
+    "compile": "tsex compile",
+    "debug": "code --extensionDevelopmentPath $PWD --inspect-extensions 9222",
+    "package": "vsce package",
+    "prepublishOnly": "scex -bs clean bundle:prod",
+    "vscode:prepublish": "scex -bs clean bundle:prod",
+    "dev": "scex -bs bundle:dev debug",
+    "prod": "scex -bs bundle:prod debug"
   },
-  "bugs": {
-    "url": "https://github.com/fabiospampinato/vscode-highlight/issues"
-  },
-  "author": {
-    "name": "Fabio Spampinato",
-    "email": "spampinabio@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fabiospampinato/vscode-highlight.git"
-  },
-  "engines": {
-    "vscode": "^1.15.0"
-  },
-  "keywords": [
-    "vscode",
-    "highlight",
-    "text",
-    "todo",
-    "annotation",
-    "vsc",
-    "extension"
-  ],
   "categories": [
     "Other"
   ],
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "keywords": [
+    "vscode",
+    "vsc",
+    "extension"
+  ],
   "dependencies": {
-    "@types/node": "^10.12.8",
-    "lodash": "^4.17.4",
-    "pify": "^3.0.0",
-    "string-matches": "^1.1.0",
-    "vscode-beggar": "^1.0.1"
+    "lomemo": "^1.0.1",
+    "regexp-is-intraline": "^1.0.1",
+    "vscode-extras": "^1.9.0"
   },
   "devDependencies": {
-    "ts-loader": "^5.2.1",
-    "typescript": "~4.5.5",
-    "vscode": "^1.1.4",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "@types/node": "^18.19.130",
+    "@types/vscode": "^1.87.0",
+    "esbuild": "0.27.2",
+    "scex": "^1.1.0",
+    "tsex": "^4.0.2",
+    "typescript": "^5.9.3"
   }
 }
