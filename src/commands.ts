@@ -1,21 +1,29 @@
 
 /* IMPORT */
 
-import * as vscode from 'vscode';
-import Decorator from './decorator';
+import vscode from 'vscode';
+import decorate from './decorate';
 
 /* MAIN */
 
-const forceDecorate = (): void => {
+//TODO: update intraline regexes frequently, and interline regexes infrequently
 
-  vscode.window.visibleTextEditors.forEach (editor => {
+const forceDecorate = ( editor: vscode.TextEditor, ranges: vscode.Range[] ): void => {
 
-    Decorator.decorate ( editor, true );
+  decorate ( editor, ranges );
 
-  });
+};
+
+const forceDecorateAll = (): void => {
+
+  for ( const editor of vscode.window.visibleTextEditors ) {
+
+    forceDecorate ( editor, [] );
+
+  }
 
 };
 
 /* EXPORT */
 
-export {forceDecorate};
+export {forceDecorate, forceDecorateAll};
