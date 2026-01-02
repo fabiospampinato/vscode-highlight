@@ -3,7 +3,7 @@
 
 import memoize from 'lomemo';
 import isIntraline from 'regexp-is-intraline';
-import * as vscode from 'vscode';
+import vscode from 'vscode';
 import {getConfig} from 'vscode-extras';
 import type {Decoration, Highlight, Options} from './types';
 
