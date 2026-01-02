@@ -14,11 +14,13 @@ type Highlight = {
   languageRe?: RegExp,
   highlightRe: RegExp,
   highlightDecorations: Decoration[],
+  isEnabled: boolean,
   isIntraline: boolean
 };
 
 type Options = {
   debugging: boolean,
+  enabled: boolean,
   highlights: Highlight[]
 };
 

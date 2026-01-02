@@ -57,6 +57,7 @@ const getHighlights = (): Highlight[] => {
     const highlightDecorationsRawNormalized = highlightDecorationsRaw.map ( decoration => ({ ...decorations, ...decoration }) );
     const highlightDecorations = highlightDecorationsRawNormalized.map ( decoration => getDecoration ( highlightRe, decoration ) );
 
+    const isEnabled = isObject ( highlightConfig ) && isBoolean ( highlightConfig['enabled'] ) ? highlightConfig['enabled'] : true;
     const isIntraline = isRegExpIntraline ( highlightRe );
 
     const highlight: Highlight = {
@@ -64,6 +65,7 @@ const getHighlights = (): Highlight[] => {
       languageRe,
       highlightRe,
       highlightDecorations,
+      isEnabled,
       isIntraline
     };
 
@@ -79,8 +81,9 @@ const getOptions = (): Options => {
 
   const config = getConfig ( 'highlight' );
   const debugging = isBoolean ( config?.['debugging'] ) ? config['debugging'] : false;
+  const enabled = isBoolean ( config?.['enabled'] ) ? config['enabled'] : true;
   const highlights = getHighlights ();
-  const options: Options = { debugging, highlights };
+  const options: Options = { debugging, enabled, highlights };
 
   return options;
 

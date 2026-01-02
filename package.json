@@ -17,7 +17,7 @@
       "properties": {
         "highlight.debugging": {
           "type": "boolean",
-          "description": "Enable debugging alerts",
+          "description": "Whether debugging alerts are enabled o rnot",
           "default": false
         },
         "highlight.decorations": {
@@ -26,6 +26,11 @@
           "default": {
             "rangeBehavior": 3
           }
+        },
+        "highlight.enabled": {
+          "type": "boolean",
+          "description": "Whether highlights are enabled or not",
+          "default": true
         },
         "highlight.regexes": {
           "type": "object",
@@ -257,6 +262,11 @@
               {
                 "type": "object",
                 "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "description": "Whether this highlight is enabled or not",
+                    "default": true
+                  },
                   "regexFlags": {
                     "type": "string",
                     "description": "Flags used when building this regex"

@@ -31,7 +31,9 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
   for ( const highlight of highlights ) {
 
     const {fileRe, languageRe, highlightRe} = highlight;
-    const {highlightDecorations, isIntraline} = highlight;
+    const {highlightDecorations, isEnabled, isIntraline} = highlight;
+
+    if ( !isEnabled ) continue;
 
     const isPartial = changeRanges.length && isIntraline && highlightsPrev;
 
@@ -169,6 +171,8 @@ const decorateWithProfiler = ( editor: vscode.TextEditor, options: Options, chan
 };
 
 const decorate = ( editor: vscode.TextEditor, options: Options, changeRanges: vscode.Range[] = [] ): void => {
+
+  if ( !options.enabled ) return;
 
   if ( options.debugging ) {
 
