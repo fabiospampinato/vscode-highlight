@@ -528,8 +528,16 @@
     },
     "commands": [
       {
-        "command": "highlight.forceDecorate",
-        "title": "Highlight: Force Decorate"
+        "command": "highlight.enable",
+        "title": "Highlight: Enable Highlights"
+      },
+      {
+        "command": "highlight.disable",
+        "title": "Highlight: Disable Highlights"
+      },
+      {
+        "command": "highlight.toggle",
+        "title": "Highlight: Toggle Highlights"
       }
     ]
   },

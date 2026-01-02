@@ -2,12 +2,17 @@
 /* IMPORT */
 
 import vscode from 'vscode';
+import * as Commands from './commands';
 import {decorate, decorateAll, undecorateAll} from './decoration';
 import {getOptions} from './utils';
 
 /* MAIN */
 
 const activate = (): void => {
+
+  vscode.commands.registerCommand ( 'highlight.enable', Commands.enable );
+  vscode.commands.registerCommand ( 'highlight.disable', Commands.disable );
+  vscode.commands.registerCommand ( 'highlight.toggle', Commands.toggle );
 
   let options = getOptions ();
 
