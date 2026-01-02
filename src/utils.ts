@@ -6,6 +6,7 @@ import isEmptyPlainObject from 'plain-object-is-empty';
 import isIntraline from 'regexp-is-intraline';
 import vscode from 'vscode';
 import {getConfig} from 'vscode-extras';
+import {CONFIG_REGEXES_NORMALIZATION_MAP} from './constants';
 import type {Decoration, Highlight, Options} from './types';
 
 /* MAIN */
@@ -47,12 +48,14 @@ const getHighlights = (): Highlight[] => {
 
   for ( const [highlightReSource, highlightConfig] of Object.entries ( regexes ) ) {
 
+    const highlightReSourceNormalized = CONFIG_REGEXES_NORMALIZATION_MAP[highlightReSource] ?? highlightReSource;
+
     const fileRe = isObject ( highlightConfig ) && isString ( highlightConfig['fileRe'] ) ? getRegExp ( highlightConfig['fileRe'], 'i', '' ) : undefined;
     const languageRe = isObject ( highlightConfig ) && isString ( highlightConfig['languageRe'] ) ? getRegExp ( highlightConfig['languageRe'], 'i', '' ) : undefined;
 
     const highlightReFlagsFallback = isObject ( highlightConfig ) && isString ( highlightConfig['regexFlags'] ) ? highlightConfig['regexFlags'] : regexFlags;
     const highlightReFlagsExtra = 'gd'; // + global + indices
-    const highlightRe = getRegExp ( highlightReSource, highlightReFlagsFallback, highlightReFlagsExtra );
+    const highlightRe = getRegExp ( highlightReSourceNormalized, highlightReFlagsFallback, highlightReFlagsExtra );
 
     const highlightDecorationsRaw = isObject ( highlightConfig ) && isArray ( highlightConfig['decorations'] ) && highlightConfig['decorations'].every ( isObject ) ? highlightConfig['decorations'] : isArray ( highlightConfig ) && highlightConfig.every ( isObject ) ? highlightConfig : [];
     const highlightDecorationsRawNormalized = highlightDecorationsRaw.map ( decoration => ({ ...decorations, ...decoration }) );
