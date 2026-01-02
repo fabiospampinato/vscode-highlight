@@ -18,6 +18,7 @@ type Highlight = {
 };
 
 type Options = {
+  debugging: boolean,
   highlights: Highlight[]
 };
 

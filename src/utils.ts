@@ -77,8 +77,10 @@ const getHighlights = (): Highlight[] => {
 
 const getOptions = (): Options => {
 
+  const config = getConfig ( 'highlight' );
+  const debugging = isBoolean ( config?.['debugging'] ) ? config['debugging'] : false;
   const highlights = getHighlights ();
-  const options: Options = { highlights };
+  const options: Options = { debugging, highlights };
 
   return options;
 
@@ -121,6 +123,12 @@ const getRegExp = memoize ( ( value: string, flagsFallback: string, flagsExtra: 
 const isArray = ( value: unknown ): value is unknown[] => {
 
   return Array.isArray ( value );
+
+};
+
+const isBoolean = ( value: unknown ): value is boolean => {
+
+  return typeof value === 'boolean';
 
 };
 
@@ -169,4 +177,4 @@ const uniqChars = ( value: string ): string => {
 /* EXPORT */
 
 export {getDecoration, getHighlights, getOptions, getRangeForWholeDocument, getRangeForWholeLines, getRegExp};
-export {isArray, isNumber, isObject, isRegExp, isRegExpIntraline, isString, uniq, uniqChars};
+export {isArray, isBoolean, isNumber, isObject, isRegExp, isRegExpIntraline, isString, uniq, uniqChars};

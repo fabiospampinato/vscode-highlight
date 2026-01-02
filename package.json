@@ -15,6 +15,11 @@
       "type": "object",
       "title": "Highlight - Configuration",
       "properties": {
+        "highlight.debugging": {
+          "type": "boolean",
+          "description": "Enable debugging alerts",
+          "default": false
+        },
         "highlight.decorations": {
           "type": "object",
           "description": "Default decorations from which all others inherit from",

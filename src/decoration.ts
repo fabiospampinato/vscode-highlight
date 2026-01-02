@@ -13,7 +13,7 @@ const EDITOR_REGEX_DECORATION_RANGES_CACHE = new MildMap<vscode.TextEditor, Map<
 
 /* MAIN */
 
-const decorate = ( editor: vscode.TextEditor, options: Options, changeRanges: vscode.Range[] = [] ): number => {
+const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, changeRanges: vscode.Range[] = [] ): number => {
 
   /* INIT */
 
@@ -159,12 +159,36 @@ const decorateWithProfiler = ( editor: vscode.TextEditor, options: Options, chan
 
   const start = performance.now ();
 
-  const decorationsNr = decorate ( editor, options, changeRanges );
+  const decorationsNr = decorateWithoutProfiler ( editor, options, changeRanges );
 
   const end = performance.now ();
   const elapsed = Number ( ( end - start ).toFixed ( 2 ) );
 
   alert.info ( `Done in ${elapsed}ms - ${decorationsNr} ranges - ${intralineNr} intraline, ${interlineNr} interline` );
+
+};
+
+const decorate = ( editor: vscode.TextEditor, options: Options, changeRanges: vscode.Range[] = [] ): void => {
+
+  if ( options.debugging ) {
+
+    decorateWithProfiler ( editor, options, changeRanges );
+
+  } else {
+
+    decorateWithoutProfiler ( editor, options, changeRanges );
+
+  }
+
+};
+
+const decorateAll = ( options: Options ): void => {
+
+  for ( const editor of vscode.window.visibleTextEditors ) {
+
+    decorate ( editor, options );
+
+  }
 
 };
 
@@ -200,4 +224,4 @@ const undecorateAll = (): void => {
 
 /* EXPORT */
 
-export {decorate, decorateWithProfiler, undecorate, undecorateAll};
+export {decorate, decorateAll, undecorate, undecorateAll};

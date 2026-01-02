@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import vscode from 'vscode';
-import {decorate, undecorateAll} from './decoration';
+import {decorate, decorateAll, undecorateAll} from './decoration';
 import {getOptions} from './utils';
 
 /* MAIN */
@@ -36,14 +36,10 @@ const activate = (): void => {
     if ( !event.affectsConfiguration ( 'highlight' ) ) return;
     undecorateAll ();
     options = getOptions ();
-    for ( const editor of vscode.window.visibleTextEditors ) {
-      decorate ( editor, options );
-    }
+    decorateAll ( options );
   });
 
-  for ( const editor of vscode.window.visibleTextEditors ) {
-    decorate ( editor, options );
-  }
+  decorateAll ( options );
 
 };
 
