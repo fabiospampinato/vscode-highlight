@@ -10,6 +10,8 @@ import {getOptions} from './utils';
 
 const activate = (): void => {
 
+  Commands.init ();
+
   vscode.commands.registerCommand ( 'highlight.enable', Commands.enable );
   vscode.commands.registerCommand ( 'highlight.disable', Commands.disable );
   vscode.commands.registerCommand ( 'highlight.toggle', Commands.toggle );

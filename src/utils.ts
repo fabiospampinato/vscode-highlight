@@ -2,6 +2,7 @@
 /* IMPORT */
 
 import memoize from 'lomemo';
+import isEmptyPlainObject from 'plain-object-is-empty';
 import isIntraline from 'regexp-is-intraline';
 import vscode from 'vscode';
 import {getConfig} from 'vscode-extras';
@@ -180,4 +181,4 @@ const uniqChars = ( value: string ): string => {
 /* EXPORT */
 
 export {getDecoration, getHighlights, getOptions, getRangeForWholeDocument, getRangeForWholeLines, getRegExp};
-export {isArray, isBoolean, isNumber, isObject, isRegExp, isRegExpIntraline, isString, uniq, uniqChars};
+export {isArray, isBoolean, isEmptyPlainObject, isNumber, isObject, isRegExp, isRegExpIntraline, isString, uniq, uniqChars};
