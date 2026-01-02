@@ -1,6 +1,7 @@
 
 /* IMPORT */
 
+import MildMap from 'mild-map';
 import vscode from 'vscode';
 import {alert} from 'vscode-extras';
 import {getRangeForWholeDocument, getRangeForWholeLines} from './utils';
@@ -8,7 +9,7 @@ import type {Options} from './types';
 
 /* HELPERS */
 
-const EDITOR_REGEX_DECORATION_RANGES_CACHE = new WeakMap<vscode.TextEditor, Map<RegExp, Map<vscode.TextEditorDecorationType, vscode.Range[]>>>();
+const EDITOR_REGEX_DECORATION_RANGES_CACHE = new MildMap<vscode.TextEditor, Map<RegExp, Map<vscode.TextEditorDecorationType, vscode.Range[]>>>();
 
 /* MAIN */
 
@@ -189,7 +190,7 @@ const undecorate = ( editor: vscode.TextEditor ): void => {
 
 const undecorateAll = (): void => {
 
-  for ( const editor of vscode.window.visibleTextEditors ) { //FIXME: it should be all of them here
+  for ( const editor of EDITOR_REGEX_DECORATION_RANGES_CACHE.keys () ) {
 
     undecorate ( editor );
 

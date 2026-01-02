@@ -543,6 +543,7 @@
   ],
   "dependencies": {
     "lomemo": "^1.0.1",
+    "mild-map": "^1.2.0",
     "regexp-is-intraline": "^1.0.1",
     "vscode-extras": "^1.9.0"
   },
