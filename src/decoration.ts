@@ -81,11 +81,11 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
 
       for ( const match of text.matchAll ( highlightRe ) ) {
 
-        if ( !match.indices ) continue;
+        const indicesAll = match.indices && match.indices.length > 1 ? match.indices : [[], [match.index, match.index + match[0].length]]; // Fallback for regexes without capturing groups
 
-        for ( let i = 1, l = match.indices.length; i < l; i++ ) {
+        for ( let i = 1, l = indicesAll.length; i < l; i++ ) {
 
-          const indices = match.indices[i];
+          const indices = indicesAll[i];
           const highlightDecoration = highlightDecorations[i - 1];
 
           if ( !indices || !highlightDecoration ) continue;
