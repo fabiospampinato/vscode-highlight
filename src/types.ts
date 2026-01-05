@@ -14,6 +14,7 @@ type Highlight = {
   languageRe?: RegExp,
   highlightRe: RegExp,
   highlightDecorations: Decoration[],
+  highlightLimit: number,
   isEnabled: boolean,
   isIntraline: boolean
 };

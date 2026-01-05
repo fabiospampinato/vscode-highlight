@@ -61,6 +61,8 @@ const getHighlights = (): Highlight[] => {
     const highlightDecorationsRawNormalized = highlightDecorationsRaw.map ( decoration => ({ ...decorations, ...decoration }) );
     const highlightDecorations = highlightDecorationsRawNormalized.map ( decoration => getDecoration ( highlightRe, decoration ) );
 
+    const highlightLimit = getRegExp ( highlightReSourceNormalized, highlightReFlagsFallback, '' ).global ? Infinity : 1;
+
     const isEnabled = isObject ( highlightConfig ) && isBoolean ( highlightConfig['enabled'] ) ? highlightConfig['enabled'] : true;
     const isIntraline = isRegExpIntraline ( highlightRe );
 
@@ -69,6 +71,7 @@ const getHighlights = (): Highlight[] => {
       languageRe,
       highlightRe,
       highlightDecorations,
+      highlightLimit,
       isEnabled,
       isIntraline
     };

@@ -31,7 +31,7 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
   for ( const highlight of highlights ) {
 
     const {fileRe, languageRe, highlightRe} = highlight;
-    const {highlightDecorations, isEnabled, isIntraline} = highlight;
+    const {highlightDecorations, highlightLimit, isEnabled, isIntraline} = highlight;
 
     if ( !isEnabled ) continue;
 
@@ -79,6 +79,8 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
 
       const text = document.getText ( highlightRange );
 
+      let highlightMatches = 0;
+
       for ( const match of text.matchAll ( highlightRe ) ) {
 
         const indicesAll = match.indices && match.indices.length > 1 ? match.indices : [[], [match.index, match.index + match[0].length]]; // Fallback for regexes without capturing groups
@@ -105,6 +107,12 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
 
           ranges.push ( range );
           decorationsNext.set ( decoration, ranges );
+
+        }
+
+        if ( ++highlightMatches >= highlightLimit ) {
+
+          break;
 
         }
 
