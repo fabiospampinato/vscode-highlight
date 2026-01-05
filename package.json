@@ -63,7 +63,6 @@
                     },
                     "backgroundColor": {
                       "type": "string",
-                      "format": "color-hex",
                       "markdownDescription": "Background color of the decoration. Use rgba() and define transparent background colors to play well with other decorations. Alternatively a color from the color registry can be [referenced](https://code.visualstudio.com/api/references/vscode-api#ThemeColor).",
                       "defaultSnippets": [
                         {
@@ -73,7 +72,6 @@
                     },
                     "border": {
                       "type": "string",
-                      "format": "color-hex",
                       "markdownDescription": "CSS styling property that will be applied to text enclosed by a decoration.",
                       "defaultSnippets": [
                         {
@@ -83,7 +81,6 @@
                     },
                     "borderColor": {
                       "type": "string",
-                      "format": "color-hex",
                       "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'border' for setting one or more of the individual border properties.",
                       "defaultSnippets": [
                         {
@@ -109,7 +106,6 @@
                     },
                     "color": {
                       "type": "string",
-                      "format": "color-hex",
                       "description": "CSS styling property that will be applied to text enclosed by a decoration",
                       "defaultSnippets": [
                         {
@@ -214,7 +210,6 @@
                     },
                     "outlineColor": {
                       "type": "string",
-                      "format": "color-hex",
                       "description": "CSS styling property that will be applied to text enclosed by a decoration",
                       "defaultSnippets": [
                         {
@@ -240,7 +235,6 @@
                     },
                     "overviewRulerColor": {
                       "type": "string",
-                      "format": "color-hex",
                       "description": "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations."
                     },
                     "rangeBehavior": {
@@ -253,7 +247,6 @@
                     },
                     "textDecoration": {
                       "type": "string",
-                      "format": "color-hex",
                       "description": "CSS styling property that will be applied to text enclosed by a decoration."
                     }
                   }
@@ -308,7 +301,6 @@
                         },
                         "backgroundColor": {
                           "type": "string",
-                          "format": "color-hex",
                           "markdownDescription": "Background color of the decoration. Use rgba() and define transparent background colors to play well with other decorations. Alternatively a color from the color registry can be [referenced](https://code.visualstudio.com/api/references/vscode-api#ThemeColor).",
                           "defaultSnippets": [
                             {
@@ -318,7 +310,6 @@
                         },
                         "border": {
                           "type": "string",
-                          "format": "color-hex",
                           "markdownDescription": "CSS styling property that will be applied to text enclosed by a decoration.",
                           "defaultSnippets": [
                             {
@@ -328,7 +319,6 @@
                         },
                         "borderColor": {
                           "type": "string",
-                          "format": "color-hex",
                           "description": "CSS styling property that will be applied to text enclosed by a decoration. Better use 'border' for setting one or more of the individual border properties.",
                           "defaultSnippets": [
                             {
@@ -354,7 +344,6 @@
                         },
                         "color": {
                           "type": "string",
-                          "format": "color-hex",
                           "description": "CSS styling property that will be applied to text enclosed by a decoration",
                           "defaultSnippets": [
                             {
@@ -459,7 +448,6 @@
                         },
                         "outlineColor": {
                           "type": "string",
-                          "format": "color-hex",
                           "description": "CSS styling property that will be applied to text enclosed by a decoration",
                           "defaultSnippets": [
                             {
@@ -485,7 +473,6 @@
                         },
                         "overviewRulerColor": {
                           "type": "string",
-                          "format": "color-hex",
                           "description": "The color of the decoration in the overview ruler. Use rgba() and define transparent colors to play well with other decorations."
                         },
                         "rangeBehavior": {
@@ -498,7 +485,6 @@
                         },
                         "textDecoration": {
                           "type": "string",
-                          "format": "color-hex",
                           "description": "CSS styling property that will be applied to text enclosed by a decoration."
                         }
                       }
