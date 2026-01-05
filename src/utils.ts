@@ -6,7 +6,7 @@ import isEmptyPlainObject from 'plain-object-is-empty';
 import isIntraline from 'regexp-is-intraline';
 import vscode from 'vscode';
 import {getConfig} from 'vscode-extras';
-import {CONFIG_REGEXES_NORMALIZATION_MAP} from './constants';
+import {CONFIG_REGEXES_NORMALIZATION_MAP, HIGHLIGHTS_LIMIT} from './constants';
 import type {Decoration, Highlight, Options} from './types';
 
 /* MAIN */
@@ -61,7 +61,7 @@ const getHighlights = (): Highlight[] => {
     const highlightDecorationsRawNormalized = highlightDecorationsRaw.map ( decoration => ({ ...decorations, ...decoration }) );
     const highlightDecorations = highlightDecorationsRawNormalized.map ( decoration => getDecoration ( highlightRe, decoration ) );
 
-    const highlightLimit = getRegExp ( highlightReSourceNormalized, highlightReFlagsFallback, '' ).global ? Infinity : 1;
+    const highlightLimit = getRegExp ( highlightReSourceNormalized, highlightReFlagsFallback, '' ).global ? HIGHLIGHTS_LIMIT : 1;
 
     const isEnabled = isObject ( highlightConfig ) && isBoolean ( highlightConfig['enabled'] ) ? highlightConfig['enabled'] : true;
     const isIntraline = isRegExpIntraline ( highlightRe );
