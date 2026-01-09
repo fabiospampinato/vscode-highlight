@@ -4,8 +4,8 @@
 import MildMap from 'mild-map';
 import vscode from 'vscode';
 import {alert} from 'vscode-extras';
-import {getRangeForWholeDocument, getRangeForWholeLines, getRangeLinesNr} from './utils';
-import type {Options} from './types';
+import {getRangeForWholeDocument, getRangeForWholeLines, getRangeLinesNr, getRangeShifted} from './utils';
+import type {Change, Options} from './types';
 
 /* HELPERS */
 
@@ -13,7 +13,7 @@ const EDITOR_REGEX_DECORATION_RANGES_CACHE = new MildMap<vscode.TextEditor, Map<
 
 /* MAIN */
 
-const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, changeRanges: vscode.Range[] = [] ): number => {
+const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, change?: Change ): number => {
 
   /* INIT */
 
@@ -22,7 +22,7 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
   const highlightsPrev = EDITOR_REGEX_DECORATION_RANGES_CACHE.get ( editor );
   const highlightsNext = new Map<RegExp, Map<vscode.TextEditorDecorationType, vscode.Range[]>>();
 
-  if ( !changeRanges.length && highlightsPrev ) return 0; // No changes and already decorated, nothing to do
+  if ( !change && highlightsPrev ) return 0; // No changes and already decorated, nothing to do
 
   /* COMPUTING DECORATIONS */
 
@@ -35,9 +35,9 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
 
     if ( !isEnabled ) continue;
 
-    const isPartial = changeRanges.length && isIntraline && highlightsPrev;
+    const isPartial = change?.ranges.length && isIntraline && highlightsPrev;
 
-    const highlightRanges = isPartial ? changeRanges.map ( getRangeForWholeLines ) : [getRangeForWholeDocument ( document )];
+    const highlightRanges = isPartial ? change.ranges.map ( getRangeForWholeLines ) : [getRangeForWholeDocument ( document )];
     const decorationsNext = highlightsNext.get ( highlightRe ) || new Map<vscode.TextEditorDecorationType, vscode.Range[]>();
 
     highlightsNext.set ( highlightRe, decorationsNext );
@@ -63,7 +63,9 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
 
           if ( !rangesNext.length ) continue;
 
-          decorationsNext.set ( decorationPrev, rangesNext );
+          const rangesShiftedNext = rangesNext.map ( range => getRangeShifted ( range, change.shifts?.[range.start.line] ?? 0 ) );
+
+          decorationsNext.set ( decorationPrev, rangesShiftedNext );
 
         }
 
@@ -162,36 +164,37 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
 
 };
 
-const decorateWithProfiler = ( editor: vscode.TextEditor, options: Options, changeRanges: vscode.Range[] = [] ): void => {
+const decorateWithProfiler = ( editor: vscode.TextEditor, options: Options, change?: Change ): void => {
 
-  const intralineNr = options.highlights.filter ( highlight => highlight.isIntraline ).length;
-  const interlineNr = options.highlights.filter ( highlight => !highlight.isIntraline ).length;
+  const highlights = options.highlights.filter ( highlight => highlight.isEnabled );
+  const intralineNr = highlights.filter ( highlight => highlight.isIntraline ).length;
+  const interlineNr = highlights.filter ( highlight => !highlight.isIntraline ).length;
 
-  const changesLinesNr = changeRanges.reduce ( ( sum, range ) => sum + getRangeLinesNr ( range ), 0 );
-  const linesNr = interlineNr || !EDITOR_REGEX_DECORATION_RANGES_CACHE.has ( editor ) ? editor.document.lineCount : changesLinesNr;
+  const changeLinesNr = change?.ranges.reduce ( ( sum, range ) => sum + getRangeLinesNr ( range ), 0 ) || 0;
+  const linesNr = interlineNr || !EDITOR_REGEX_DECORATION_RANGES_CACHE.has ( editor ) ? editor.document.lineCount : changeLinesNr;
 
   const start = performance.now ();
 
-  const decorationsNr = decorateWithoutProfiler ( editor, options, changeRanges );
+  const decorationsNr = decorateWithoutProfiler ( editor, options, change );
 
   const end = performance.now ();
   const elapsed = Number ( ( end - start ).toFixed ( 2 ) );
 
-  alert.info ( `Done in ${elapsed}ms - ${linesNr} lines - ${decorationsNr} decorations - ${intralineNr} intralines - ${interlineNr} interlines` );
+  alert.info ( `${elapsed}ms - ${linesNr} lines - ${decorationsNr} decorations - ${intralineNr} intralines - ${interlineNr} interlines` );
 
 };
 
-const decorate = ( editor: vscode.TextEditor, options: Options, changeRanges: vscode.Range[] = [] ): void => {
+const decorate = ( editor: vscode.TextEditor, options: Options, change?: Change ): void => {
 
   if ( !options.enabled ) return;
 
   if ( options.debugging ) {
 
-    decorateWithProfiler ( editor, options, changeRanges );
+    decorateWithProfiler ( editor, options, change );
 
   } else {
 
-    decorateWithoutProfiler ( editor, options, changeRanges );
+    decorateWithoutProfiler ( editor, options, change );
 
   }
 

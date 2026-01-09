@@ -5,6 +5,11 @@ import vscode from 'vscode';
 
 /* MAIN */
 
+type Change = {
+  ranges: vscode.Range[],
+  shifts?: Record<number, number>
+};
+
 type Decoration = {
   ( match: RegExpExecArray ): vscode.TextEditorDecorationType
 };
@@ -27,4 +32,4 @@ type Options = {
 
 /* EXPORT */
 
-export type {Decoration, Highlight, Options};
+export type {Change, Decoration, Highlight, Options};

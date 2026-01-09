@@ -11,6 +11,43 @@ import type {Decoration, Highlight, Options} from './types';
 
 /* MAIN */
 
+const getChangeShiftMap = ( changes: readonly vscode.TextDocumentContentChangeEvent[], lineCount: number ): Record<number, number> | undefined => {
+
+  const shifts: Record<number, number> = {}; // A map of old line indices to line shifts caused by the change
+  let shiftStart = Infinity;
+
+  for ( const change of changes ) {
+
+    const linesPrev = getRangeLinesNr ( change.range );
+    const linesNext = getStringLinesNr ( change.text );
+    const shift = linesNext - linesPrev;
+
+    if ( !shift ) continue;
+
+    const start = change.range.start.line;
+
+    shiftStart = Math.min ( shiftStart, start );
+
+    shifts[start] = shift;
+
+  }
+
+  if ( isEmptyPlainObject ( shifts ) ) return;
+
+  let accumulatedShift = shifts[shiftStart] || 0;
+
+  for ( let i = shiftStart + 1; i <= lineCount; i++ ) {
+
+    accumulatedShift += shifts[i] || 0;
+
+    shifts[i] = accumulatedShift;
+
+  }
+
+  return shifts;
+
+};
+
 const getDecoration = memoize ( ( regex: RegExp, options: vscode.DecorationRenderOptions ): Decoration => { // It's important to memoize decorations by regex too, it makes updating them simpler
 
   const optionsSerialized = JSON.stringify ( options );
@@ -114,6 +151,17 @@ const getRangeLinesNr = ( range: vscode.Range ): number => {
 
 };
 
+const getRangeShifted = ( range: vscode.Range, shift: number ): vscode.Range => {
+
+  if ( !shift ) return range;
+
+  const start = new vscode.Position ( range.start.line + shift, range.start.character );
+  const end = new vscode.Position ( range.end.line + shift, range.end.character );
+
+  return new vscode.Range ( start, end );
+
+};
+
 const getRegExp = memoize ( ( value: string, flagsFallback: string, flagsExtra: string ): RegExp => {
 
   const regexRe = /^\/(.*)\/([gimsuvyd]*)$/;
@@ -212,5 +260,5 @@ const uniqChars = ( value: string ): string => {
 
 /* EXPORT */
 
-export {getDecoration, getHighlights, getOptions, getRangeForWholeDocument, getRangeForWholeLines, getRangeLinesNr, getRegExp, getStringLinesNr};
+export {getChangeShiftMap, getDecoration, getHighlights, getOptions, getRangeForWholeDocument, getRangeForWholeLines, getRangeLinesNr, getRangeShifted, getRegExp, getStringLinesNr};
 export {isArray, isBoolean, isEmptyPlainObject, isNumber, isObject, isRegExp, isRegExpIntraline, isString, uniq, uniqChars};
