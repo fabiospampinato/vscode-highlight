@@ -4,7 +4,7 @@
 import MildMap from 'mild-map';
 import vscode from 'vscode';
 import {alert} from 'vscode-extras';
-import {getRangeForWholeDocument, getRangeForWholeLines} from './utils';
+import {getRangeForWholeDocument, getRangeForWholeLines, getRangeLinesNr} from './utils';
 import type {Options} from './types';
 
 /* HELPERS */
@@ -167,6 +167,9 @@ const decorateWithProfiler = ( editor: vscode.TextEditor, options: Options, chan
   const intralineNr = options.highlights.filter ( highlight => highlight.isIntraline ).length;
   const interlineNr = options.highlights.filter ( highlight => !highlight.isIntraline ).length;
 
+  const changesLinesNr = changeRanges.reduce ( ( sum, range ) => sum + getRangeLinesNr ( range ), 0 );
+  const linesNr = interlineNr || !EDITOR_REGEX_DECORATION_RANGES_CACHE.has ( editor ) ? editor.document.lineCount : changesLinesNr;
+
   const start = performance.now ();
 
   const decorationsNr = decorateWithoutProfiler ( editor, options, changeRanges );
@@ -174,7 +177,7 @@ const decorateWithProfiler = ( editor: vscode.TextEditor, options: Options, chan
   const end = performance.now ();
   const elapsed = Number ( ( end - start ).toFixed ( 2 ) );
 
-  alert.info ( `Done in ${elapsed}ms - ${decorationsNr} ranges - ${intralineNr} intraline, ${interlineNr} interline` );
+  alert.info ( `Done in ${elapsed}ms - ${linesNr} lines - ${decorationsNr} decorations - ${intralineNr} intralines - ${interlineNr} interlines` );
 
 };
 
