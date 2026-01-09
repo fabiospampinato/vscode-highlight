@@ -108,6 +108,12 @@ const getRangeForWholeLines = ( range: vscode.Range ): vscode.Range => {
 
 };
 
+const getRangeLinesNr = ( range: vscode.Range ): number => {
+
+  return 1 + ( range.end.line - range.start.line );
+
+};
+
 const getRegExp = memoize ( ( value: string, flagsFallback: string, flagsExtra: string ): RegExp => {
 
   const regexRe = /^\/(.*)\/([gimsuvyd]*)$/;
@@ -129,6 +135,26 @@ const getRegExp = memoize ( ( value: string, flagsFallback: string, flagsExtra: 
   }
 
 }, ( value, flagsFallback, flagsExtra ) => `${value}-${flagsFallback}-${flagsExtra}` );
+
+const getStringLinesNr = (() => {
+
+  const newlineRe = /\r?\n|\r/g;
+
+  return ( value: string ): number => {
+
+    let linesNr = 1;
+
+    while ( newlineRe.exec ( value ) ) {
+
+      linesNr += 1;
+
+    }
+
+    return linesNr;
+
+  };
+
+})();
 
 const isArray = ( value: unknown ): value is unknown[] => {
 
@@ -186,5 +212,5 @@ const uniqChars = ( value: string ): string => {
 
 /* EXPORT */
 
-export {getDecoration, getHighlights, getOptions, getRangeForWholeDocument, getRangeForWholeLines, getRegExp};
+export {getDecoration, getHighlights, getOptions, getRangeForWholeDocument, getRangeForWholeLines, getRangeLinesNr, getRegExp, getStringLinesNr};
 export {isArray, isBoolean, isEmptyPlainObject, isNumber, isObject, isRegExp, isRegExpIntraline, isString, uniq, uniqChars};

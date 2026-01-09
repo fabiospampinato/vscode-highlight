@@ -4,7 +4,7 @@
 import vscode from 'vscode';
 import * as Commands from './commands';
 import {decorate, decorateAll, undecorateAll} from './decoration';
-import {getOptions} from './utils';
+import {getOptions, getRangeForWholeDocument, getRangeLinesNr, getStringLinesNr} from './utils';
 
 /* MAIN */
 
@@ -32,10 +32,19 @@ const activate = (): void => {
   vscode.workspace.onDidChangeTextDocument ( event => {
     const editors = vscode.window.visibleTextEditors.filter ( editor => editor.document === event.document );
     if ( !editors.length ) return;
-    const ranges = event.contentChanges.map ( change => change.range );
-    if ( !ranges.length ) return;
-    for ( const editor of editors ) {
-      decorate ( editor, options, ranges );
+    //TODO: support partial decorations on unstable changes too, updating existing ranges smartly
+    const isStableChange = event.contentChanges.every ( change => getRangeLinesNr ( change.range ) === getStringLinesNr ( change.text ) );
+    if ( isStableChange ) { // Partial update
+      const ranges = event.contentChanges.map ( change => change.range );
+      if ( !ranges.length ) return;
+      for ( const editor of editors ) {
+        decorate ( editor, options, ranges );
+      }
+    } else { // Full update
+      for ( const editor of editors ) {
+        const range = getRangeForWholeDocument ( editor.document );
+        decorate ( editor, options, [range] );
+      }
     }
   });
 
