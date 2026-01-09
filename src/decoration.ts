@@ -59,13 +59,12 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
 
           if ( !rangesPrev.length ) continue;
 
-          const rangesNext = rangesPrev.filter ( rangePrev => highlightRanges.every ( range => !range.intersection ( rangePrev ) ) ); // Keep only ranges that don't intersect changed ranges
+          const rangesShiftedNext = change.shifts ? rangesPrev.map ( range => getRangeShifted ( range, change.shifts?.[range.start.line] ?? 0 ) ) : rangesPrev; // Shift ranges according to changes
+          const rangesNext = rangesShiftedNext.filter ( rangePrev => highlightRanges.every ( range => !range.intersection ( rangePrev ) ) ); // Keep only ranges that don't intersect changed ranges
 
           if ( !rangesNext.length ) continue;
 
-          const rangesShiftedNext = rangesNext.map ( range => getRangeShifted ( range, change.shifts?.[range.start.line] ?? 0 ) );
-
-          decorationsNext.set ( decorationPrev, rangesShiftedNext );
+          decorationsNext.set ( decorationPrev, rangesNext );
 
         }
 
