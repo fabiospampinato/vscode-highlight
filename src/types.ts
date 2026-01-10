@@ -6,8 +6,15 @@ import vscode from 'vscode';
 /* MAIN */
 
 type Change = {
-  ranges: vscode.Range[],
-  shifts?: Record<number, number>
+  rangesPrev: vscode.Range[],
+  rangesNext: vscode.Range[],
+  shifts?: ChangeShiftsMap
+};
+
+type ChangeShiftsMap = {
+  [line: number]: number,
+  start: number,
+  end: number
 };
 
 type Decoration = {
@@ -32,4 +39,4 @@ type Options = {
 
 /* EXPORT */
 
-export type {Change, Decoration, Highlight, Options};
+export type {Change, ChangeShiftsMap, Decoration, Highlight, Options};

@@ -7,36 +7,69 @@ import isIntraline from 'regexp-is-intraline';
 import vscode from 'vscode';
 import {getConfig} from 'vscode-extras';
 import {CONFIG_REGEXES_NORMALIZATION_MAP, HIGHLIGHTS_LIMIT} from './constants';
-import type {Decoration, Highlight, Options} from './types';
+import type {Change, ChangeShiftsMap, Decoration, Highlight, Options} from './types';
 
 /* MAIN */
 
-const getChangeShiftMap = ( changes: readonly vscode.TextDocumentContentChangeEvent[], lineCount: number ): Record<number, number> | undefined => {
+const getChange = ( changes: readonly vscode.TextDocumentContentChangeEvent[] ): Change => {
 
-  const shifts: Record<number, number> = {}; // A map of old line indices to line shifts caused by the change
-  let shiftStart = Infinity;
+  const rangesPrev = getChangeRangesPrev ( changes );
+  const rangesNext = getChangeRangesNext ( changes );
+  const shifts = getChangeShiftMap ( changes );
 
-  for ( const change of changes ) {
+  return { rangesPrev, rangesNext, shifts };
+
+};
+
+const getChangeRangesPrev = ( changes: readonly vscode.TextDocumentContentChangeEvent[] ): vscode.Range[] => {
+
+  return changes.map ( change => getRangeForWholeLines ( change.range ) );
+
+};
+
+const getChangeRangesNext = ( changes: readonly vscode.TextDocumentContentChangeEvent[] ): vscode.Range[] => {
+
+  return changes.map ( change => {
+
+    const linesNr = getStringLinesNr ( change.text );
+
+    const start = new vscode.Position ( change.range.start.line, 0 );
+    const end = new vscode.Position ( change.range.start.line + linesNr - 1, Infinity );
+    const range = new vscode.Range ( start, end );
+
+    return range;
+
+  });
+
+};
+
+const getChangeShiftMap = ( changes: readonly vscode.TextDocumentContentChangeEvent[] ): ChangeShiftsMap | undefined => {
+
+  if ( !changes.length ) return;
+
+  const shifts: ChangeShiftsMap = { start: Infinity, end: -Infinity }; // A map of old line indices to line shifts caused by the change, with start and end markers for the range of lines we know about
+
+  for ( const change of changes ) { // Computing shift points
 
     const linesPrev = getRangeLinesNr ( change.range );
     const linesNext = getStringLinesNr ( change.text );
-    const shift = linesNext - linesPrev;
+    const linesShift = linesNext - linesPrev;
 
-    if ( !shift ) continue;
+    if ( !linesShift ) continue;
 
-    const start = change.range.start.line;
+    const shiftLine = linesShift > 0 ? change.range.end.line + 1 : change.range.end.line + linesShift + 1;
 
-    shiftStart = Math.min ( shiftStart, start );
-
-    shifts[start] = shift;
+    shifts[shiftLine] = linesShift;
+    shifts.start = Math.min ( shifts.start, shiftLine );
+    shifts.end = Math.max ( shifts.end, shiftLine );
 
   }
 
-  if ( isEmptyPlainObject ( shifts ) ) return;
+  if ( shifts.start === Infinity ) return;
 
-  let accumulatedShift = shifts[shiftStart] || 0;
+  let accumulatedShift = shifts[shifts.start] || 0;
 
-  for ( let i = shiftStart + 1; i <= lineCount; i++ ) {
+  for ( let i = shifts.start + 1; i <= shifts.end; i++ ) { // Populating between shift points
 
     accumulatedShift += shifts[i] || 0;
 
@@ -151,14 +184,18 @@ const getRangeLinesNr = ( range: vscode.Range ): number => {
 
 };
 
-const getRangeShifted = ( range: vscode.Range, shift: number ): vscode.Range => {
+const getRangeShifted = ( range: vscode.Range, shifts?: ChangeShiftsMap ): vscode.Range => {
 
-  if ( !shift ) return range;
+  if ( !shifts ) return range;
+
+  const line = range.start.line;
+  const shift = ( line in shifts ) ? shifts[line] : line < shifts.start ? 0 : shifts[shifts.end] || 0;
 
   const start = new vscode.Position ( range.start.line + shift, range.start.character );
   const end = new vscode.Position ( range.end.line + shift, range.end.character );
+  const rangeShifted = new vscode.Range ( start, end );
 
-  return new vscode.Range ( start, end );
+  return rangeShifted;
 
 };
 
@@ -260,5 +297,6 @@ const uniqChars = ( value: string ): string => {
 
 /* EXPORT */
 
-export {getChangeShiftMap, getDecoration, getHighlights, getOptions, getRangeForWholeDocument, getRangeForWholeLines, getRangeLinesNr, getRangeShifted, getRegExp, getStringLinesNr};
+export {getChange, getChangeRangesPrev, getChangeRangesNext, getChangeShiftMap};
+export {getDecoration, getHighlights, getOptions, getRangeForWholeDocument, getRangeForWholeLines, getRangeLinesNr, getRangeShifted, getRegExp, getStringLinesNr};
 export {isArray, isBoolean, isEmptyPlainObject, isNumber, isObject, isRegExp, isRegExpIntraline, isString, uniq, uniqChars};

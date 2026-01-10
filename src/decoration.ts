@@ -4,7 +4,7 @@
 import MildMap from 'mild-map';
 import vscode from 'vscode';
 import {alert} from 'vscode-extras';
-import {getRangeForWholeDocument, getRangeForWholeLines, getRangeLinesNr, getRangeShifted} from './utils';
+import {getRangeForWholeDocument, getRangeLinesNr, getRangeShifted} from './utils';
 import type {Change, Options} from './types';
 
 /* HELPERS */
@@ -33,24 +33,26 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
     const {fileRe, languageRe, highlightRe} = highlight;
     const {highlightDecorations, highlightLimit, isEnabled, isIntraline} = highlight;
 
+    /* FILTERING */
+
     if ( !isEnabled ) continue;
+    if ( languageRe && !languageRe.test ( document.languageId ) ) continue;
+    if ( fileRe && !fileRe.test ( document.uri.fsPath ) ) continue;
 
-    const isPartial = change?.ranges.length && isIntraline && highlightsPrev;
+    /* PREPARING */
 
-    const highlightRanges = isPartial ? change.ranges.map ( getRangeForWholeLines ) : [getRangeForWholeDocument ( document )];
+    const isPartial = change?.rangesNext.length && isIntraline && highlightsPrev;
+
+    const highlightRanges = isPartial ? change.rangesNext : [getRangeForWholeDocument ( document )];
     const decorationsNext = highlightsNext.get ( highlightRe ) || new Map<vscode.TextEditorDecorationType, vscode.Range[]>();
 
     highlightsNext.set ( highlightRe, decorationsNext );
-
-    /* FILTERING */
-
-    if ( languageRe && !languageRe.test ( document.languageId ) ) continue;
-    if ( fileRe && !fileRe.test ( document.uri.fsPath ) ) continue;
 
     /* PRESERVING OLD DECORATIONS */
 
     if ( isPartial ) {
 
+      const changedRanges = change?.rangesPrev || [];
       const decorationsPrev = highlightsPrev?.get ( highlightRe );
 
       if ( decorationsPrev ) {
@@ -59,12 +61,15 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
 
           if ( !rangesPrev.length ) continue;
 
-          const rangesShiftedNext = change.shifts ? rangesPrev.map ( range => getRangeShifted ( range, change.shifts?.[range.start.line] ?? 0 ) ) : rangesPrev; // Shift ranges according to changes
-          const rangesNext = rangesShiftedNext.filter ( rangePrev => highlightRanges.every ( range => !range.intersection ( rangePrev ) ) ); // Keep only ranges that don't intersect changed ranges
+          const rangesFilteredNext = rangesPrev.filter ( rangePrev => changedRanges.every ( range => !range.intersection ( rangePrev ) ) );
 
-          if ( !rangesNext.length ) continue;
+          if ( !rangesFilteredNext.length ) continue;
 
-          decorationsNext.set ( decorationPrev, rangesNext );
+          const rangesShiftedNext = change.shifts ? rangesFilteredNext.map ( range => getRangeShifted ( range, change.shifts ) ) : rangesFilteredNext; // Shift ranges according to changes
+
+          if ( !rangesShiftedNext.length ) continue;
+
+          decorationsNext.set ( decorationPrev, rangesShiftedNext );
 
         }
 
@@ -169,7 +174,7 @@ const decorateWithProfiler = ( editor: vscode.TextEditor, options: Options, chan
   const intralineNr = highlights.filter ( highlight => highlight.isIntraline ).length;
   const interlineNr = highlights.filter ( highlight => !highlight.isIntraline ).length;
 
-  const changeLinesNr = change?.ranges.reduce ( ( sum, range ) => sum + getRangeLinesNr ( range ), 0 ) || 0;
+  const changeLinesNr = change?.rangesNext.reduce ( ( sum, range ) => sum + getRangeLinesNr ( range ), 0 ) || 0;
   const linesNr = interlineNr || !EDITOR_REGEX_DECORATION_RANGES_CACHE.has ( editor ) ? editor.document.lineCount : changeLinesNr;
 
   const start = performance.now ();

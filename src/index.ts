@@ -4,7 +4,7 @@
 import vscode from 'vscode';
 import * as Commands from './commands';
 import {decorate, decorateAll, undecorateAll} from './decoration';
-import {getChangeShiftMap, getOptions} from './utils';
+import {getChange, getOptions} from './utils';
 
 /* MAIN */
 
@@ -30,12 +30,10 @@ const activate = (): void => {
   });
 
   vscode.workspace.onDidChangeTextDocument ( event => {
+    if ( !event.contentChanges.length ) return; // Weirdly this can happen
     const editors = vscode.window.visibleTextEditors.filter ( editor => editor.document === event.document );
     if ( !editors.length ) return;
-    const ranges = event.contentChanges.map ( change => change.range );
-    if ( !ranges.length ) return;
-    const shifts = getChangeShiftMap ( event.contentChanges, event.document.lineCount );
-    const change = { ranges, shifts };
+    const change = getChange ( event.contentChanges );
     for ( const editor of editors ) {
       decorate ( editor, options, change );
     }
