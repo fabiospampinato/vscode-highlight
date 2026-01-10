@@ -1,3 +1,18 @@
+### Version 2.0.0
+- Rewritten: more modern code, no third-party dependencies, 95% smaller bundle
+- Massively optimized for "intraline" regexes, i.e. regexes that can never possibly match a newline character at any point
+- Deleted limitation regarding all parts of the regex having to be inside a capturing group
+- Deleted limitation regarding nested capturing groups not being supported
+- Deleted "Highlight: Force Decorate" command, as it should never be needed
+- Added "Highlight: Toggle Decorations" command, to toggle all highlights on and off
+- Added "Highlight: Disable Decorations" command, to disable all highlights
+- Added "Highlight: Enable Decorations" command, to enable all highlights
+- Added an "enabled" setting for each highlight, for enabling/disabling specific highlights
+- Added an "highlight.debugging" setting, to enable some debugging info dialogs when decorating
+- Deleted "highlight.minDelay" setting, as redecorations are not throttled anymore
+- Deleted "highlight.maxMatches" setting, as it was replaced with an hard-coded 10K limit
+- Updated schema to allow for non-hex colors too
+
 ### Version 1.9.0
 - Readme: added a warning for multiline strings
 - New command: highlight.forceDecorate
