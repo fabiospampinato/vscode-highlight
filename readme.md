@@ -74,6 +74,19 @@ You can also express regex flags within the regex itself, but writing it like th
 }
 ```
 
+You can also use [theme color identifiers](https://code.visualstudio.com/api/references/theme-color), prefixed with `theme.`, to use a color from the current theme, which changes automatically depending on the active theme:
+
+```js
+"highlight.regexes": {
+  "(//TODO)": [
+    {
+      "backgroundColor": "theme.badge.background",
+      "color": "theme.badge.foreground"
+    }
+  ]
+}
+```
+
 Decoration values can also include placeholders like `$1` or `$2` that will be replaced with the content of the respective capturing group, enabling complex use cases like CSS colors highlighting.
 
 All the supported decoration options are defined [here](https://code.visualstudio.com/docs/extensionAPI/vscode-api#DecorationRenderOptions).
@@ -297,6 +310,7 @@ Into this:
 - **Todo**: If you're using this extension for highlighting todos, I recommend using [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) as well.
 - **Defaults**: Some default decorations for todos and fixmes are provided, you can remove or change them by editing your settings. Keep in mind that this extension is agnostic to what can be highlighted, and it's not limited to just highlighting todos.
 - **Decorations**: All the supported decoration options are defined [here](https://code.visualstudio.com/docs/extensionAPI/vscode-api#DecorationRenderOptions).
+- **Theme Colors**: Remember that you can use [theme color identifiers](https://code.visualstudio.com/api/references/theme-color) as your colors, prefixed with `theme.`.
 
 ## License
 

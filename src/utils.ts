@@ -92,20 +92,70 @@ const getDecoration = memoize ( ( regex: RegExp, options: vscode.DecorationRende
 
       const optionsResolved = optionsSerialized.replace ( /\$(\d+)/g, ( _, index ) => match[index] );
       const options = JSON.parse ( optionsResolved );
+      const optionsWithThemeColors = getDecorationOptionsWithThemeColors ( options );
+      const decoration = vscode.window.createTextEditorDecorationType ( optionsWithThemeColors );
 
-      return vscode.window.createTextEditorDecorationType ( options );
+      return decoration;
 
     }, match => match.join ( '-' ) );
 
   } else { // Static decoration
 
-    const decoration = vscode.window.createTextEditorDecorationType ( options );
+    const optionsWithThemeColors = getDecorationOptionsWithThemeColors ( options );
+    const decoration = vscode.window.createTextEditorDecorationType ( optionsWithThemeColors );
 
     return () => decoration;
 
   }
 
 }, ( regex, value ) => `${regex.toString ()}-${JSON.stringify ( value )}` );
+
+const getDecorationOptionsWithThemeColors = (() => {
+
+  const optionKeys = ['before', 'after', 'light', 'dark'] as const;
+  const themeableKeys = ['backgroundColor', 'borderColor', 'color', 'outlineColor', 'overviewRulerColor'] as const;
+
+  return ( options: vscode.DecorationRenderOptions ): vscode.DecorationRenderOptions => {
+
+    const optionsWithThemeColors: vscode.DecorationRenderOptions = { ...options };
+
+    for ( const key of optionKeys ) {
+
+      if ( key in optionsWithThemeColors ) {
+
+        const value = optionsWithThemeColors[key];
+
+        if ( isObject ( value ) ) {
+
+          optionsWithThemeColors[key] = getDecorationOptionsWithThemeColors ( value );
+
+        }
+
+      }
+
+    }
+
+    for ( const key of themeableKeys ) {
+
+      if ( key in optionsWithThemeColors ) {
+
+        const value = optionsWithThemeColors[key];
+
+        if ( isString ( value ) && value.startsWith ( 'theme.' ) ) {
+
+          optionsWithThemeColors[key] = new vscode.ThemeColor ( value.slice ( 6 ) );
+
+        }
+
+      }
+
+    }
+
+    return optionsWithThemeColors;
+
+  };
+
+})();
 
 const getHighlights = (): Highlight[] => {
 
