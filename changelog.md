@@ -1,3 +1,6 @@
+### Version 2.0.1
+- Schema: ensuring "normal" is listed as a valid font style
+
 ### Version 2.0.0
 - Rewritten: more modern code, no third-party dependencies, 95% smaller bundle
 - Massively optimized for "intraline" regexes, i.e. regexes that can never possibly match a newline character at any point
