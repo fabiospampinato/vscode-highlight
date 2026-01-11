@@ -120,7 +120,7 @@
                     "fontStyle": {
                       "type": "string",
                       "description": "Sets the all font styles of the rule: 'italic', 'bold', 'underline' or 'strikethrough' or a combination. All styles that are not listed are unset. The empty string unsets all styles.",
-                      "pattern": "^(\\s*(italic|bold|underline|strikethrough))*\\s*$",
+                      "pattern": "^(\\s*(italic|bold|underline|strikethrough|normal))*\\s*$",
                       "patternErrorMessage": "Font style must be 'italic', 'bold', 'underline' or 'strikethrough' or a combination. The empty string unsets all styles.",
                       "defaultSnippets": [
                         {
@@ -358,7 +358,7 @@
                         "fontStyle": {
                           "type": "string",
                           "description": "Sets the all font styles of the rule: 'italic', 'bold', 'underline' or 'strikethrough' or a combination. All styles that are not listed are unset. The empty string unsets all styles.",
-                          "pattern": "^(\\s*(italic|bold|underline|strikethrough))*\\s*$",
+                          "pattern": "^(\\s*(italic|bold|underline|strikethrough|normal))*\\s*$",
                           "patternErrorMessage": "Font style must be 'italic', 'bold', 'underline' or 'strikethrough' or a combination. The empty string unsets all styles.",
                           "defaultSnippets": [
                             {
