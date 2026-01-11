@@ -1,3 +1,6 @@
+### Version 2.0.2
+- Ensuring "highlight.filterFileRegex" and "highlight.filterLanguageRegex" settings are respected
+
 ### Version 2.0.1
 - Schema: ensuring "normal" is listed as a valid font style
 
