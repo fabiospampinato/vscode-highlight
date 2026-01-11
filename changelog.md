@@ -1,3 +1,9 @@
+### Version 2.1.0
+- New highlight setting: "filterThemeRegex" to apply the decoration only when the name of the current theme matches this regex
+- Added support for referencing vscode theme colors, prefixed with `theme.`
+- Readme: added a clarification on what double-escaping means
+- Readme: added a mention about dark/light decoration overrides
+
 ### Version 2.0.3
 - Ensuring the extension populates the "highlight.regexes" setting at most once ever
 
@@ -12,7 +18,7 @@
 - Massively optimized for "intraline" regexes, i.e. regexes that can never possibly match a newline character at any point
 - Deleted limitation regarding all parts of the regex having to be inside a capturing group
 - Deleted limitation regarding nested capturing groups not being supported
-- Deleted "Highlight: Force Decorate" command, as it should never be needed
+- Deleted "Highlight: Force Decorate" command, as it sᐅhould never be needed
 - Added "Highlight: Toggle Decorations" command, to toggle all highlights on and off
 - Added "Highlight: Disable Decorations" command, to disable all highlights
 - Added "Highlight: Enable Decorations" command, to enable all highlights
