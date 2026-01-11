@@ -311,6 +311,7 @@ Into this:
 - **Defaults**: Some default decorations for todos and fixmes are provided, you can remove or change them by editing your settings. Keep in mind that this extension is agnostic to what can be highlighted, and it's not limited to just highlighting todos.
 - **Decorations**: All the supported decoration options are defined [here](https://code.visualstudio.com/docs/extensionAPI/vscode-api#DecorationRenderOptions).
 - **Theme Colors**: Remember that you can use [theme color identifiers](https://code.visualstudio.com/api/references/theme-color) as your colors, prefixed with `theme.`.
+- **Dark/Light Colors**: Remember that you can use the special "dark" and "light" keys to define higher-priority decorations for dark and light themes respectively. See [this](https://code.visualstudio.com/api/references/vscode-api#DecorationInstanceRenderOptions) for more information.
 
 ## License
 
