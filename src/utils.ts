@@ -120,8 +120,8 @@ const getHighlights = (): Highlight[] => {
 
     const highlightReSourceNormalized = CONFIG_REGEXES_NORMALIZATION_MAP[highlightReSource] ?? highlightReSource;
 
-    const fileRe = isObject ( highlightConfig ) && isString ( highlightConfig['fileRe'] ) ? getRegExp ( highlightConfig['fileRe'], 'i', '' ) : undefined;
-    const languageRe = isObject ( highlightConfig ) && isString ( highlightConfig['languageRe'] ) ? getRegExp ( highlightConfig['languageRe'], 'i', '' ) : undefined;
+    const fileRe = isObject ( highlightConfig ) && isString ( highlightConfig['filterFileRegex'] ) ? getRegExp ( highlightConfig['filterFileRegex'], 'i', '' ) : undefined;
+    const languageRe = isObject ( highlightConfig ) && isString ( highlightConfig['filterLanguageRegex'] ) ? getRegExp ( highlightConfig['filterLanguageRegex'], 'i', '' ) : undefined;
 
     const highlightReFlagsFallback = isObject ( highlightConfig ) && isString ( highlightConfig['regexFlags'] ) ? highlightConfig['regexFlags'] : regexFlags;
     const highlightReFlagsExtra = 'gd'; // + global + indices
