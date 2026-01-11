@@ -55,8 +55,9 @@ If you want to have different regex flags for different regexes, or if you want 
 "highlight.regexes": {
   "(//TODO)(:)": { // A regex will be created from this string, don't forget to double escape it
     "regexFlags": "g", // Flags used when building this regex
-    "filterLanguageRegex": "markdown", // Apply only if current file's language matches this regex. Requires double escaping
     "filterFileRegex": ".*\\.ext", // Apply only if the current file's path matches this regex. Requires double escaping
+    "filterLanguageRegex": "markdown", // Apply only if current file's language matches this regex. Requires double escaping
+    "filterThemeRegex": ".*Dark.*", // Apply only if the current theme matches this regex. Requires double escaping
     "decorations": [ // Decoration options to apply to the capturing groups
       { "color": "yellow" }, // Decoration options to apply to the first capturing group, in this case "//TODO"
       { "color": "red" } // Decoration options to apply to the second capturing group, in this case ":"

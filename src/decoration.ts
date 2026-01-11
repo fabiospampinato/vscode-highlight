@@ -3,7 +3,7 @@
 
 import MildMap from 'mild-map';
 import vscode from 'vscode';
-import {alert} from 'vscode-extras';
+import {alert, getConfig} from 'vscode-extras';
 import {getRangeForWholeDocument, getRangeLinesNr, getRangeShifted} from './utils';
 import type {Change, Options} from './types';
 
@@ -18,6 +18,7 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
   /* INIT */
 
   const document = editor.document;
+  const theme = getConfig<string>( 'workbench.colorTheme' ) || 'Default';
 
   const highlightsPrev = EDITOR_REGEX_DECORATION_RANGES_CACHE.get ( editor );
   const highlightsNext = new Map<RegExp, Map<vscode.TextEditorDecorationType, vscode.Range[]>>();
@@ -30,7 +31,7 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
 
   for ( const highlight of highlights ) {
 
-    const {fileRe, languageRe, highlightRe} = highlight;
+    const {fileRe, languageRe, themeRe, highlightRe} = highlight;
     const {highlightDecorations, highlightLimit, isEnabled, isIntraline} = highlight;
 
     /* FILTERING */
@@ -38,6 +39,7 @@ const decorateWithoutProfiler = ( editor: vscode.TextEditor, options: Options, c
     if ( !isEnabled ) continue;
     if ( languageRe && !languageRe.test ( document.languageId ) ) continue;
     if ( fileRe && !fileRe.test ( document.uri.fsPath ) ) continue;
+    if ( themeRe && !themeRe.test ( theme ) ) continue;
 
     /* PREPARING */
 

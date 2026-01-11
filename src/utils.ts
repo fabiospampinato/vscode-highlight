@@ -122,6 +122,7 @@ const getHighlights = (): Highlight[] => {
 
     const fileRe = isObject ( highlightConfig ) && isString ( highlightConfig['filterFileRegex'] ) ? getRegExp ( highlightConfig['filterFileRegex'], 'i', '' ) : undefined;
     const languageRe = isObject ( highlightConfig ) && isString ( highlightConfig['filterLanguageRegex'] ) ? getRegExp ( highlightConfig['filterLanguageRegex'], 'i', '' ) : undefined;
+    const themeRe = isObject ( highlightConfig ) && isString ( highlightConfig['filterThemeRegex'] ) ? getRegExp ( highlightConfig['filterThemeRegex'], 'i', '' ) : undefined;
 
     const highlightReFlagsFallback = isObject ( highlightConfig ) && isString ( highlightConfig['regexFlags'] ) ? highlightConfig['regexFlags'] : regexFlags;
     const highlightReFlagsExtra = 'gd'; // + global + indices
@@ -139,6 +140,7 @@ const getHighlights = (): Highlight[] => {
     const highlight: Highlight = {
       fileRe,
       languageRe,
+      themeRe,
       highlightRe,
       highlightDecorations,
       highlightLimit,

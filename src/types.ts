@@ -24,6 +24,7 @@ type Decoration = {
 type Highlight = {
   fileRe?: RegExp,
   languageRe?: RegExp,
+  themeRe?: RegExp,
   highlightRe: RegExp,
   highlightDecorations: Decoration[],
   highlightLimit: number,

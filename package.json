@@ -257,16 +257,12 @@
                 "properties": {
                   "enabled": {
                     "type": "boolean",
-                    "description": "Whether this highlight is enabled or not",
+                    "description": "Whether this highlight is enabled or not.",
                     "default": true
                   },
                   "regexFlags": {
                     "type": "string",
-                    "description": "Flags used when building this regex"
-                  },
-                  "filterLanguageRegex": {
-                    "type": "string",
-                    "description": "Apply only if current file's language matches this regex. Requires double escaping"
+                    "description": "Flags used when building this regex."
                   },
                   "filterFileRegex": {
                     "type": "string",
@@ -277,9 +273,17 @@
                       }
                     ]
                   },
+                  "filterLanguageRegex": {
+                    "type": "string",
+                    "description": "Apply only if current file's language matches this regex. Requires double escaping."
+                  },
+                  "filterThemeRegex": {
+                    "type": "string",
+                    "description": "Apply only if the current theme matches this regex. Requires double escaping."
+                  },
                   "decorations": {
                     "type": "array",
-                    "markdownDescription": "Decoration values can also include placeholders like $1 or $2 that will be replaced with the content of the respective capturing group, enabling complex use cases like CSS colors highlighting.\n\nAll the supported decoration options are defined [here](https://code.visualstudio.com/docs/extensionAPI/vscode-api#DecorationRenderOptions)",
+                    "markdownDescription": "Decoration values can also include placeholders like $1 or $2 that will be replaced with the content of the respective capturing group, enabling complex use cases like CSS colors highlighting.\n\nAll the supported decoration options are defined [here](https://code.visualstudio.com/docs/extensionAPI/vscode-api#DecorationRenderOptions).",
                     "items": {
                       "type": "object",
                       "properties": {

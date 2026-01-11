@@ -45,7 +45,9 @@ const activate = ( context: vscode.ExtensionContext ): void => {
   });
 
   vscode.workspace.onDidChangeConfiguration ( event => {
-    if ( !event.affectsConfiguration ( 'highlight' ) ) return;
+    const isExtensionChanged = event.affectsConfiguration ( 'highlight' );
+    const isThemeChanged = event.affectsConfiguration ( 'workbench.colorTheme' );
+    if ( !isExtensionChanged && !isThemeChanged ) return;
     undecorateAll ();
     options = getOptions ();
     decorateAll ( options );
