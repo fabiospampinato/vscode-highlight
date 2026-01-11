@@ -1,3 +1,6 @@
+### Version 2.0.3
+- Ensuring the extension populates the "highlight.regexes" setting at most once ever
+
 ### Version 2.0.2
 - Ensuring "highlight.filterFileRegex" and "highlight.filterLanguageRegex" settings are respected
 
