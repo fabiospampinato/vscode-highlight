@@ -8,9 +8,14 @@ import {getChange, getOptions} from './utils';
 
 /* MAIN */
 
-const activate = (): void => {
+const activate = ( context: vscode.ExtensionContext ): void => {
 
-  Commands.init ();
+  const isInited = context.globalState.get<boolean>( 'inited', false );
+
+  if ( !isInited ) {
+    Commands.init ();
+    context.globalState.update ( 'inited', true );
+  }
 
   vscode.commands.registerCommand ( 'highlight.enable', Commands.enable );
   vscode.commands.registerCommand ( 'highlight.disable', Commands.disable );
