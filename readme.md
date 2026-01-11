@@ -80,7 +80,7 @@ All the supported decoration options are defined [here](https://code.visualstudi
 
 ## Warnings
 
-1. Regexes need to be double-escaped, once for JSON and the second time for the regex itself.
+1. Regexes need to be double-escaped, once for JSON and the second time for the regex itself. For example if you want to match a literal asterisk you should write `\\*`, not just `\*`.
 2. For each capturing group a decorations options object must be provided (empty decorations are allowed: `{}`), otherwise the actual decorations will be misaligned.
 3. If you want to match the start/end of a line make sure the regex has the "m" (multiline) flag.
 
