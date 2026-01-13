@@ -17,7 +17,7 @@
       "properties": {
         "highlight.debugging": {
           "type": "boolean",
-          "description": "Whether debugging alerts are enabled o rnot",
+          "description": "Whether debugging alerts are enabled or not",
           "default": false
         },
         "highlight.decorations": {
