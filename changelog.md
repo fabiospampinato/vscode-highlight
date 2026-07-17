@@ -73,7 +73,7 @@
 - Fixed an exception
 
 ### Version 1.3.3
-- Updated advenced regex: added support for common templating languages
+- Updated advanced regex: added support for common templating languages
 
 ### Version 1.3.2
 - Readme: using hi-res logo
@@ -92,8 +92,8 @@
 - Bundling with webpack
 
 ### Version 1.2.9
-- Updated advenced regex: added support for `//TODO (foo)`
-- Updated advenced regex: add support for JSDoc-style comments
+- Updated advanced regex: added support for `//TODO (foo)`
+- Updated advanced regex: add support for JSDoc-style comments
 
 ### Version 1.2.8
 - Updated robust regex
@@ -121,7 +121,7 @@
 - Improved skipping-redecoration logic
 
 ### Version 1.2.0
-- Substancial performance improvement
+- Substantial performance improvement
 - Added regex-level options: `regexFlags`, `filterLanguageRegex` and `filterFileRegex`
 
 ### Version 1.1.0
