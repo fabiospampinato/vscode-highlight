@@ -221,7 +221,7 @@ The following is the configuration I'm currently using for highlighting colors, 
         "borderStyle": "solid",
         "borderColor": "$1",
         "backgroundColor": "$1",
-        "color": "#ffffff"
+        "color": "contrast-color(color-mix(in oklab, $1, black 23%))"
       }
     ]
   }
